@@ -31,10 +31,10 @@ public class Doctor extends User {
     }
 
     /**
-     * @param patientCNP
+     * @param patient
      */
-    public void trackDonationAmountForPatient(Long patientCNP) {
-        // TODO: if patient exists in repo, return donationAmount
+    public void trackDonationAmountForPatient(Patient patient) {
+        // TODO: from the DB?
     }
 
     /**

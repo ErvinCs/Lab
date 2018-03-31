@@ -7,6 +7,8 @@ public class Donation
     protected Blood blood;
     protected Double quantity;
     protected LocalDate donationDate;
+    protected Long id;
+    private static Long idGen = Long.valueOf(1);
 
     /**
      * @param rh: String
@@ -19,6 +21,8 @@ public class Donation
         blood.type = type;
         this.quantity = quantity;
         this.donationDate = donationDate;
+        this.id = idGen;
+        idGen += 1;
     }
 
 }

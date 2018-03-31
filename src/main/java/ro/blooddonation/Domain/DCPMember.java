@@ -1,6 +1,9 @@
 package ro.blooddonation.Domain;
 
+import ro.blooddonation.Exceptions.AppointmentException;
+
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.*;
 
 /**
@@ -8,8 +11,8 @@ import java.util.*;
  */
 public class DCPMember extends User
 {
-    List<Donor> donorList;
-    DoningCenter doningCenter;
+    protected List<Donor> donorList;
+    protected DoningCenter doningCenter;
 
     /**
      * @param firstName: String
@@ -76,10 +79,14 @@ public class DCPMember extends User
     }
 
     /**
-     * @param CNP
+     * @param donor: to set currApointment
      */
-    private void appointDonor(Long CNP) {
-        // TODO: find donor with CNP, if it exists, set currApointment
+    private void appointDonor(Donor donor, LocalDate appointment)
+    {
+        LocalDate now = LocalDate.now();
+        if (Period.between(now, appointment).getDays() < 0)
+            throw new AppointmentException("Invalid date!");
+        donor.currAppointment = appointment;
     }
 
     /**

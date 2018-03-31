@@ -19,6 +19,16 @@ public class SuperAdmin {
         this.password = password;
     }
 
+    public String getUsername()
+    {
+        return this.username;
+    }
+
+    public String getPassword()
+    {
+        return this.password;
+    }
+
     /**
      * @param username: String; unique Admin username
      * @param password: String
@@ -40,7 +50,7 @@ public class SuperAdmin {
      * @param password: String
      * @param doningCenter: DoningCenter
      * @return DCPMember(firstName, lastName, bDay, address, residence, CNP,
-                         username, password, doningCenter)
+     *                    username, password, doningCenter)
      */
     public DCPMember createDCP(String firstName, String lastName, LocalDate bDay, Address address, Address residence, Long CNP,
                                String username, String password, DoningCenter doningCenter) {

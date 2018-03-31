@@ -4,8 +4,8 @@ import java.util.*;
 
 public class DoningCenter
 {
-    Address address;
-    Set<Donation> bloodStocks;
+    protected Address address;
+    protected Set<Donation> bloodStocks;
 
     /**
      * @param address: Address
@@ -15,6 +15,4 @@ public class DoningCenter
         this.address = address;
         bloodStocks = new HashSet<Donation>();
     }
-
-
 }

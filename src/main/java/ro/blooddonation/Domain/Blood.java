@@ -16,6 +16,11 @@ public class Blood
        this.rh = rh;
        this.type = type;
        this.testResults = new HashMap<String, Boolean>();
+
     }
 
+    private void initTestResults()
+    {
+        //TODO: nuj exact cum sa modelez treaba asta
+    }
 }

@@ -4,17 +4,14 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
-/**
- * 
- */
 public abstract class User
 {
     protected String firstName;
     protected String lastName;
-    protected LocalDate bDay;
+    private LocalDate bDay;
     protected Address address;
     protected Address residence;
-    protected Long CNP;
+    private Long CNP;
     protected String username;
     protected String password;
 
@@ -40,10 +37,24 @@ public abstract class User
         this.password = password;
     }
 
+    /**
+     * @return CNP - Long
+     */
+    public Long getCNP()
+    {
+        return this.CNP;
+    }
 
     /**
-     *
-     * @return: the number of years between the current date and this User's birthday
+     * @return bDay - LocalDate
+     */
+    public LocalDate getbDay()
+    {
+        return this.bDay;
+    }
+
+    /**
+     * @return: the number of years between the current date and this User's birthday - int
      */
     public Integer getAge()
     {
@@ -69,7 +80,7 @@ public abstract class User
 
 
     /**
-     * Nuj ce facem cu metoda asta xD
+     * Nuj ce facem cu metoda asta xD - ar putea fi gen metoda care porneste meniul cand intri in cont or something
      */
     public abstract void menu();
 

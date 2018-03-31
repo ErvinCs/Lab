@@ -8,7 +8,7 @@ import java.util.*;
  */
 public class Donor extends User {
 
-    protected LocalDate currApointment = null;
+    protected LocalDate currAppointment = null;
     protected LocalDate lastDonation = null;
     protected List<Donation> donationHistory;
 
@@ -20,11 +20,12 @@ public class Donor extends User {
     }
 
     /**
-     * @param patient 
+     * @param patient: to donate to
      * @return
      */
     public Donation donate(Optional<Patient> patient)
     {
+
         if (patient.isPresent())
         {
             // TODO: search for patient in the repo
@@ -36,16 +37,18 @@ public class Donor extends User {
     }
 
     /**
-     * 
+     * @param donation
+     *  If the history already contains donation, then update it, otherwise add donation to the history.
      */
-    private void updateDonationHistory() {
-        // TODO: add Donation to donationHistory
+    private void updateDonationHistory(Donation donation)
+    {
+        if (donationHistory.contains(donation))
+            donationHistory.set(donationHistory.indexOf(donation), donation);
+        else
+            this.donationHistory.add(donation);
     }
 
 
-    /**
-     * 
-     */
     public void menu()
     {
         // TODO: ???
