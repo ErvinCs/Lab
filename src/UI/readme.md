@@ -11,7 +11,7 @@ npm install
 
 After that, you can run:
 '''
-    npm start
+    npm start-donor
 '''
 
 to can start the local server for the development of the application.
