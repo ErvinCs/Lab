@@ -1,0 +1,19 @@
+.address-form div label {
+    padding: 4px 16px;
+    margin: 4px 8px;
+}
+
+.address-form div input {
+    width: 200px;
+    height: auto;
+    position: relative;
+    display: inline-block;
+}
+
+.submit {
+    margin: 20px;
+}
+
+#form-person label {
+    font-size: 1.4em;
+}
