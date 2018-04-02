@@ -1,8 +1,14 @@
 <div class="container">
 <h2 class="form-title">
-  Please complete this form to can continue
+  Please complete this form 
 </h2>
-<form name="form-person" (submit)="submitData(firstname.value, lastname.value, date.value, address.value, town.value, city.value, cnp.value)" id='form-person' class="">
+<form name="form-person" (submit)="submitData(email.value, password.value, firstname.value, lastname.value, date.value, address.value, town.value, city.value, cnp.value)" id='form-person' class="">
+  <label class="col-md-2 col-sm-3 col-xs-3" for="firstname">E-Mail: </label>
+  <input type="text" class="col-md-5 col-sm-8 col-xs-8" #email>
+  <br>
+  <label class="col-md-2 col-sm-3 col-xs-3" for="firstname">Password: </label>
+  <input type="password" class="col-md-5 col-sm-8 col-xs-8" #password>
+  <br>
   <label class="col-md-2 col-sm-3 col-xs-3" for="firstname">First Name: </label>
   <input type="text" class="col-md-5 col-sm-8 col-xs-8" #firstname>
   <br>

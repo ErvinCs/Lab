@@ -8,6 +8,8 @@ import { Address } from '../common/Address.interface';
   styleUrls: ['./person.component.css']
 })
 export class PersonComponent implements OnInit {
+  private _email: String;
+  private _password: String;
   private _firstName: String;
   private _lastName: String;
   private _birthday: Date;
@@ -23,8 +25,11 @@ export class PersonComponent implements OnInit {
   submitPersonInfo() {
 
   }
-  submitData(firstName: String, lastName: String, birthday:Date, 
+
+  submitData(email:String, password: String, firstName: String, lastName: String, birthday:Date, 
       address:String, town: String, city: String, cnp: number) {
+    this._email = email;
+    this._password = password;
     this._firstName = firstName;
     this._lastName = lastName;
     this._birthday = birthday;
@@ -37,6 +42,8 @@ export class PersonComponent implements OnInit {
     this._cnp = cnp;
     // console.log(this);
     // Also will do other stuff
+    // Will go to the server with a ajax call
+    // Will check if it's valid, then back
     return false;
   }
 }
