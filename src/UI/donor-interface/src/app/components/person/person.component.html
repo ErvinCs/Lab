@@ -1,0 +1,32 @@
+<div class="container">
+<h2 class="form-title">
+  Please complete this form to can continue
+</h2>
+<form name="form-person" (submit)="submitData(firstname.value, lastname.value, date.value, address.value, town.value, city.value, cnp.value)" id='form-person' class="">
+  <label class="col-md-2 col-sm-3 col-xs-3" for="firstname">First Name: </label>
+  <input type="text" class="col-md-5 col-sm-8 col-xs-8" #firstname>
+  <br>
+  <label for="lastname" class="col-md-2 col-sm-3 col-xs-3">Last Name: </label>
+  <input type="text" class="col-md-5 col-sm-8 col-xs-8" #lastname>
+  <br>
+  <label for="birthday" class="col-md-2 col-sm-3 col-xs-3">Date of Birth: </label>
+  <input type="date" class="col-md-5 col-sm-3 col-xs-3" #date>
+  <br>
+  <label for="residence" class="">Residence: </label>
+  <br>
+  <!-- <div class="col-md-8 col-sm-12 col-xs-12"> -->
+  <label for="address" class="col-md-2 col-sm-3 col-xs-3">Address: </label>
+  <input type="text" class="col-md-5 col-sm-8 col-xs-8" #address>
+  <br>
+  <label for="town" class="col-md-2 col-sm-3 col-xs-3">Town: </label>
+  <input type="text" class="col-md-5 col-sm-8 col-xs-8" #town>
+  <br>
+  <label for="town" class="col-md-2 col-sm-3 col-xs-3">City: </label>
+  <input type="text" class="col-md-5 col-sm-8 col-sm-8" #city>
+  <br>
+  <label for="cnp" class="col-md-3 col-sm-3 col-xs-3">Personal Numeric Number: </label>
+  <input type="text" class="col-md-4 col-sm-8 col-xs-3" #cnp>
+  <br>
+  <button (click)="submitPersonInfo()"class="btn btn-primary submit">Submit input</button>
+</form>
+</div>  
