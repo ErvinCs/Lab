@@ -1,5 +1,7 @@
 package ro.blooddonation.Domain;
 
+import ro.blooddonation.Domain.Users.DCPMember;
+
 import java.time.LocalDate;
 
 
@@ -62,14 +64,14 @@ public class SuperAdmin {
      * @param id
      */
     public void removeAdmin(Long id) {
-        // TODO: call remove from the repo; coupling?
+        // TODO: MOVE
     }
 
     /**
      * @param id
      */
     public void removeDCP(Long id) {
-        // TODO: call remove from the repo; coupling?
+        // TODO: MOVE
     }
 
 }

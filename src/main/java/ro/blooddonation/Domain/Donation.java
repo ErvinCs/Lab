@@ -4,25 +4,37 @@ import java.time.LocalDate;
 
 public class Donation
 {
-    protected Blood blood;
-    protected Double quantity;
-    protected LocalDate donationDate;
-    protected Long id;
+    public Blood blood;
+    private Double bloodQuantity;
+    public Double plasmaQuantity;
+    public Double thrombocytesQuantity;
+    public Double redCellsQuantity;
+    private LocalDate donationDate;
+
+    public Long id;
     private static Long idGen = Long.valueOf(1);
 
+    private static final Integer plasmaExp = 365;
+    private static final Integer thrombocytesExp = 42;
+    private static final Integer redCellsExp = 5;
+
     /**
-     * @param rh: String
-     * @param type: String
-     * @param quantity: Double
      * @param donationDate: LocalDate
      */
-    public Donation(String rh, String type, Double quantity, LocalDate donationDate) {
-        blood.rh = rh;
-        blood.type = type;
-        this.quantity = quantity;
+    public Donation(LocalDate donationDate)
+    {
         this.donationDate = donationDate;
         this.id = idGen;
         idGen += 1;
     }
 
+    public Double getBloodQuantity()
+    {
+        return this.bloodQuantity;
+    }
+
+    public LocalDate getDonationDate()
+    {
+        return this.donationDate;
+    }
 }

@@ -2,9 +2,9 @@ package ro.blooddonation.Domain;
 
 public class Address
 {
-    protected String address;
-    protected String town;
-    protected String country;
+    public String address;
+    public String town;
+    public String country;
 
     /**
      *

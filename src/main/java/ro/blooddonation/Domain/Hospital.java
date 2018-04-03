@@ -3,9 +3,9 @@ package ro.blooddonation.Domain;
 
 public class Hospital {
 
-    protected Address address;
+    public Address address;
     protected Admin admin;
-    protected Long id;
+    public Long id;
     private static Long idGen = Long.valueOf(1);
 
     /**

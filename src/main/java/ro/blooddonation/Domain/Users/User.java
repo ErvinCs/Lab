@@ -1,4 +1,6 @@
-package ro.blooddonation.Domain;
+package ro.blooddonation.Domain.Users;
+
+import ro.blooddonation.Domain.Address;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -6,14 +8,14 @@ import java.util.*;
 
 public abstract class User
 {
-    protected String firstName;
-    protected String lastName;
+    public String firstName;
+    public String lastName;
     private LocalDate bDay;
-    protected Address address;
-    protected Address residence;
+    public Address address;
+    public Address residence;
     private Long CNP;
-    protected String username;
-    protected String password;
+    public String username;
+    public String password;
 
 
     /**
@@ -77,11 +79,5 @@ public abstract class User
         Address addr = address.isPresent() ? this.address = address.get() : null;
         Address res = residence.isPresent() ? this.residence = residence.get() : null;
     }
-
-
-    /**
-     * Nuj ce facem cu metoda asta xD - ar putea fi gen metoda care porneste meniul cand intri in cont or something
-     */
-    public abstract void menu();
 
 }

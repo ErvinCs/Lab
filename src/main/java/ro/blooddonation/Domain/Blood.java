@@ -1,12 +1,9 @@
 package ro.blooddonation.Domain;
 
-import java.util.*;
-
 public class Blood
 {
-    protected String rh;
-    protected String type;
-    protected Map testResults = null;
+    private String rh;
+    private String type;
 
     /**
      * @param rh: String("+" or "-")
@@ -15,12 +12,15 @@ public class Blood
     public Blood(String rh, String type) {
        this.rh = rh;
        this.type = type;
-       this.testResults = new HashMap<String, Boolean>();
-
     }
 
-    private void initTestResults()
+    public String getRh()
     {
-        //TODO: nuj exact cum sa modelez treaba asta
+        return this.rh;
+    }
+
+    public String getType()
+    {
+        return this.type;
     }
 }

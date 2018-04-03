@@ -1,11 +1,20 @@
-package ro.blooddonation.Domain;
+package ro.blooddonation.Domain.Users;
+
+import ro.blooddonation.Domain.Address;
+import ro.blooddonation.Domain.Blood;
+import ro.blooddonation.Domain.Donation;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Patient extends User {
 
-    protected Address hospitalAddress;
-    protected Blood blood = null;
+    public Address hospitalAddress;
+    public Blood blood = null;
+    public Double requestedBloodQuantity;
+    public List<Donation> donations;
+    public Integer urgency;
 
     /**
      *
@@ -20,16 +29,13 @@ public class Patient extends User {
      * @param hospitalAddress: Address
      */
     public Patient(String firstName, String lastName, LocalDate bDay, Address address, Address residence, Long CNP,
-                   String username, String password, Address hospitalAddress)
+                   String username, String password, Address hospitalAddress, Integer urgency)
     {
         super(firstName, lastName, bDay, address, residence, CNP, username, password);
         this.hospitalAddress = hospitalAddress;
+        this.donations = new ArrayList<Donation>();
+        this.urgency = urgency;
     }
 
-
-    public void menu()
-    {
-        //TODO: ???
-    }
 
 }

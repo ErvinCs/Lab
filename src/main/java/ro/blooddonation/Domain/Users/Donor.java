@@ -1,16 +1,17 @@
-package ro.blooddonation.Domain;
+package ro.blooddonation.Domain.Users;
+
+import ro.blooddonation.Domain.Address;
+import ro.blooddonation.Domain.Donation;
 
 import java.time.LocalDate;
 import java.util.*;
 
-/**
- * 
- */
 public class Donor extends User {
 
-    protected LocalDate currAppointment = null;
-    protected LocalDate lastDonation = null;
-    protected List<Donation> donationHistory;
+    public Donation currDonation;
+    public LocalDate currAppointment = null;
+    public LocalDate lastDonation = null;
+    private List<Donation> donationHistory;
 
     public Donor(String firstName, String lastName, LocalDate bDay, Address address, Address residence, Long CNP,
                  String username, String password)
@@ -28,17 +29,23 @@ public class Donor extends User {
 
         if (patient.isPresent())
         {
-            // TODO: search for patient in the repo
+            // TODO: update patient requestedBloodQuantity
             return null;
         }
         // TODO: updateBloodStocks
-        // TODO: call updateDonationHistory
+        // TODO: update donationHistory <- not here tho
         return null;
     }
 
+    public List<Donation> getDonationHistory()
+    {
+        return this.donationHistory;
+    }
+
+
     /**
+     * If the history already contains donation, then update it, otherwise add donation to the history.
      * @param donation
-     *  If the history already contains donation, then update it, otherwise add donation to the history.
      */
     private void updateDonationHistory(Donation donation)
     {
@@ -47,12 +54,5 @@ public class Donor extends User {
         else
             this.donationHistory.add(donation);
     }
-
-
-    public void menu()
-    {
-        // TODO: ???
-    }
-
 
 }

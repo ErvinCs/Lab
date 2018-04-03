@@ -1,6 +1,9 @@
-package ro.blooddonation.Domain;
+package ro.blooddonation.Domain.Users;
 
-import java.math.BigInteger;
+import ro.blooddonation.Domain.Address;
+import ro.blooddonation.Domain.Blood;
+import ro.blooddonation.Domain.Hospital;
+
 import java.time.LocalDate;
 import java.util.*;
 
@@ -11,7 +14,7 @@ public class Doctor extends User {
 
 
     protected List<Patient> patientList;
-    protected Hospital hospital;
+    public Hospital hospital;
 
     /**
      * @param firstName: String
@@ -31,9 +34,9 @@ public class Doctor extends User {
     }
 
     /**
-     * @param patient
+     * @param patientID: Long
      */
-    public void trackDonationAmountForPatient(Patient patient) {
+    public void enoughDonationsForPatient(Long patientID) {
         // TODO: from the DB?
     }
 
@@ -42,13 +45,6 @@ public class Doctor extends User {
      */
     public void trackAllRequestStatuses() {
         // TODO: request status list
-    }
-
-    /**
-     * @param blood
-     */
-    public void makeBloodRequest(Blood blood) {
-        // TODO: add a Request(blood) to the requestRepo
     }
 
 
@@ -62,11 +58,6 @@ public class Doctor extends User {
     public void updateAccount(Optional<String> firstName, Optional<String> lastName, Optional<Address> address, Optional<Address> residence, Optional<Hospital> hospital) {
         super.updateAccount(firstName, lastName, address, residence);
         Hospital h = hospital.isPresent() ? this.hospital = hospital.get() : null;
-    }
-
-
-    public void menu() {
-        // TODO: ???
     }
 
 }

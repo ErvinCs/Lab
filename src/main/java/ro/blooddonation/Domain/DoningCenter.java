@@ -1,11 +1,8 @@
 package ro.blooddonation.Domain;
 
-import java.util.*;
-
 public class DoningCenter
 {
-    protected Address address;
-    protected Set<Donation> bloodStocks;
+    public Address address;
 
     /**
      * @param address: Address
@@ -13,6 +10,5 @@ public class DoningCenter
     public DoningCenter(Address address)
     {
         this.address = address;
-        bloodStocks = new HashSet<Donation>();
     }
 }
