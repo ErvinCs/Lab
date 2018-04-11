@@ -10,11 +10,9 @@ import java.util.*;
 /**
  * 
  */
-public class Doctor extends User {
-
-
-    protected List<Patient> patientList;
-    public Hospital hospital;
+public class Doctor extends User
+{
+    private Hospital hospital;
 
     /**
      * @param firstName: String
@@ -30,23 +28,15 @@ public class Doctor extends User {
     {
         super(firstName, lastName, bDay, address, residence, CNP, username, password);
         this.hospital = hospital;
-        this.patientList = new ArrayList<Patient>();
     }
 
-    /**
-     * @param patientID: Long
-     */
-    public void enoughDonationsForPatient(Long patientID) {
-        // TODO: from the DB?
+    public Hospital getHospital() {
+        return hospital;
     }
 
-    /**
-     * 
-     */
-    public void trackAllRequestStatuses() {
-        // TODO: request status list
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
     }
-
 
     /**
      * @param firstName: String

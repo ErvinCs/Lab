@@ -2,13 +2,21 @@ package ro.blooddonation.Domain;
 
 public class DoningCenter
 {
-    public Address address;
+    private Address address;
 
     /**
      * @param address: Address
      */
     public DoningCenter(Address address)
     {
+        this.address = address;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
         this.address = address;
     }
 }
