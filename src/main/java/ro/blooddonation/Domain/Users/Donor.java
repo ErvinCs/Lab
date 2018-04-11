@@ -8,9 +8,9 @@ import java.util.*;
 
 public class Donor extends User {
 
-    public Donation currDonation;
-    public LocalDate currAppointment = null;
-    public LocalDate lastDonation = null;
+    private Donation currDonation = null;
+    private LocalDate currAppointment = null;
+    private LocalDate lastDonation = null;
     private List<Donation> donationHistory;
 
     public Donor(String firstName, String lastName, LocalDate bDay, Address address, Address residence, Long CNP,
@@ -20,21 +20,28 @@ public class Donor extends User {
         this.donationHistory = new ArrayList<Donation>();
     }
 
-    /**
-     * @param patient: to donate to
-     * @return
-     */
-    public Donation donate(Optional<Patient> patient)
-    {
+    public Donation getCurrDonation() {
+        return currDonation;
+    }
 
-        if (patient.isPresent())
-        {
-            // TODO: update patient requestedBloodQuantity
-            return null;
-        }
-        // TODO: updateBloodStocks
-        // TODO: update donationHistory <- not here tho
-        return null;
+    public void setCurrDonation(Donation currDonation) {
+        this.currDonation = currDonation;
+    }
+
+    public LocalDate getCurrAppointment() {
+        return currAppointment;
+    }
+
+    public void setCurrAppointment(LocalDate currAppointment) {
+        this.currAppointment = currAppointment;
+    }
+
+    public LocalDate getLastDonation() {
+        return lastDonation;
+    }
+
+    public void setLastDonation(LocalDate lastDonation) {
+        this.lastDonation = lastDonation;
     }
 
     public List<Donation> getDonationHistory()

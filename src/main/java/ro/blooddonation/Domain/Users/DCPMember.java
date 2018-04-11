@@ -10,8 +10,7 @@ import java.util.*;
 
 public class DCPMember extends User
 {
-    protected List<Donor> donorList;
-    public DoningCenter doningCenter;
+    private DoningCenter doningCenter;
 
     /**
      * @param firstName: String
@@ -27,35 +26,14 @@ public class DCPMember extends User
     {
         super(firstName, lastName, bDay, address, residence, CNP, username, password);
         this.doningCenter = doningCenter;
-        this.donorList = new ArrayList<Donor>();
     }
 
-    /**
-     * @param donor: Donor
-     */
-    public void updateDonorHistory(Donor donor)
-    {
-        // TODO: search for donor in the repo by CNP; if found, updateDonationHistory
+    public DoningCenter getDoningCenter() {
+        return doningCenter;
     }
 
-
-    /**
-     * 
-     */
-    public void processRequest() {
-        // TODO implement here
-    }
-
-
-    /**
-     * @param donor: to set currApointment
-     */
-    private void appointDonor(Donor donor, LocalDate appointment)
-    {
-        LocalDate now = LocalDate.now();
-        if (Period.between(now, appointment).getDays() < 0)
-            throw new AppointmentException("Invalid date!");
-        donor.currAppointment = appointment;
+    public void setDoningCenter(DoningCenter doningCenter) {
+        this.doningCenter = doningCenter;
     }
 
     /**
