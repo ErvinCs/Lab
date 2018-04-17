@@ -9,22 +9,24 @@ import java.util.*;
  */
 public class HospitalRepo implements IRepo<Hospital> {
 
+    private List<Hospital> repo;
     /**
-     * Default constructor
+     * Constructor
      */
     public HospitalRepo() {
+        repo = new ArrayList<Hospital>();
     }
 
     /**
      *
      */
-    private List<Hospital> repo;
+
 
     /**
      * @param elem
      */
     public void add(Hospital elem) {
-        // TODO implement here
+        repo.add(elem);
     }
 
     /**
