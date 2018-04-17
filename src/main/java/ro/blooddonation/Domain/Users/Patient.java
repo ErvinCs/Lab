@@ -1,9 +1,6 @@
 package ro.blooddonation.Domain.Users;
 
-import ro.blooddonation.Domain.Address;
-import ro.blooddonation.Domain.Blood;
-import ro.blooddonation.Domain.Donation;
-import ro.blooddonation.Domain.Hospital;
+import ro.blooddonation.Domain.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,7 +13,6 @@ public class Patient extends User {
     private Double requestedBloodQuantity = null;
     private Integer urgency = null;
 
-
     /**
      *
      * @param firstName: String
@@ -25,13 +21,12 @@ public class Patient extends User {
      * @param address: Address
      * @param residence: Address
      * @param CNP: Long
-     * @param username: String
-     * @param password: String
+     * @param account: Account
      */
     public Patient(String firstName, String lastName, LocalDate bDay, Address address, Address residence, Long CNP,
-                   String username, String password, Doctor doctor)
+                   Account account, Doctor doctor)
     {
-        super(firstName, lastName, bDay, address, residence, CNP, username, password);
+        super(firstName, lastName, bDay, address, residence, CNP, account);
         this.doctor = doctor;
     }
 

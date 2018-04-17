@@ -1,5 +1,6 @@
 package ro.blooddonation.Domain.Users;
 
+import ro.blooddonation.Domain.Account;
 import ro.blooddonation.Domain.Address;
 import ro.blooddonation.Domain.Donation;
 
@@ -13,10 +14,20 @@ public class Donor extends User {
     private LocalDate lastDonation = null;
     private List<Donation> donationHistory;
 
+    /**
+     *
+     * @param firstName: String
+     * @param lastName: String
+     * @param bDay: LocalDate
+     * @param address: Address
+     * @param residence: Address
+     * @param CNP: Long
+     * @param account: Account
+     */
     public Donor(String firstName, String lastName, LocalDate bDay, Address address, Address residence, Long CNP,
-                 String username, String password)
+                 Account account)
     {
-        super(firstName, lastName, bDay, address, residence, CNP, username, password);
+        super(firstName, lastName, bDay, address, residence, CNP, account);
         this.donationHistory = new ArrayList<Donation>();
     }
 

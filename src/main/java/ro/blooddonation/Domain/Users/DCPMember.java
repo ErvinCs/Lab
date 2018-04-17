@@ -1,5 +1,6 @@
 package ro.blooddonation.Domain.Users;
 
+import ro.blooddonation.Domain.Account;
 import ro.blooddonation.Domain.Address;
 import ro.blooddonation.Domain.DoningCenter;
 import ro.blooddonation.Exceptions.AppointmentException;
@@ -8,24 +9,20 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
-public class DCPMember extends User
+public class DCPMember
 {
     private DoningCenter doningCenter;
+    private Account account;
 
     /**
-     * @param firstName: String
-     * @param lastName: String
-     * @param bDay: LocalDate
-     * @param address: Address
-     * @param residence: Address
-     * @param CNP: Long
+     *
      * @param doningCenter: DoningCenter
+     * @param account: Account
      */
-    public DCPMember(String firstName, String lastName, LocalDate bDay, Address address, Address residence, Long CNP,
-                     String username, String password, DoningCenter doningCenter)
+    public DCPMember(DoningCenter doningCenter, Account account)
     {
-        super(firstName, lastName, bDay, address, residence, CNP, username, password);
         this.doningCenter = doningCenter;
+        this.account = account;
     }
 
     public DoningCenter getDoningCenter() {
@@ -37,15 +34,17 @@ public class DCPMember extends User
     }
 
     /**
-     * @param firstName: String
-     * @param lastName: String
-     * @param address: Address
-     * @param residence: Address
+     *
      * @param doningCenter: DoningCenter
+     * @param username: String
+     * @param password: String
      */
-    public void updateAccount(Optional<String> firstName, Optional<String> lastName, Optional<Address> address, Optional<Address> residence, Optional<DoningCenter> doningCenter)
+    public void updateAccount(Optional<DoningCenter> doningCenter, Optional<String> username, Optional<String> password)
     {
-        super.updateAccount(firstName, lastName, address, residence);
-        DoningCenter dc = doningCenter.isPresent() ? this.doningCenter = doningCenter.get() : null;
+        DoningCenter dc = doningCenter.isPresent() ? this.doningCenter = doningCenter.get() : this.doningCenter;
+        if (username.isPresent())
+            this.account.setUsername(username.get());
+        if (password.isPresent())
+            this.account.setPassword(password.get());
     }
 }

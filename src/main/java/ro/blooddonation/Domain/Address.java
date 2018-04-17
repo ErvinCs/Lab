@@ -6,6 +6,19 @@ public class Address
     private String town;
     private String country;
 
+    /**
+     *
+     * @param address: String
+     * @param town: String
+     * @param country: String
+     */
+    public Address(String address, String town, String country)
+    {
+        this.address = address;
+        this.town = town;
+        this.country = country;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -27,19 +40,6 @@ public class Address
     }
 
     public void setCountry(String country) {
-        this.country = country;
-    }
-
-    /**
-     *
-     * @param address: String
-     * @param town: String
-     * @param country: String
-     */
-    public Address(String address, String town, String country)
-    {
-        this.address = address;
-        this.town = town;
         this.country = country;
     }
 
