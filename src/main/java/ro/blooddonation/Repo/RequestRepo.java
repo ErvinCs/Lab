@@ -53,7 +53,7 @@ public class RequestRepo implements IRepo<Request> {
      * @param id 
      * @return
      */
-    public Optional<Request> find(Long id) {
+    public Request find(Long id) {
         // TODO implement here
         return null;
     }

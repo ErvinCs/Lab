@@ -1,7 +1,7 @@
 package ro.blooddonation.Domain.Validators;
 
-import ro.blooddonation.Domain.Donation;
-import ro.blooddonation.Exceptions.ValidatorException;
+        import ro.blooddonation.Domain.Donation;
+        import ro.blooddonation.Exceptions.ValidatorException;
 
 public class DonationValidator implements Validator<Donation> {
     @Override
@@ -11,6 +11,6 @@ public class DonationValidator implements Validator<Donation> {
             errors+="Invalid ID!\n";
         if (entity.getBloodQuantity()<=0)
             errors+="Invalid blood quantity!\n";
-            throw new ValidatorException(errors);
+        throw new ValidatorException(errors);
     }
 }

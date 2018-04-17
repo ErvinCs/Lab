@@ -16,6 +16,7 @@ public class Doctor
     private Hospital hospital;
     private Account account;
 
+
     /**
      *
      * @param hospital: Hospital
@@ -41,12 +42,14 @@ public class Doctor
      * @param username: String
      * @param password: String
      */
-    public void updateAccount(Optional<Hospital> hospital, Optional<String> username, Optional<String> password) {
+    public void updateAccount(Optional<Hospital> hospital, Optional<String> username, Optional<String> password, Optional<Long> CNP) {
         Hospital h = hospital.isPresent() ? this.hospital = hospital.get() : this.hospital;
         if (username.isPresent())
             this.account.setUsername(username.get());
         if (password.isPresent())
             this.account.setPassword(password.get());
+        if(CNP.isPresent())
+            this.account.setCNP(CNP.get());
     }
 
 }
