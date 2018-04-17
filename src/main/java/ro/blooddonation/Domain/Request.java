@@ -6,11 +6,17 @@ public class Request
 {
     private Blood blood;
     private Integer urgency;
-    private Long id;
     private Doctor doctor;
     private String status;
+    private Long id;
     private static Long idGen = Long.valueOf(1);
 
+    /**
+     *
+     * @param blood
+     * @param urgency
+     * @param doctor
+     */
     public Request(Blood blood, Integer urgency, Doctor doctor)
     {
         this.blood = blood;

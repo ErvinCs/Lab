@@ -3,6 +3,8 @@ package ro.blooddonation.Domain;
 public class DoningCenter
 {
     private Address address;
+    private Long id;
+    private static Long idGen = Long.valueOf(1);
 
     /**
      * @param address: Address
@@ -10,6 +12,8 @@ public class DoningCenter
     public DoningCenter(Address address)
     {
         this.address = address;
+        this.id = idGen;
+        idGen += 1;
     }
 
     public Address getAddress() {
@@ -18,5 +22,9 @@ public class DoningCenter
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

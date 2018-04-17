@@ -1,5 +1,6 @@
 package ro.blooddonation.Domain.Users;
 
+import ro.blooddonation.Domain.Account;
 import ro.blooddonation.Domain.Address;
 
 import java.time.LocalDate;
@@ -14,8 +15,8 @@ public abstract class User
     private Address address;
     private Address residence;
     private Long CNP;
-    private String username;
-    private String password;
+
+    private Account account;
 
     /**
      * @param firstName: String
@@ -24,9 +25,10 @@ public abstract class User
      * @param address: Address
      * @param residence: Address
      * @param CNP: Long
+     * @param account: Account
      */
-    protected User(String firstName, String lastName, LocalDate bDay, Address address, Address residence, Long CNP,
-                     String username, String password)
+    protected User(String firstName, String lastName, LocalDate bDay, Address address, Address residence,
+                   Long CNP, Account account)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -34,8 +36,7 @@ public abstract class User
         this.address = address;
         this.residence = residence;
         this.CNP = CNP;
-        this.username = username;
-        this.password = password;
+        this.account = account;
     }
 
     public String getFirstName() {
@@ -70,20 +71,12 @@ public abstract class User
         this.residence = residence;
     }
 
-    public String getUsername() {
-        return username;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     /**
@@ -119,12 +112,17 @@ public abstract class User
      * @param address: Address
      * @param residence: Address
      */
-    public void updateAccount(Optional<String> firstName, Optional<String> lastName, Optional<Address> address, Optional<Address> residence)
+    public void updateAccount(Optional<String> firstName, Optional<String> lastName, Optional<Address> address, Optional<Address> residence,
+                              Optional<String> username, Optional<String> password)
     {
-        String fn = firstName.isPresent() ? this.firstName = firstName.get() : null;
-        String ln = lastName.isPresent() ? this.lastName = lastName.get() : null;
-        Address addr = address.isPresent() ? this.address = address.get() : null;
-        Address res = residence.isPresent() ? this.residence = residence.get() : null;
+        String fn = firstName.isPresent() ? this.firstName = firstName.get() : this.firstName;
+        String ln = lastName.isPresent() ? this.lastName = lastName.get() : this.lastName;
+        Address addr = address.isPresent() ? this.address = address.get() : this.address;
+        Address res = residence.isPresent() ? this.residence = residence.get() : this.residence;
+        if (username.isPresent())
+            this.account.setUsername(username.get());
+        if (password.isPresent())
+            this.account.setPassword(password.get());
     }
 
 }

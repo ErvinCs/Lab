@@ -1,17 +1,12 @@
 package ro.blooddonation.Domain;
 
-public class Admin
+public class Account
 {
-
     private String username;
     private String password;
 
-    /**
-     *
-     * @param username: String; unique
-     * @param password: String
-     */
-    public Admin(String username, String password) {
+    public Account(String username, String password)
+    {
         this.username = username;
         this.password = password;
     }
@@ -20,8 +15,16 @@ public class Admin
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }
