@@ -31,6 +31,6 @@ public interface IRepo<T> {
      * @param id 
      * @return
      */
-    public Optional<T> find(Long id);
+    public T find(Long id);
 
 }
