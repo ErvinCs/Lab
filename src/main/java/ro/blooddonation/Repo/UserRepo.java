@@ -1,6 +1,9 @@
 package ro.blooddonation.Repo;
 
 import ro.blooddonation.Domain.Users.User;
+import ro.blooddonation.Domain.Validators.UserValidator;
+import ro.blooddonation.Domain.Validators.Validator;
+import ro.blooddonation.Exceptions.ValidatorException;
 
 import java.util.*;
 
@@ -9,52 +12,72 @@ import java.util.*;
  */
 public class UserRepo<T extends User> implements IRepo<T> {
 
+    private List<T> repo;
+    private Validator<User> validator;
     /**
      * Default constructor
      */
     public UserRepo() {
+        repo = new ArrayList<>();
+        validator = new UserValidator();
     }
 
-    /**
-     * 
-     */
-    private List<T> repo;
-
-    /**
+     /**
      * @param elem
      */
     public void add(T elem) {
-        // TODO implement here
+        try {
+            validator.validate(elem);
+        }
+        catch(ValidatorException e){
+            throw new ValidatorException(e);
+        }
+        repo.add(elem);
     }
 
     /**
      * @param id
      */
     public void remove(Long id) {
-        // TODO implement here
+        User u=find(id);
+        if (u==null)
+            throw new ValidatorException("User with this ID does not exist!");
+        else
+            repo.remove(u);
     }
 
     /**
      * @param id
      */
     public void update(Long id, T newItem) {
-        // TODO implement here
+        User u=find(id);
+        if (u==null)
+            throw new ValidatorException("User with this ID does not exist!");
+        else
+            try{
+                validator.validate(newItem);
+            }
+            catch (ValidatorException e){
+                throw new ValidatorException(e);
+            }
+        repo.toArray()[repo.indexOf(u)]=newItem;
     }
 
     /**
      * @return
      */
     public List<T> getAll() {
-        // TODO implement here
-        return null;
+        return repo;
     }
 
     /**
      * @param id 
      * @return
      */
-    public Optional<T> find(Long id) {
-        // TODO implement here
+    public T find(Long id) {
+        for (T i: repo)
+            if(i.getCNP()==id)
+                return i;
         return null;
     }
 

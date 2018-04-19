@@ -13,6 +13,11 @@ public class DCPMember
 {
     private DoningCenter doningCenter;
     private Account account;
+    private Long CNP;
+
+    public Long getCNP() {
+        return CNP;
+    }
 
     /**
      *
