@@ -12,4 +12,8 @@ public class ValidatorException extends MyException{
     public ValidatorException(Throwable cause) {
         super(cause);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/repo2
