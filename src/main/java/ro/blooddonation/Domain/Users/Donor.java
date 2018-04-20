@@ -65,7 +65,7 @@ public class Donor extends User {
      * If the history already contains donation, then update it, otherwise add donation to the history.
      * @param donation
      */
-    private void updateDonationHistory(Donation donation)
+    public void updateDonationHistory(Donation donation)
     {
         if (donationHistory.contains(donation))
             donationHistory.set(donationHistory.indexOf(donation), donation);

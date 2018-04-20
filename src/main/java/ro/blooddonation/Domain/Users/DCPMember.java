@@ -15,19 +15,20 @@ public class DCPMember
     private Account account;
     private Long CNP;
 
-    public Long getCNP() {
-        return CNP;
-    }
-
     /**
      *
      * @param doningCenter: DoningCenter
      * @param account: Account
      */
-    public DCPMember(DoningCenter doningCenter, Account account)
+    public DCPMember(DoningCenter doningCenter, Account account, Long CNP)
     {
         this.doningCenter = doningCenter;
         this.account = account;
+        this.CNP = CNP;
+    }
+
+    public Long getCNP() {
+        return CNP;
     }
 
     public DoningCenter getDoningCenter() {
@@ -36,6 +37,14 @@ public class DCPMember
 
     public void setDoningCenter(DoningCenter doningCenter) {
         this.doningCenter = doningCenter;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     /**

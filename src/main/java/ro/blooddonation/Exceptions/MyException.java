@@ -12,8 +12,4 @@ public class MyException extends RuntimeException {
     public MyException(Throwable cause) {
         super(cause);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/repo2

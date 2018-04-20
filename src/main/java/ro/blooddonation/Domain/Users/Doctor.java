@@ -15,17 +15,22 @@ public class Doctor
 {
     private Hospital hospital;
     private Account account;
-
+    private Long CNP;
 
     /**
      *
      * @param hospital: Hospital
      * @param account: Account
      */
-    public Doctor(Hospital hospital, Account account)
+    public Doctor(Hospital hospital, Account account, Long CNP)
     {
         this.hospital = hospital;
         this.account = account;
+        this.CNP = CNP;
+    }
+
+    public Long getCNP() {
+        return CNP;
     }
 
     public Hospital getHospital() {
@@ -36,20 +41,26 @@ public class Doctor
         this.hospital = hospital;
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     /**
      *
      * @param hospital: Hospital
      * @param username: String
      * @param password: String
      */
-    public void updateAccount(Optional<Hospital> hospital, Optional<String> username, Optional<String> password, Optional<Long> CNP) {
+    public void updateAccount(Optional<Hospital> hospital, Optional<String> username, Optional<String> password) {
         Hospital h = hospital.isPresent() ? this.hospital = hospital.get() : this.hospital;
         if (username.isPresent())
             this.account.setUsername(username.get());
         if (password.isPresent())
             this.account.setPassword(password.get());
-        if(CNP.isPresent())
-            this.account.setCNP(CNP.get());
     }
 
 }
