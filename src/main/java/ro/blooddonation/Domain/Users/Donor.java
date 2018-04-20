@@ -67,10 +67,15 @@ public class Donor extends User {
      */
     public void updateDonationHistory(Donation donation)
     {
-        if (donationHistory.contains(donation))
-            donationHistory.set(donationHistory.indexOf(donation), donation);
-        else
-            this.donationHistory.add(donation);
+        for (Donation don : donationHistory)
+        {
+            if (don.getId().equals(donation.getId()))
+            {
+                donationHistory.set(donationHistory.indexOf(donation), donation);
+                return;
+            }
+        }
+        this.donationHistory.add(donation);
     }
 
 }

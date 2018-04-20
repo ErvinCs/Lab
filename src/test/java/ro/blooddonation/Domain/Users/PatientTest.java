@@ -16,7 +16,7 @@ public class PatientTest
 {
     public static final Integer NEW_URGENCY = 3;
     public static final Double NEW_REQ_B_QUANTITY = 100.0;
-    public static final Blood NEW_B = new Blood("+", "O1");
+    public static final Blood NEW_B = new Blood("rh+", "O1");
 
     private String firstName;
     private String lastName;

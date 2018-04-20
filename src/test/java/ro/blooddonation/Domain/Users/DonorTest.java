@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import ro.blooddonation.Domain.Account;
 import ro.blooddonation.Domain.Address;
+import ro.blooddonation.Domain.Blood;
 import ro.blooddonation.Domain.Donation;
 
 import java.time.LocalDate;
@@ -95,18 +96,25 @@ public class DonorTest
     @Test
     public void getDonationHistory() throws Exception
     {
+        assertEquals(donor.getDonationHistory().size(), 0);
 
+        Donation don = new Donation(NEW_DATE, QUANTITY);
+        donor.updateDonationHistory(don);
+
+        assertEquals(donor.getDonationHistory().size(), 1);
     }
 
     @Test
     public void updateDonationHistory() throws Exception
     {
-        donor.updateDonationHistory(NEW_DON);
+        Donation don = new Donation(NEW_DATE, QUANTITY);
+        donor.updateDonationHistory(don);
+        assertEquals(donor.getDonationHistory().size(), 1);
 
-        ArrayList<Donation> compareHistory = new ArrayList<>();
-        compareHistory.add(NEW_DON);
+        don.setBlood(new Blood("rh+", "AB4"));
+        don.setRedCellsQuantity(100.0);
 
-        assertEquals(donor.getDonationHistory(), compareHistory);
+        assertEquals(donor.getDonationHistory().size(), 1);
     }
 
 }
