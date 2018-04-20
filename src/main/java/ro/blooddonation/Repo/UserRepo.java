@@ -25,7 +25,7 @@ public class UserRepo<T extends User> implements IRepo<T> {
      /**
      * @param elem
      */
-    public void add(T elem) {
+    public Long add(T elem) {
         try {
             validator.validate(elem);
         }
@@ -33,6 +33,7 @@ public class UserRepo<T extends User> implements IRepo<T> {
             throw new ValidatorException(e);
         }
         repo.add(elem);
+        return elem.getCNP();
     }
 
     /**

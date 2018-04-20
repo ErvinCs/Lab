@@ -7,6 +7,10 @@ public class Admin
     private String password;
 
     /**
+     * Default constructor
+     */
+    public Admin() {}
+    /**
      *
      * @param username: String; unique
      * @param password: String

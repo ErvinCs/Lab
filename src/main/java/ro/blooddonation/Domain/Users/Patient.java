@@ -14,6 +14,10 @@ public class Patient extends User {
     private Integer urgency = null;
 
     /**
+     * Default constructor
+     */
+    public Patient() {}
+    /**
      *
      * @param firstName: String
      * @param lastName: String

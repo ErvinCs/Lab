@@ -18,6 +18,10 @@ public class Doctor
     private Long CNP;
 
     /**
+     * Default constructor
+     */
+    public Doctor() {}
+    /**
      *
      * @param hospital: Hospital
      * @param account: Account

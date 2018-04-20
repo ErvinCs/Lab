@@ -7,6 +7,10 @@ public class DoningCenter
     private static Long idGen = Long.valueOf(1);
 
     /**
+     * Default constructor
+     */
+    public DoningCenter() {}
+    /**
      * @param address: Address
      */
     public DoningCenter(Address address)

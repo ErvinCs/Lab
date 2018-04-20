@@ -18,6 +18,10 @@ public abstract class User
     private Account account;
 
     /**
+     * Default constructor
+     */
+    protected User() {}
+    /**
      * @param firstName: String
      * @param lastName: String
      * @param bDay: LocalDate

@@ -16,6 +16,10 @@ public class DCPMember
     private Long CNP;
 
     /**
+     * Default constructor
+     */
+    public DCPMember() {}
+    /**
      *
      * @param doningCenter: DoningCenter
      * @param account: Account

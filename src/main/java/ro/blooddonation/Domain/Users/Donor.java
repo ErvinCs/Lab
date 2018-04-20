@@ -15,6 +15,10 @@ public class Donor extends User {
     private List<Donation> donationHistory;
 
     /**
+     * Default constructor
+     */
+    public Donor() {}
+    /**
      *
      * @param firstName: String
      * @param lastName: String

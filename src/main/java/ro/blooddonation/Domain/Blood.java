@@ -5,11 +5,11 @@ public class Blood
     private String rh;
     private String type;
 
+
     /**
      * Default constructor
      */
-    public Blood() {
-    }
+    public Blood() {}
 
     /**
      * @param rh: String("+" or "-")
