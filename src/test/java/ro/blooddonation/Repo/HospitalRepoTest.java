@@ -47,15 +47,20 @@ public class HospitalRepoTest
     }
 
     @Test
-    public void update() throws Exception {
+    public void update() throws Exception
+    {
+        hospitalRepo.add(h1);
+        hospitalRepo.update(h1.getId(), h2);
+        //This might fail
+        assertEquals(hospitalRepo.find(h1.getId()), h2);
     }
 
     @Test
-    public void getAll() throws Exception {
-    }
-
-    @Test
-    public void find() throws Exception {
+    public void find() throws Exception
+    {
+        hospitalRepo.add(h1);
+        hospitalRepo.add(h2);
+        assertEquals(hospitalRepo.find(h1.getId()), h1);
     }
 
 }
