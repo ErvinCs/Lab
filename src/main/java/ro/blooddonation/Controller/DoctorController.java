@@ -8,7 +8,7 @@ import java.util.*;
 /**
  * 
  */
-public class DoctorController implements IController<Doctor>
+public class DoctorController //implements IController<Doctor>
 {
 
     /**
@@ -20,7 +20,7 @@ public class DoctorController implements IController<Doctor>
     /**
      * 
      */
-    private UserRepo<Doctor> repo;
+    //private UserRepo<Doctor> repo;
 
     /**
      * @param doctor 

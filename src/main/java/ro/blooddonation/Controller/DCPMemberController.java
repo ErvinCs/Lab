@@ -8,7 +8,8 @@ import java.util.*;
 /**
  * 
  */
-public class DCPMemberController implements IController<DCPMember> {
+public class DCPMemberController //implements IController<DCPMember>
+{
 
     /**
      * Default constructor
@@ -19,7 +20,7 @@ public class DCPMemberController implements IController<DCPMember> {
     /**
      * 
      */
-    private UserRepo<DCPMember> repo;
+    //private UserRepo<DCPMember> repo;
 
     /**
      * @param dcpMember 

@@ -4,15 +4,6 @@ public class Account
 {
     private String username;
     private String password;
-    private Long CNP;
-
-    public Long getCNP() {
-        return CNP;
-    }
-
-    public void setCNP(Long CNP) {
-        this.CNP = CNP;
-    }
 
     public Account(String username, String password)
     {

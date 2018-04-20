@@ -15,7 +15,6 @@ public abstract class User
     private Address address;
     private Address residence;
     private Long CNP;
-
     private Account account;
 
     /**
