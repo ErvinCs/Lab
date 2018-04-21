@@ -16,7 +16,7 @@
         </property>
 
         <property name = "hibernate.connection.url">
-            jdbc:postgresql://localhost:52141//Blooddonation
+            jdbc:postgresql://localhost:5432/Blooddonation
         </property>
 
         <!--<property name = "hibernate.connection.databasename">
@@ -24,7 +24,7 @@
         </property>-->
 
         <property name = "hibernate.connection.username">
-            postgres
+            postgre
         </property>
 
         <property name = "hibernate.connection.password">
@@ -46,8 +46,8 @@
             org.hibernate.cache.internal.NoCacheProvider
         </property>
 
-        <mapping class="ro.blooddonation.Domain.Hospital" />
-        <mapping class="ro.blooddonation.Repo.HospitalRepo"/>
+        <!--<mapping class="ro.blooddonation.Domain.Hospital" />
+       <mapping class="ro.blooddonation.Repo.HospitalRepo"/>-->
 
-    </session-factory>
+   </session-factory>
 </hibernate-configuration>
