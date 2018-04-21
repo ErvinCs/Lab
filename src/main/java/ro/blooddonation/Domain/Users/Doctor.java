@@ -5,12 +5,16 @@ import ro.blooddonation.Domain.Address;
 import ro.blooddonation.Domain.Blood;
 import ro.blooddonation.Domain.Hospital;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.*;
 
 /**
  * 
  */
+@Entity
+@Table(name = "DOCTOR")
 public class Doctor
 {
     private Hospital hospital;

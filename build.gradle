@@ -10,12 +10,28 @@ repositories {
 }
 
 ext{
+    testVersion = '4.12'
+    jaxbVersion = '2.3.0'
     hibernateVersion = '5.2.16.Final'
+    activationVersion = '1.2.0'
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'junit', name: 'junit', version: "$testVersion"
 
-    compile 'javax.xml.bind:jaxb-api:2.3.0'
-    compile group: 'org.hibernate', name: 'hibernate-core', version:"$hibernateVersion"
+    compile group: 'javax.xml.bind', name:'jaxb-api', version: "$jaxbVersion"
+    compile group: 'com.sun.xml.bind', name: 'jaxb-core', version: "$jaxbVersion"
+    compile group: 'com.sun.xml.bind', name: 'jaxb-impl', version:"$jaxbVersion"
+
+    compile group: 'org.hibernate', name: 'hibernate-core', version: "$hibernateVersion"
+    compile group: 'org.hibernate', name: 'hibernate-osgi', version: "$hibernateVersion"
+    compile group: 'org.hibernate', name: 'hibernate-spatial', version: "$hibernateVersion"
+    compile group: 'org.hibernate', name: 'hibernate-envers', version: "$hibernateVersion"
+    compile group: 'org.hibernate', name: 'hibernate-hikaricp', version: "$hibernateVersion"
+    compile group: 'org.hibernate', name: 'hibernate-c3p0', version: "$hibernateVersion"
+    compile group: 'org.hibernate', name: 'hibernate-proxool', version: "$hibernateVersion"
+    compile group: 'org.hibernate', name: 'hibernate-infinispan', version: "$hibernateVersion"
+    compile group: 'org.hibernate', name: 'hibernate-ehcache', version: "$hibernateVersion"
+
+    compile group: 'com.sun.activation', name: 'javax.activation', version:"$activationVersion"
 }

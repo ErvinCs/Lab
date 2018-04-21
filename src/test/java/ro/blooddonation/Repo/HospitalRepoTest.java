@@ -52,7 +52,7 @@ public class HospitalRepoTest
         hospitalRepo.add(h1);
         hospitalRepo.update(h1.getId(), h2);
         //This might fail
-        assertEquals(hospitalRepo.find(h1.getId()), h2);
+        assertEquals(hospitalRepo.find(h1.getId()).getAddress(), h2.getAddress());
     }
 
     @Test

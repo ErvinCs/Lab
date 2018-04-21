@@ -39,7 +39,7 @@ public class HospitalRepo implements IRepo<Hospital> {
 //            factory = new Configuration().configure()
 //                    .addAnnotatedClass(Hospital.class).buildSessionFactory();
         } catch (Throwable ex) {
-            throw new ExceptionInInitializerError("Failed to create sessionFactory object." + ex);
+            throw new ExceptionInInitializerError("Failed to create sessionFactory object: " + ex);
         }
     }
 

@@ -4,9 +4,13 @@ import ro.blooddonation.Domain.Account;
 import ro.blooddonation.Domain.Address;
 import ro.blooddonation.Domain.Donation;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.*;
 
+@Entity
+@Table(name = "DONOR")
 public class Donor extends User {
 
     private Donation currDonation = null;

@@ -5,10 +5,14 @@ import ro.blooddonation.Domain.Address;
 import ro.blooddonation.Domain.DoningCenter;
 import ro.blooddonation.Exceptions.AppointmentException;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
+@Entity
+@Table(name = "DCPMEMBER")
 public class DCPMember
 {
     private DoningCenter doningCenter;

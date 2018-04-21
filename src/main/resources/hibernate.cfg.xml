@@ -16,8 +16,12 @@
         </property>
 
         <property name = "hibernate.connection.url">
-            jdbc:postgresql://localhost:5432/Blooddonation
+            jdbc:postgresql://localhost:52141//Blooddonation
         </property>
+
+        <!--<property name = "hibernate.connection.databasename">
+            Blooddonation
+        </property>-->
 
         <property name = "hibernate.connection.username">
             postgres
