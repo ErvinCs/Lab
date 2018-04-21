@@ -30,7 +30,7 @@ public class DCPMemberTest
     {
         addr = new Address("Street, house", "Town", "Country");
         doningCen = new DoningCenter(addr);
-        acc = new Account("User", "Pass");
+        acc = new Account("Person", "Pass");
         dcpMem = new DCPMember(doningCen, acc, iCNP);
     }
 

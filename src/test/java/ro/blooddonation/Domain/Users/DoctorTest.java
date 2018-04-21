@@ -28,7 +28,7 @@ public class DoctorTest
     {
         addr = new Address("Street, house", "Town", "Country");
         hospital = new Hospital(addr);
-        acc = new Account("User", "Pass");
+        acc = new Account("Person", "Pass");
         iCNP = new Long("1971111111111");
         doctor = new Doctor(hospital, acc, iCNP);
     }

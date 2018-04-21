@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
-public abstract class User
+public abstract class Person
 {
     private String firstName;
     private String lastName;
@@ -20,7 +20,7 @@ public abstract class User
     /**
      * Default constructor
      */
-    protected User() {}
+    protected Person() {}
     /**
      * @param firstName: String
      * @param lastName: String
@@ -30,8 +30,8 @@ public abstract class User
      * @param CNP: Long
      * @param account: Account
      */
-    protected User(String firstName, String lastName, LocalDate bDay, Address address, Address residence,
-                   Long CNP, Account account)
+    protected Person(String firstName, String lastName, LocalDate bDay, Address address, Address residence,
+                     Long CNP, Account account)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -99,7 +99,7 @@ public abstract class User
     }
 
     /**
-     * @return: the number of years between the current date and this User's birthday - int
+     * @return: the number of years between the current date and this Person's birthday - int
      */
     public Integer getAge()
     {
@@ -109,23 +109,19 @@ public abstract class User
     }
 
     /**
-     * Update this User's fields if the parameters are present.
+     * Update this Person's fields if the parameters are present.
      * @param firstName: String
      * @param lastName: String
      * @param address: Address
      * @param residence: Address
      */
-    public void updateAccount(Optional<String> firstName, Optional<String> lastName, Optional<Address> address, Optional<Address> residence,
+    public void updateData(Optional<String> firstName, Optional<String> lastName, Optional<Address> address, Optional<Address> residence,
                               Optional<String> username, Optional<String> password)
     {
         String fn = firstName.isPresent() ? this.firstName = firstName.get() : this.firstName;
         String ln = lastName.isPresent() ? this.lastName = lastName.get() : this.lastName;
         Address addr = address.isPresent() ? this.address = address.get() : this.address;
         Address res = residence.isPresent() ? this.residence = residence.get() : this.residence;
-        if (username.isPresent())
-            this.account.setUsername(username.get());
-        if (password.isPresent())
-            this.account.setPassword(password.get());
     }
 
 }

@@ -43,7 +43,7 @@ public class PatientTest
         address = new Address("addr", "town", "country");
         residence = new Address("currAddr", "currTown", "currCountry");
         iCNP = new Long("1971111111111");
-        account = new Account("User", "Pass");
+        account = new Account("Person", "Pass");
 
         hospitalAddr = new Address("hAddr", "hTwon", "hCountry");
         docHospital = new Hospital(hospitalAddr);

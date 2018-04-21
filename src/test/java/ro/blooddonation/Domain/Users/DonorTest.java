@@ -37,7 +37,7 @@ public class DonorTest
         address = new Address("addr", "town", "country");
         residence = new Address("currAddr", "currTown", "currCountry");
         iCNP = new Long("1971111111111");
-        account = new Account("User", "Pass");
+        account = new Account("Person", "Pass");
         donor = new Donor(firstName, lastName, bDay, address, residence, iCNP, account);
     }
 

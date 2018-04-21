@@ -15,31 +15,48 @@ import java.util.*;
  */
 @Entity
 @Table(name = "DOCTOR")
-public class Doctor
+public class Doctor extends Person
 {
-    private Hospital hospital;
-    private Account account;
+    private String firstName;
+    private String lastName;
+    private LocalDate bDay;
+    private Address address;
+    private Address residence;
     private Long CNP;
+    private Account account;
+
+    private Hospital hospital;
+    //private Account account;
+    //private Long CNP;
 
     /**
      * Default constructor
      */
     public Doctor() {}
+
     /**
      *
-     * @param hospital: Hospital
-     * @param account: Account
+     * @param firstName
+     * @param lastName
+     * @param bDay
+     * @param address
+     * @param residence
+     * @param CNP
+     * @param account
+     * @param hospital
      */
-    public Doctor(Hospital hospital, Account account, Long CNP)
+    public Doctor(String firstName, String lastName, LocalDate bDay, Address address, Address residence,
+                  Long CNP, Account account, Hospital hospital) //, Account account, Long CNP)
     {
+        super(firstName, lastName, bDay, address, residence, CNP, account);
         this.hospital = hospital;
-        this.account = account;
-        this.CNP = CNP;
+        //this.account = account;
+        //this.CNP = CNP;
     }
 
-    public Long getCNP() {
-        return CNP;
-    }
+//    public Long getCNP() {
+//        return CNP;
+//    }
 
     public Hospital getHospital() {
         return hospital;
@@ -49,14 +66,15 @@ public class Doctor
         this.hospital = hospital;
     }
 
-    public Account getAccount() {
-        return account;
-    }
+//    public Account getAccount() {
+//        return account;
+//    }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
+//    public void setAccount(Account account) {
+//        this.account = account;
+//    }
 
+    //Should the doctors be able to modify their account?
     /**
      *
      * @param hospital: Hospital

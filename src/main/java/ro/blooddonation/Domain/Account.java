@@ -1,5 +1,7 @@
 package ro.blooddonation.Domain;
 
+import java.util.Optional;
+
 public class Account
 {
     private String username;
@@ -35,6 +37,14 @@ public class Account
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void updateCredentials(Optional<String> username, Optional<String> password)
+    {
+        if (username.isPresent())
+            this.setUsername(username.get());
+        if (password.isPresent())
+             this.setPassword(password.get());
     }
 
 }

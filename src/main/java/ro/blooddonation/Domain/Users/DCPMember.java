@@ -13,31 +13,48 @@ import java.util.*;
 
 @Entity
 @Table(name = "DCPMEMBER")
-public class DCPMember
+public class DCPMember extends Person
 {
-    private DoningCenter doningCenter;
-    private Account account;
+    private String firstName;
+    private String lastName;
+    private LocalDate bDay;
+    private Address address;
+    private Address residence;
     private Long CNP;
+    private Account account;
+
+    private DoningCenter doningCenter;
+    //private Account account;
+    //private Long CNP;
 
     /**
      * Default constructor
      */
     public DCPMember() {}
+
     /**
      *
-     * @param doningCenter: DoningCenter
-     * @param account: Account
+     * @param firstName
+     * @param lastName
+     * @param bDay
+     * @param address
+     * @param residence
+     * @param CNP
+     * @param account
+     * @param doningCenter
      */
-    public DCPMember(DoningCenter doningCenter, Account account, Long CNP)
+    public DCPMember(String firstName, String lastName, LocalDate bDay, Address address, Address residence,
+                     Long CNP, Account account, DoningCenter doningCenter) //, Account account, Long CNP)
     {
+        super(firstName, lastName, bDay, address, residence, CNP, account);
         this.doningCenter = doningCenter;
-        this.account = account;
-        this.CNP = CNP;
+        //this.account = account;
+        //this.CNP = CNP;
     }
 
-    public Long getCNP() {
-        return CNP;
-    }
+//    public Long getCNP() {
+//        return CNP;
+//    }
 
     public DoningCenter getDoningCenter() {
         return doningCenter;
@@ -47,14 +64,15 @@ public class DCPMember
         this.doningCenter = doningCenter;
     }
 
-    public Account getAccount() {
-        return account;
-    }
+//    public Account getAccount() {
+//        return account;
+//    }
+//
+//    public void setAccount(Account account) {
+//        this.account = account;
+//    }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
+    //Should the DCP be able to modify their accounts?
     /**
      *
      * @param doningCenter: DoningCenter

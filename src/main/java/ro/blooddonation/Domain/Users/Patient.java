@@ -5,12 +5,11 @@ import ro.blooddonation.Domain.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table(name = "PATIENT")
-public class Patient extends User {
+public class Patient extends Person {
 
     private Doctor doctor;
     private Blood blood = null;
@@ -60,6 +59,14 @@ public class Patient extends User {
 
     public void setUrgency(Integer urgency) {
         this.urgency = urgency;
+    }
+
+    public void updateCredentials(Optional<String> username, Optional<String> password)
+    {
+        if (username.isPresent())
+            this.getAccount().setUsername(username.get());
+        if (password.isPresent())
+            this.getAccount().setPassword(password.get());
     }
 
 }

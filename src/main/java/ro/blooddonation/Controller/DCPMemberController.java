@@ -20,7 +20,7 @@ public class DCPMemberController //implements IController<DCPMember>
     /**
      * 
      */
-    //private UserRepo<DCPMember> repo;
+    private UserRepo<DCPMember> repo;
 
     /**
      * @param dcpMember 
