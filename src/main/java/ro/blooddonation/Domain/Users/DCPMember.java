@@ -73,18 +73,18 @@ public class DCPMember extends Person
 //    }
 
     //Should the DCP be able to modify their accounts?
+
     /**
      *
-     * @param doningCenter: DoningCenter
-     * @param username: String
-     * @param password: String
+     * @param firstName
+     * @param lastName
+     * @param address
+     * @param residence
+     * @param doningCenter
      */
-    public void updateAccount(Optional<DoningCenter> doningCenter, Optional<String> username, Optional<String> password)
+    public void updateData(Optional<String> firstName, Optional<String> lastName, Optional<Address> address, Optional<Address> residence, Optional<DoningCenter> doningCenter)
     {
+        super.updateData(firstName, lastName, address, residence);
         DoningCenter dc = doningCenter.isPresent() ? this.doningCenter = doningCenter.get() : this.doningCenter;
-        if (username.isPresent())
-            this.account.setUsername(username.get());
-        if (password.isPresent())
-            this.account.setPassword(password.get());
     }
 }

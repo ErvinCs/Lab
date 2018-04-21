@@ -86,12 +86,4 @@ public class Donor extends Person {
         this.donationHistory.add(donation);
     }
 
-    public void updateCredentials(Optional<String> username, Optional<String> password)
-    {
-        if (username.isPresent())
-            this.getAccount().setUsername(username.get());
-        if (password.isPresent())
-            this.getAccount().setPassword(password.get());
-    }
-
 }

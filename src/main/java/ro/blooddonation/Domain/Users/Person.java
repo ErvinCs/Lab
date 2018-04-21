@@ -115,13 +115,17 @@ public abstract class Person
      * @param address: Address
      * @param residence: Address
      */
-    public void updateData(Optional<String> firstName, Optional<String> lastName, Optional<Address> address, Optional<Address> residence,
-                              Optional<String> username, Optional<String> password)
+    public void updateData(Optional<String> firstName, Optional<String> lastName, Optional<Address> address, Optional<Address> residence)
     {
         String fn = firstName.isPresent() ? this.firstName = firstName.get() : this.firstName;
         String ln = lastName.isPresent() ? this.lastName = lastName.get() : this.lastName;
         Address addr = address.isPresent() ? this.address = address.get() : this.address;
         Address res = residence.isPresent() ? this.residence = residence.get() : this.residence;
+    }
+
+    public void updateCredentials(Optional<String> username, Optional<String> password)
+    {
+        account.updateCredentials(username, password);
     }
 
 }

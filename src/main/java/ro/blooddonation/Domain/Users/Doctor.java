@@ -75,18 +75,19 @@ public class Doctor extends Person
 //    }
 
     //Should the doctors be able to modify their account?
+
     /**
      *
-     * @param hospital: Hospital
-     * @param username: String
-     * @param password: String
+     * @param firstName
+     * @param lastName
+     * @param address
+     * @param residence
+     * @param hospital
      */
-    public void updateAccount(Optional<Hospital> hospital, Optional<String> username, Optional<String> password) {
+    public void updateData(Optional<String> firstName, Optional<String> lastName, Optional<Address> address, Optional<Address> residence, Optional<Hospital> hospital)
+    {
+        super.updateData(firstName, lastName, address, residence);
         Hospital h = hospital.isPresent() ? this.hospital = hospital.get() : this.hospital;
-        if (username.isPresent())
-            this.account.setUsername(username.get());
-        if (password.isPresent())
-            this.account.setPassword(password.get());
     }
 
 }

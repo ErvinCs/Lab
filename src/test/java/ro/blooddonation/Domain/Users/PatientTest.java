@@ -27,10 +27,10 @@ public class PatientTest
     private Account account;
 
     private Doctor doctor;
-    private Hospital docHospital;
-    private Address hospitalAddr;
-    private Account docAccount;
-    private Long docCNP;
+//    private Hospital docHospital;
+//    private Address hospitalAddr;
+//    private Account docAccount;
+//    private Long docCNP;
 
     private Patient patient;
 
@@ -45,11 +45,12 @@ public class PatientTest
         iCNP = new Long("1971111111111");
         account = new Account("Person", "Pass");
 
-        hospitalAddr = new Address("hAddr", "hTwon", "hCountry");
-        docHospital = new Hospital(hospitalAddr);
-        docAccount = new Account("docUser", "docPass");
-        docCNP = new Long("297111111111");
-        doctor = new Doctor(docHospital, docAccount, docCNP);
+//        hospitalAddr = new Address("hAddr", "hTwon", "hCountry");
+//        docHospital = new Hospital(hospitalAddr);
+//        docAccount = new Account("docUser", "docPass");
+//        docCNP = new Long("297111111111");
+//        doctor = new Doctor(docHospital, docAccount, docCNP);
+        doctor = new Doctor();
 
         patient = new Patient(firstName, lastName, bDay, address, residence, iCNP, account, doctor);
     }
@@ -65,10 +66,10 @@ public class PatientTest
         iCNP = null;
         account = null;
 
-        hospitalAddr = null;
-        docHospital = null;
-        docAccount = null;
-        docCNP = null;
+//        hospitalAddr = null;
+//        docHospital = null;
+//        docAccount = null;
+//        docCNP = null;
         doctor = null;
 
         patient = null;

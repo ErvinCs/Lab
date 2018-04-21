@@ -7,6 +7,7 @@ import ro.blooddonation.Domain.Account;
 import ro.blooddonation.Domain.Address;
 import ro.blooddonation.Domain.Hospital;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -17,20 +18,37 @@ public class DoctorTest
     private static final Hospital NEW_H = new Hospital(NEW_ADDR);
     private static final Account NEW_ACC = new Account("New", "New");
 
+    private String firstName;
+    private String lastName;
+    private LocalDate bDay;
+    private Address address;
+    private Address residence;
+    private Long iCNP;
+    private Account acc;
+
     private Hospital hospital;
     private Address addr;
+
     private Doctor doctor;
-    private Account acc;
-    private Long iCNP;
+
+
 
     @Before
     public void setUp() throws Exception
     {
         addr = new Address("Street, house", "Town", "Country");
         hospital = new Hospital(addr);
+
+        firstName = "first";
+        lastName = "last";
+        bDay = LocalDate.of(1997, 11, 12);
+        address = new Address("addr", "town", "country");
+        residence = new Address("currAddr", "currTown", "currCountry");
+        iCNP = new Long("1971111111111");
         acc = new Account("Person", "Pass");
         iCNP = new Long("1971111111111");
-        doctor = new Doctor(hospital, acc, iCNP);
+
+        doctor = new Doctor(firstName, lastName, bDay, address, residence, iCNP, acc, hospital);
     }
 
     @After
@@ -69,12 +87,9 @@ public class DoctorTest
     }
 
     @Test
-    public void updateAccount() throws Exception
+    public void updateCredentials() throws Exception
     {
-        doctor.updateAccount(Optional.of(NEW_H), Optional.empty(), Optional.empty());
-        assertEquals(doctor.getHospital(), NEW_H);
-        assertEquals(doctor.getCNP(), iCNP);
-        doctor.updateAccount(Optional.empty(), Optional.of(NEW_ACC.getUsername()), Optional.of(NEW_ACC.getPassword()));
+        doctor.updateCredentials(Optional.of(NEW_ACC.getUsername()), Optional.of(NEW_ACC.getPassword()));
         assertEquals(doctor.getAccount().getUsername(), NEW_ACC.getUsername());
         assertEquals(doctor.getAccount().getPassword(), NEW_ACC.getPassword());
     }
