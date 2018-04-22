@@ -1,12 +1,12 @@
 package ro.blooddonation.Domain.Validators;
 
-import ro.blooddonation.Domain.Users.User;
+import ro.blooddonation.Domain.Users.Person;
 import ro.blooddonation.Exceptions.ValidatorException;
 
-public class UserValidator implements Validator<User> {
+public class UserValidator implements Validator<Person> {
 
     @Override
-    public void validate(User entity) throws ValidatorException {
+    public void validate(Person entity) throws ValidatorException {
         String errors="";
         if(entity.getCNP()==null)
             errors+="Invalid CNP!\n";

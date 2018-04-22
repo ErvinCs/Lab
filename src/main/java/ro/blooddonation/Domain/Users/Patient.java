@@ -2,17 +2,24 @@ package ro.blooddonation.Domain.Users;
 
 import ro.blooddonation.Domain.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
-public class Patient extends User {
+@Entity
+@Table(name = "PATIENT")
+public class Patient extends Person {
 
     private Doctor doctor;
     private Blood blood = null;
     private Double requestedBloodQuantity = null;
     private Integer urgency = null;
 
+    /**
+     * Default constructor
+     */
+    public Patient() {}
     /**
      *
      * @param firstName: String

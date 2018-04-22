@@ -7,6 +7,10 @@ public class Address
     private String country;
 
     /**
+     * Default constructor
+     */
+    public Address() {}
+    /**
      *
      * @param address: String
      * @param town: String

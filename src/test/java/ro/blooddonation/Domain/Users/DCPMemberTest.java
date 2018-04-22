@@ -7,6 +7,7 @@ import ro.blooddonation.Domain.Account;
 import ro.blooddonation.Domain.Address;
 import ro.blooddonation.Domain.DoningCenter;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -17,11 +18,18 @@ public class DCPMemberTest
     private static final DoningCenter NEW_DC = new DoningCenter(NEW_ADDR);
     private static final Account NEW_ACC = new Account("New", "New");
 
+    private String firstName;
+    private String lastName;
+    private LocalDate bDay;
+    private Address address;
+    private Address residence;
+    private Long iCNP;
+    private Account acc;
+
     private DoningCenter doningCen;
     private Address addr;
+
     private DCPMember dcpMem;
-    private Account acc;
-    private Long iCNP = new Long("1971111111111");
 
 
 
@@ -30,8 +38,17 @@ public class DCPMemberTest
     {
         addr = new Address("Street, house", "Town", "Country");
         doningCen = new DoningCenter(addr);
-        acc = new Account("User", "Pass");
-        dcpMem = new DCPMember(doningCen, acc, iCNP);
+
+        firstName = "first";
+        lastName = "last";
+        bDay = LocalDate.of(1997, 11, 12);
+        address = new Address("addr", "town", "country");
+        residence = new Address("currAddr", "currTown", "currCountry");
+        iCNP = new Long("1971111111111");
+        acc = new Account("Person", "Pass");
+        iCNP = new Long("1971111111111");
+
+        dcpMem = new DCPMember(firstName, lastName, bDay, address, residence, iCNP, acc, doningCen);
     }
 
     @After
@@ -76,12 +93,9 @@ public class DCPMemberTest
     }
 
     @Test
-    public void updateAccount() throws Exception
+    public void updateCredentials() throws Exception
     {
-        dcpMem.updateAccount(Optional.of(NEW_DC), Optional.empty(), Optional.empty());
-        assertEquals(dcpMem.getDoningCenter(), NEW_DC);
-        assertEquals(dcpMem.getCNP(), iCNP);
-        dcpMem.updateAccount(Optional.empty(), Optional.of(NEW_ACC.getUsername()), Optional.of(NEW_ACC.getPassword()));
+        dcpMem.updateCredentials(Optional.of(NEW_ACC.getUsername()), Optional.of(NEW_ACC.getPassword()));
         assertEquals(dcpMem.getAccount().getUsername(), NEW_ACC.getUsername());
         assertEquals(dcpMem.getAccount().getPassword(), NEW_ACC.getPassword());
     }

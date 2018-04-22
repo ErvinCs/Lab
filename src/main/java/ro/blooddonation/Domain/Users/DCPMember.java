@@ -5,31 +5,56 @@ import ro.blooddonation.Domain.Address;
 import ro.blooddonation.Domain.DoningCenter;
 import ro.blooddonation.Exceptions.AppointmentException;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
-public class DCPMember
+@Entity
+@Table(name = "DCPMEMBER")
+public class DCPMember extends Person
 {
-    private DoningCenter doningCenter;
-    private Account account;
+    private String firstName;
+    private String lastName;
+    private LocalDate bDay;
+    private Address address;
+    private Address residence;
     private Long CNP;
+    private Account account;
+
+    private DoningCenter doningCenter;
+    //private Account account;
+    //private Long CNP;
+
+    /**
+     * Default constructor
+     */
+    public DCPMember() {}
 
     /**
      *
-     * @param doningCenter: DoningCenter
-     * @param account: Account
+     * @param firstName
+     * @param lastName
+     * @param bDay
+     * @param address
+     * @param residence
+     * @param CNP
+     * @param account
+     * @param doningCenter
      */
-    public DCPMember(DoningCenter doningCenter, Account account, Long CNP)
+    public DCPMember(String firstName, String lastName, LocalDate bDay, Address address, Address residence,
+                     Long CNP, Account account, DoningCenter doningCenter) //, Account account, Long CNP)
     {
+        super(firstName, lastName, bDay, address, residence, CNP, account);
         this.doningCenter = doningCenter;
-        this.account = account;
-        this.CNP = CNP;
+        //this.account = account;
+        //this.CNP = CNP;
     }
 
-    public Long getCNP() {
-        return CNP;
-    }
+//    public Long getCNP() {
+//        return CNP;
+//    }
 
     public DoningCenter getDoningCenter() {
         return doningCenter;
@@ -39,26 +64,27 @@ public class DCPMember
         this.doningCenter = doningCenter;
     }
 
-    public Account getAccount() {
-        return account;
-    }
+//    public Account getAccount() {
+//        return account;
+//    }
+//
+//    public void setAccount(Account account) {
+//        this.account = account;
+//    }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
+    //Should the DCP be able to modify their accounts?
 
     /**
      *
-     * @param doningCenter: DoningCenter
-     * @param username: String
-     * @param password: String
+     * @param firstName
+     * @param lastName
+     * @param address
+     * @param residence
+     * @param doningCenter
      */
-    public void updateAccount(Optional<DoningCenter> doningCenter, Optional<String> username, Optional<String> password)
+    public void updateData(Optional<String> firstName, Optional<String> lastName, Optional<Address> address, Optional<Address> residence, Optional<DoningCenter> doningCenter)
     {
+        super.updateData(firstName, lastName, address, residence);
         DoningCenter dc = doningCenter.isPresent() ? this.doningCenter = doningCenter.get() : this.doningCenter;
-        if (username.isPresent())
-            this.account.setUsername(username.get());
-        if (password.isPresent())
-            this.account.setPassword(password.get());
     }
 }

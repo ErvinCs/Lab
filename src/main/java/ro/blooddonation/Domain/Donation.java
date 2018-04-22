@@ -1,23 +1,45 @@
 package ro.blooddonation.Domain;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "DONATION")
 public class Donation
 {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "blood")
     private Blood blood;
+
+    @Column(name = "bloodQuantity")
     private Double bloodQuantity;
+
+    @Column(name = "plasmaQuantity")
     private Double plasmaQuantity;
+
+    @Column(name = "thrombocytesQuantity")
     private Double thrombocytesQuantity;
+
+    @Column(name = "redCellsQuantity")
     private Double redCellsQuantity;
+
+    @Column(name = "donationDate")
     private LocalDate donationDate;
 
-    private Long id;
-    private static Long idGen = Long.valueOf(1);
+    //private static Long idGen = Long.valueOf(1);
 
     public static final Integer plasmaExp = 365;
     public static final Integer thrombocytesExp = 42;
     public static final Integer redCellsExp = 5;
 
+    /**
+     * Default constructor
+     */
+    public Donation() {}
     /**
      * @param donationDate: LocalDate
      */
@@ -25,8 +47,8 @@ public class Donation
     {
         this.donationDate = donationDate;
         this.bloodQuantity = bloodQuantity;
-        this.id = idGen;
-        idGen += 1;
+        //this.id = idGen;
+        //idGen += 1;
     }
 
     public Blood getBlood() {

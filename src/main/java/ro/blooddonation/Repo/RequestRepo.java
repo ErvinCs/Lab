@@ -28,7 +28,7 @@ public class RequestRepo implements IRepo<Request> {
     /**
      * @param request
      */
-    public void add(Request request) {
+    public Long add(Request request) {
         if(request == null)
             throw new IllegalArgumentException("Null item!");
 
@@ -40,6 +40,7 @@ public class RequestRepo implements IRepo<Request> {
             throw new ValidatorException(e);
         }
         repo.add(request);
+        return request.getId();
 
     }
 

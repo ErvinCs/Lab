@@ -2,15 +2,35 @@ package ro.blooddonation.Domain;
 
 import ro.blooddonation.Domain.Users.Doctor;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "REQUEST")
 public class Request
 {
-    private Blood blood;
-    private Integer urgency;
-    private Doctor doctor;
-    private String status;
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     private Long id;
-    private static Long idGen = Long.valueOf(1);
 
+    @Column(name = "blood")
+    private Blood blood;
+
+    @Column(name = "urgency")
+    private Integer urgency;
+
+    @Column(name = "doctor")
+    private Doctor doctor;
+
+    @Column(name = "status")
+    private String status;
+
+    //private static Long idGen = Long.valueOf(1);
+
+    /**
+     * Default constructor
+     */
+    public Request() {}
     /**
      *
      * @param blood
@@ -23,8 +43,8 @@ public class Request
         this.urgency = urgency;
         this.doctor = doctor;
         this.status = "Request sent.";
-        this.id = idGen;
-        idGen += 1;
+        //this.id = idGen;
+        //idGen += 1;
     }
 
     public Blood getBlood() {

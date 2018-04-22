@@ -1,11 +1,19 @@
 package ro.blooddonation.Repo;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 import ro.blooddonation.Domain.Hospital;
 import ro.blooddonation.Domain.Validators.HospitalValidator;
 import ro.blooddonation.Domain.Validators.Validator;
 import ro.blooddonation.Exceptions.ValidatorException;
 
-import javax.xml.bind.ValidationException;
 import java.util.*;
 
 /**
@@ -15,37 +23,86 @@ public class HospitalRepo implements IRepo<Hospital> {
 
     private List<Hospital> repo;
     private Validator<Hospital> validator;
+    private StandardServiceRegistry standardRegistry;
+    private SessionFactory factory;
     /**
      * Constructor
      */
     public HospitalRepo() {
         repo = new ArrayList<>();
         validator = new HospitalValidator();
+        try {
+            standardRegistry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+            Metadata metaData =
+                    new MetadataSources(standardRegistry).getMetadataBuilder().build();
+            factory = metaData.getSessionFactoryBuilder().build();
+//            factory = new Configuration().configure()
+//                    .addAnnotatedClass(Hospital.class).buildSessionFactory();
+        } catch (Throwable ex) {
+            throw new ExceptionInInitializerError("Failed to create sessionFactory object: " + ex);
+        }
     }
 
 
     /**
      * @param elem
      */
-    public void add(Hospital elem) {
+    public Long add(Hospital elem) {
         try {
             validator.validate(elem);
         }
         catch(ValidatorException e){
             throw new ValidatorException(e);
         }
-        repo.add(elem);
+//        repo.add(elem);
+//        return elem.getId();
+
+        Session session = factory.openSession();
+        Transaction tx = null;
+        Long id = null;
+
+        try{
+            tx = session.beginTransaction();
+
+            Hospital hospital = new Hospital();
+            hospital.setAddress(elem.getAddress());
+            id = (Long)session.save(hospital);
+
+            tx.commit();
+        } catch (HibernateException ex) {
+            if (tx!=null) tx.rollback();
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return id;
     }
 
     /**
      * @param id
      */
     public void remove(Long id) {
-        Hospital h=find(id);
-        if (h==null)
+        Hospital h = find(id);
+        if (h == null)
             throw new ValidatorException("Hospital with this ID does not exist!");
-        else
-            repo.remove(h);
+//        repo.remove(h);
+
+        Session session = factory.openSession();
+        Transaction tx = null;
+
+        try{
+            tx = session.beginTransaction();
+
+            h = (Hospital)session.get(Hospital.class, id);
+            session.delete(h);
+
+            tx.commit();
+        } catch (HibernateException ex) {
+            if (tx!=null) tx.rollback();
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
 
     }
 
@@ -53,18 +110,34 @@ public class HospitalRepo implements IRepo<Hospital> {
      * @param id
      */
     public void update(Long id, Hospital newItem) {
-        Hospital h=find(id);
-        if (h==null)
+        Hospital h = find(id);
+        if (h == null)
             throw new ValidatorException("Hospital with this ID does not exist!");
-        else
-            try{
+        try{
             validator.validate(newItem);
-            }
-            catch (ValidatorException e){
-                throw new ValidatorException(e);
-            }
-            repo.toArray()[repo.indexOf(h)]=newItem;
+        }
+        catch (ValidatorException e){
+            throw new ValidatorException(e);
+        }
+//        repo.toArray()[repo.indexOf(h)]=newItem;
 
+        Session session = factory.openSession();
+        Transaction tx = null;
+
+        try{
+            tx = session.beginTransaction();
+
+            h = (Hospital)session.get(Hospital.class, id);
+            h.setAddress(newItem.getAddress());
+            session.update(h);
+
+            tx.commit();
+        } catch (HibernateException ex) {
+            if (tx!=null) tx.rollback();
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 
     /**
@@ -80,7 +153,7 @@ public class HospitalRepo implements IRepo<Hospital> {
      */
     public Hospital find(Long id) {
         for (Hospital i: repo)
-            if(i.getId()==id)
+            if(i.getId().equals(id))
                 return i;
         return null;
     }

@@ -10,7 +10,7 @@ public interface IRepo<T> {
     /**
      * @param elem
      */
-    public void add(T elem);
+    public Long add(T elem);
 
     /**
      * @param id

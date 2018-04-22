@@ -4,16 +4,24 @@ import ro.blooddonation.Domain.Account;
 import ro.blooddonation.Domain.Address;
 import ro.blooddonation.Domain.Donation;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.*;
 
-public class Donor extends User {
+@Entity
+@Table(name = "DONOR")
+public class Donor extends Person {
 
     private Donation currDonation = null;
     private LocalDate currAppointment = null;
     private LocalDate lastDonation = null;
     private List<Donation> donationHistory;
 
+    /**
+     * Default constructor
+     */
+    public Donor() {}
     /**
      *
      * @param firstName: String

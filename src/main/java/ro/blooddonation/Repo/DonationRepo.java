@@ -25,7 +25,7 @@ public class DonationRepo implements IRepo<Donation> {
     /**
      * @param elem
      */
-    public void add(Donation elem) throws ValidatorException {
+    public Long add(Donation elem) throws ValidatorException {
         if(elem == null)
             throw new IllegalArgumentException("Null item!");
 
@@ -37,6 +37,7 @@ public class DonationRepo implements IRepo<Donation> {
             throw new ValidatorException(e);
         }
         repo.add(elem);
+        return elem.getId();
     }
 
     /**

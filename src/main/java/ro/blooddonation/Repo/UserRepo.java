@@ -1,6 +1,6 @@
 package ro.blooddonation.Repo;
 
-import ro.blooddonation.Domain.Users.User;
+import ro.blooddonation.Domain.Users.Person;
 import ro.blooddonation.Domain.Validators.UserValidator;
 import ro.blooddonation.Domain.Validators.Validator;
 import ro.blooddonation.Exceptions.ValidatorException;
@@ -10,10 +10,10 @@ import java.util.*;
 /**
  * 
  */
-public class UserRepo<T extends User> implements IRepo<T> {
+public class UserRepo<T extends Person> implements IRepo<T> {
 
     private List<T> repo;
-    private Validator<User> validator;
+    private Validator<Person> validator;
     /**
      * Default constructor
      */
@@ -25,7 +25,7 @@ public class UserRepo<T extends User> implements IRepo<T> {
      /**
      * @param elem
      */
-    public void add(T elem) {
+    public Long add(T elem) {
         try {
             validator.validate(elem);
         }
@@ -33,15 +33,16 @@ public class UserRepo<T extends User> implements IRepo<T> {
             throw new ValidatorException(e);
         }
         repo.add(elem);
+        return elem.getCNP();
     }
 
     /**
      * @param id
      */
     public void remove(Long id) {
-        User u=find(id);
+        Person u=find(id);
         if (u==null)
-            throw new ValidatorException("User with this ID does not exist!");
+            throw new ValidatorException("Person with this ID does not exist!");
         else
             repo.remove(u);
     }
@@ -50,9 +51,9 @@ public class UserRepo<T extends User> implements IRepo<T> {
      * @param id
      */
     public void update(Long id, T newItem) {
-        User u=find(id);
+        Person u=find(id);
         if (u==null)
-            throw new ValidatorException("User with this ID does not exist!");
+            throw new ValidatorException("Person with this ID does not exist!");
         else
             try{
                 validator.validate(newItem);
