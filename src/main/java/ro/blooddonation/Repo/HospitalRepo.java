@@ -13,7 +13,10 @@ import ro.blooddonation.Domain.Hospital;
 import ro.blooddonation.Domain.Validators.HospitalValidator;
 import ro.blooddonation.Domain.Validators.Validator;
 import ro.blooddonation.Exceptions.ValidatorException;
+import ro.blooddonation.Util.HibernateUtil;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.*;
 
 /**
@@ -23,7 +26,6 @@ public class HospitalRepo implements IRepo<Hospital> {
 
     private List<Hospital> repo;
     private Validator<Hospital> validator;
-    private StandardServiceRegistry standardRegistry;
     private SessionFactory factory;
     /**
      * Constructor
@@ -32,17 +34,11 @@ public class HospitalRepo implements IRepo<Hospital> {
         repo = new ArrayList<>();
         validator = new HospitalValidator();
         try {
-            standardRegistry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
-            Metadata metaData =
-                    new MetadataSources(standardRegistry).getMetadataBuilder().build();
-            factory = metaData.getSessionFactoryBuilder().build();
-//            factory = new Configuration().configure()
-//                    .addAnnotatedClass(Hospital.class).buildSessionFactory();
+            factory = HibernateUtil.getSessionAnnotationFactory();
         } catch (Throwable ex) {
-            throw new ExceptionInInitializerError("Failed to create sessionFactory object: " + ex);
+            throw new ExceptionInInitializerError("SessionFactory: " + ex);
         }
     }
-
 
     /**
      * @param elem

@@ -12,12 +12,20 @@ repositories {
 ext{
     testVersion = '4.12'
     jaxbVersion = '2.3.0'
-    hibernateVersion = '5.2.16.Final'
+    hibernateVersion = '5.1.0.Final'
     activationVersion = '1.2.0'
+    springVersion = '5.0.5.RELEASE'
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: "$testVersion"
+
+    compile group: 'org.springframework', name: 'spring-context', version: "$springVersion"
+    compile group: 'org.springframework', name: 'spring-jdbc', version: "$springVersion"
+    compile group: 'org.springframework', name: 'spring-context-support', version: "$springVersion"
+    compile group: 'org.springframework', name: 'spring-orm', version: "$springVersion"
+
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
 
     compile group: 'javax.xml.bind', name:'jaxb-api', version: "$jaxbVersion"
     compile group: 'com.sun.xml.bind', name: 'jaxb-core', version: "$jaxbVersion"

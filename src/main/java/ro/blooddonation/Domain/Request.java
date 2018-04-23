@@ -10,19 +10,19 @@ public class Request
 {
     @Id
     @GeneratedValue
-    @Column(name = "id")
+    @Column
     private Long id;
 
-    @Column(name = "blood")
+    @Column
     private Blood blood;
 
-    @Column(name = "urgency")
+    @Column
     private Integer urgency;
 
-    @Column(name = "doctor")
+    @Column
     private Doctor doctor;
 
-    @Column(name = "status")
+    @Column
     private String status;
 
     //private static Long idGen = Long.valueOf(1);

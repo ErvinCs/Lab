@@ -3,18 +3,34 @@ package ro.blooddonation.Domain.Users;
 import ro.blooddonation.Domain.Account;
 import ro.blooddonation.Domain.Address;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Person
 {
-    private String firstName;
-    private String lastName;
-    private LocalDate bDay;
-    private Address address;
-    private Address residence;
+    @Id
     private Long CNP;
+
+    @Column
+    private String firstName;
+
+    @Column
+    private String lastName;
+
+    @Column
+    private LocalDate bDay;
+
+    @Column
+    private Address address;
+
+    @Column
+    private Address residence;
+
+    @Column
     private Account account;
 
     /**
@@ -25,8 +41,8 @@ public abstract class Person
      * @param firstName: String
      * @param lastName: String
      * @param bDay: LocalDate
-     * @param address: Address
-     * @param residence: Address
+     * @param address: String
+     * @param residence: String
      * @param CNP: Long
      * @param account: Account
      */

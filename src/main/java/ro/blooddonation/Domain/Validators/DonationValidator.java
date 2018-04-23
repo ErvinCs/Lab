@@ -12,6 +12,7 @@ public class DonationValidator implements Validator<Donation> {
             errors += "Invalid ID!\n";
         if (entity.getBloodQuantity() <= 0)
             errors += "Invalid blood quantity!\n";
-        throw new ValidatorException(errors);
+        if (!errors.equals(""))
+            throw new ValidatorException(errors);
     }
 }

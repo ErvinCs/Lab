@@ -1,10 +1,29 @@
 package ro.blooddonation.Domain;
 
+import javax.persistence.*;
+
+/**
+ * Deprecated
+ */
+@Entity
+@Table(name = "ADDRESS")
 public class Address
 {
+    @Id
+    @GeneratedValue
+    @Column(name = "ADDRESS_ID")
+    private Long id;
+
+    @Column
     private String address;
+
+    @Column
     private String town;
+
+    @Column
     private String country;
+
+    //private static Long idGen = Long.valueOf(1);
 
     /**
      * Default constructor
@@ -21,6 +40,8 @@ public class Address
         this.address = address;
         this.town = town;
         this.country = country;
+        //this.id = idGen;
+        //idGen += 1;
     }
 
     public String getAddress() {

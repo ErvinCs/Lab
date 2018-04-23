@@ -2,6 +2,7 @@ package ro.blooddonation.Domain.Users;
 
 import ro.blooddonation.Domain.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDate;
@@ -11,9 +12,16 @@ import java.util.Optional;
 @Table(name = "PATIENT")
 public class Patient extends Person {
 
+    @Column
     private Doctor doctor;
+
+    @Column
     private Blood blood = null;
+
+    @Column
     private Double requestedBloodQuantity = null;
+
+    @Column
     private Integer urgency = null;
 
     /**

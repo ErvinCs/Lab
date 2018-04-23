@@ -5,6 +5,7 @@ import ro.blooddonation.Domain.Address;
 import ro.blooddonation.Domain.DoningCenter;
 import ro.blooddonation.Exceptions.AppointmentException;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDate;
@@ -15,14 +16,15 @@ import java.util.*;
 @Table(name = "DCPMEMBER")
 public class DCPMember extends Person
 {
-    private String firstName;
-    private String lastName;
-    private LocalDate bDay;
-    private Address address;
-    private Address residence;
-    private Long CNP;
-    private Account account;
+//    private String firstName;
+//    private String lastName;
+//    private LocalDate bDay;
+//    private Address address;
+//    private Address residence;
+//    private Long CNP;
+//    private Account account;
 
+    @Column
     private DoningCenter doningCenter;
     //private Account account;
     //private Long CNP;

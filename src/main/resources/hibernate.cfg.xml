@@ -16,19 +16,15 @@
         </property>
 
         <property name = "hibernate.connection.url">
-            jdbc:postgresql://localhost:5432/Blooddonation
+            jdbc:mysql://sql7.freemysqlhosting.net:3306
         </property>
 
-        <!--<property name = "hibernate.connection.databasename">
-            Blooddonation
-        </property>-->
-
         <property name = "hibernate.connection.username">
-            postgre
+            sql7234108
         </property>
 
         <property name = "hibernate.connection.password">
-            1234
+            bffwTudTUU
         </property>
 
         <!-- SQL dialect -->
@@ -46,8 +42,14 @@
             org.hibernate.cache.internal.NoCacheProvider
         </property>
 
-        <!--<mapping class="ro.blooddonation.Domain.Hospital" />
-       <mapping class="ro.blooddonation.Repo.HospitalRepo"/>-->
+        <property name="hibernate.current_session_context_class">
+            thread
+        </property>
+
+        <mapping class="ro.blooddonation.Domain.Address" />
+        <mapping class="ro.blooddonation.Domain.Hospital" />
+        <!--<mapping class="ro.blooddonation.Domain.Request"/>-->
+        <!--<mapping class="ro.blooddonation.Domain.Donation"/>-->
 
    </session-factory>
 </hibernate-configuration>

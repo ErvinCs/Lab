@@ -8,10 +8,11 @@ public class Hospital {
 
     @Id
     @GeneratedValue
-    @Column(name = "id")
+    @Column(name = "HOSPITAL_ID")
     private Long id;
 
-    @Column(name = "address")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ADDRESS_ID")
     private Address address;
 
     //private static Long idGen = Long.valueOf(1);

@@ -10,7 +10,7 @@ public class RequestValidator implements Validator<Request>
         String errors = "";
         if(entity.getId() == null)
             errors+="Invalid ID!\n";
-        if(errors.length() > 0)
+        if (!errors.equals(""))
             throw new ValidatorException(errors);
     }
 }

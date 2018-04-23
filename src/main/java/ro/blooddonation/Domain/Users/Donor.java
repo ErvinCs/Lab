@@ -4,6 +4,7 @@ import ro.blooddonation.Domain.Account;
 import ro.blooddonation.Domain.Address;
 import ro.blooddonation.Domain.Donation;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDate;
@@ -13,9 +14,16 @@ import java.util.*;
 @Table(name = "DONOR")
 public class Donor extends Person {
 
+    @Column
     private Donation currDonation = null;
+
+    @Column
     private LocalDate currAppointment = null;
+
+    @Column
     private LocalDate lastDonation = null;
+
+    @Column
     private List<Donation> donationHistory;
 
     /**

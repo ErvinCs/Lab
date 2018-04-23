@@ -5,7 +5,9 @@ import ro.blooddonation.Domain.Address;
 import ro.blooddonation.Domain.Blood;
 import ro.blooddonation.Domain.Hospital;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.*;
@@ -17,14 +19,15 @@ import java.util.*;
 @Table(name = "DOCTOR")
 public class Doctor extends Person
 {
-    private String firstName;
-    private String lastName;
-    private LocalDate bDay;
-    private Address address;
-    private Address residence;
-    private Long CNP;
-    private Account account;
+//    private String firstName;
+//    private String lastName;
+//    private LocalDate bDay;
+//    private Address address;
+//    private Address residence;
+//    private Long CNP;
+//    private Account account;
 
+    @Column
     private Hospital hospital;
     //private Account account;
     //private Long CNP;

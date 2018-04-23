@@ -26,7 +26,7 @@ public class HospitalRepoTest
         h2 = new Hospital();
         hospitalRepo = new HospitalRepo();
 //        try {
-//            con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Blooddonation", "postgre", "1234");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306", "sql7234108", "bffwTudTUU");
 //        } catch (SQLException ex)
 //        {
 //            System.out.println(ex.getMessage());

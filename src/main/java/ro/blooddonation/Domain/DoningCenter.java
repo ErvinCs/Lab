@@ -1,10 +1,21 @@
 package ro.blooddonation.Domain;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "DONING_CENTER")
 public class DoningCenter
 {
-    private Address address;
+    @Id
+    @GeneratedValue
+    @Column
     private Long id;
-    private static Long idGen = Long.valueOf(1);
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ADDRESS_ID")
+    private Address address;
+
+//    private static Long idGen = Long.valueOf(1);
 
     /**
      * Default constructor
@@ -16,8 +27,8 @@ public class DoningCenter
     public DoningCenter(Address address)
     {
         this.address = address;
-        this.id = idGen;
-        idGen += 1;
+//        this.id = idGen;
+//        idGen += 1;
     }
 
     public Address getAddress() {
