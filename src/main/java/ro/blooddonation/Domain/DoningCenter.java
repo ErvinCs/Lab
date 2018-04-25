@@ -3,16 +3,16 @@ package ro.blooddonation.Domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "DONING_CENTER")
+@Table(name = "DoningCenter")
 public class DoningCenter
 {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ADDRESS_ID")
+    @JoinColumn(name = "AddressID")
     private Address address;
 
 //    private static Long idGen = Long.valueOf(1);

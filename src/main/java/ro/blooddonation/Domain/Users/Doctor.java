@@ -16,21 +16,11 @@ import java.util.*;
  * 
  */
 @Entity
-@Table(name = "DOCTOR")
+@Table(name = "Doctors")
 public class Doctor extends Person
 {
-//    private String firstName;
-//    private String lastName;
-//    private LocalDate bDay;
-//    private Address address;
-//    private Address residence;
-//    private Long CNP;
-//    private Account account;
-
     @Column
     private Hospital hospital;
-    //private Account account;
-    //private Long CNP;
 
     /**
      * Default constructor

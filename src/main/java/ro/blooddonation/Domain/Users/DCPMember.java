@@ -13,17 +13,9 @@ import java.time.Period;
 import java.util.*;
 
 @Entity
-@Table(name = "DCPMEMBER")
+@Table(name = "DCPMembers")
 public class DCPMember extends Person
 {
-//    private String firstName;
-//    private String lastName;
-//    private LocalDate bDay;
-//    private Address address;
-//    private Address residence;
-//    private Long CNP;
-//    private Account account;
-
     @Column
     private DoningCenter doningCenter;
     //private Account account;

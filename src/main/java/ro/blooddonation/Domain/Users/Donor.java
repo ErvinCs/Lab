@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 @Entity
-@Table(name = "DONOR")
+@Table(name = "Donors")
 public class Donor extends Person {
 
     @Column

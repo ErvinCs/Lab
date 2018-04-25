@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @Entity
-@Table(name = "PATIENT")
+@Table(name = "Patients")
 public class Patient extends Person {
 
     @Column

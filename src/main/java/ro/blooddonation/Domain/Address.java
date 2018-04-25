@@ -6,12 +6,12 @@ import javax.persistence.*;
  * Deprecated
  */
 @Entity
-@Table(name = "ADDRESS")
+@Table(name = "Addresses")
 public class Address
 {
     @Id
-    @GeneratedValue
-    @Column(name = "ADDRESS_ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "AddressID", updatable = false, nullable = false)
     private Long id;
 
     @Column
@@ -23,7 +23,7 @@ public class Address
     @Column
     private String country;
 
-    //private static Long idGen = Long.valueOf(1);
+//    private static Long idGen = Long.valueOf(1);
 
     /**
      * Default constructor
@@ -40,8 +40,8 @@ public class Address
         this.address = address;
         this.town = town;
         this.country = country;
-        //this.id = idGen;
-        //idGen += 1;
+//        this.id = idGen;
+//        idGen += 1;
     }
 
     public String getAddress() {

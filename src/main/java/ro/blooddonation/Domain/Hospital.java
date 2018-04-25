@@ -3,19 +3,20 @@ package ro.blooddonation.Domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "HOSPITAL")
+@Table(name = "Hospitals")
 public class Hospital {
 
     @Id
-    @GeneratedValue
-    @Column(name = "HOSPITAL_ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "HospitalID", updatable = false, nullable = false)
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ADDRESS_ID")
+    @JoinColumn(name = "AddressID")
     private Address address;
 
-    //private static Long idGen = Long.valueOf(1);
+
+//    private static Long idGen = Long.valueOf(1);
 
     /**
      * Default constructor
@@ -27,8 +28,8 @@ public class Hospital {
     public Hospital(Address address)
     {
         this.address = address;
-        //this.id = idGen;
-        //idGen += 1;
+//        this.id = idGen;
+//        idGen += 1;
     }
 
     public Address getAddress() {

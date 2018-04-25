@@ -56,11 +56,12 @@ public class HospitalRepo implements IRepo<Hospital> {
         Session session = factory.openSession();
         Transaction tx = null;
         Long id = null;
+        Hospital hospital;
 
         try{
             tx = session.beginTransaction();
 
-            Hospital hospital = new Hospital();
+            hospital = new Hospital();
             hospital.setAddress(elem.getAddress());
             id = (Long)session.save(hospital);
 
