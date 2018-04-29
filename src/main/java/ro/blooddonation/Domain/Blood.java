@@ -1,5 +1,8 @@
 package ro.blooddonation.Domain;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Blood
 {
     private String rh;

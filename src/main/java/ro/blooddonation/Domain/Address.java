@@ -12,30 +12,21 @@ import javax.persistence.*;
  */
 
 
-@Entity
-@Table(name = "Addresses")
+@Embeddable
 public class Address
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "AddressID", updatable = false, nullable = false)
-    private Long id;
-
-    @Column
     private String address;
 
-    @Column
     private String town;
 
-    @Column
     private String country;
 
-//    private static Long idGen = Long.valueOf(1);
 
     /**
      * Default constructor
      */
     public Address() {}
+
     /**
      *
      * @param address: String
@@ -47,8 +38,6 @@ public class Address
         this.address = address;
         this.town = town;
         this.country = country;
-//        this.id = idGen;
-//        idGen += 1;
     }
 
     public String getAddress() {
@@ -75,7 +64,27 @@ public class Address
         this.country = country;
     }
 
-    public Long getId() {
-        return id;
+    @Override
+    public String toString()
+    {
+        return "Address{address=" + address + ", town=" + town
+                + ", country=" + country + "}";
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof Address)) {
+            return false;
+        }
+
+        Address address = (Address) o;
+        return this.getAddress() == ((Address) o).getAddress() && this.getCountry() == ((Address) o).getCountry() &&
+                this.getTown() == ((Address) o).getTown();
+
     }
 }

@@ -13,6 +13,7 @@ public class Donation
     private Long id;
 
     @Column
+    @Embedded
     private Blood blood;
 
     @Column
@@ -28,6 +29,7 @@ public class Donation
     private Double redCellsQuantity;
 
     @Column
+    @Temporal(TemporalType.DATE)
     private LocalDate donationDate;
 
     //private static Long idGen = Long.valueOf(1);

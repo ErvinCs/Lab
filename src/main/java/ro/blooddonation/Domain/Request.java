@@ -9,23 +9,23 @@ import javax.persistence.*;
 public class Request
 {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Long id;
 
     @Column
+    @Embedded
     private Blood blood;
 
     @Column
     private Integer urgency;
 
     @Column
+    //
     private Doctor doctor;
 
     @Column
     private String status;
-
-    //private static Long idGen = Long.valueOf(1);
 
     /**
      * Default constructor
@@ -43,8 +43,6 @@ public class Request
         this.urgency = urgency;
         this.doctor = doctor;
         this.status = "Request sent.";
-        //this.id = idGen;
-        //idGen += 1;
     }
 
     public Blood getBlood() {

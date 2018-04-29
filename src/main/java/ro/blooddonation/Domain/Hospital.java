@@ -6,17 +6,13 @@ import javax.persistence.*;
 @Table(name = "Hospitals")
 public class Hospital
 {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "HospitalID", updatable = false, nullable = false)
     private Long id;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @PrimaryKeyJoinColumn(name = "AddressID")
+    @Embedded
     private Address address;
-
-//    private static Long idGen = Long.valueOf(1);
 
     /**
      * Default constructor
@@ -28,8 +24,6 @@ public class Hospital
     public Hospital(Address address)
     {
         this.address = address;
-//        this.id = idGen;
-//        idGen += 1;
     }
 
     public Address getAddress() {
@@ -40,7 +34,17 @@ public class Hospital
         this.address = address;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Hospital{id=" + id + "; " + address.toString() + "}";
     }
 }

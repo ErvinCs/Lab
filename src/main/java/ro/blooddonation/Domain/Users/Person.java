@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
+
 @MappedSuperclass
 public abstract class Person
 {
@@ -25,12 +26,15 @@ public abstract class Person
     private LocalDate bDay;
 
     @Column
+    @Embedded
     private Address address;
 
     @Column
+    @Embedded
     private Address residence;
 
     @Column
+    @Embedded   //We might need a separate table for accounts
     private Account account;
 
     /**
