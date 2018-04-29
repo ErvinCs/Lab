@@ -19,6 +19,7 @@ import java.util.*;
 @Table(name = "Doctors")
 public class Doctor extends Person
 {
+    //Make Hospital Embedable(?)
     @Column
     private Hospital hospital;
 
@@ -43,13 +44,7 @@ public class Doctor extends Person
     {
         super(firstName, lastName, bDay, address, residence, CNP, account);
         this.hospital = hospital;
-        //this.account = account;
-        //this.CNP = CNP;
     }
-
-//    public Long getCNP() {
-//        return CNP;
-//    }
 
     public Hospital getHospital() {
         return hospital;
@@ -58,16 +53,6 @@ public class Doctor extends Person
     public void setHospital(Hospital hospital) {
         this.hospital = hospital;
     }
-
-//    public Account getAccount() {
-//        return account;
-//    }
-
-//    public void setAccount(Account account) {
-//        this.account = account;
-//    }
-
-    //Should the doctors be able to modify their account?
 
     /**
      *

@@ -20,6 +20,8 @@ ext{
 dependencies {
     testCompile group: 'junit', name: 'junit', version: "$testVersion"
 
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
+
     compile group: 'org.springframework', name: 'spring-context', version: "$springVersion"
     compile group: 'org.springframework', name: 'spring-jdbc', version: "$springVersion"
     compile group: 'org.springframework', name: 'spring-context-support', version: "$springVersion"
@@ -42,4 +44,6 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-ehcache', version: "$hibernateVersion"
 
     compile group: 'com.sun.activation', name: 'javax.activation', version:"$activationVersion"
+
+
 }

@@ -1,10 +1,17 @@
 package ro.blooddonation.Domain;
 
+//import javax.persistence.*;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 /**
  * Deprecated
  */
+
+
 @Entity
 @Table(name = "Addresses")
 public class Address
@@ -68,4 +75,7 @@ public class Address
         this.country = country;
     }
 
+    public Long getId() {
+        return id;
+    }
 }

@@ -12,9 +12,11 @@ import java.util.Optional;
 @Table(name = "Patients")
 public class Patient extends Person {
 
+    //Make this Embedable(?)
     @Column
     private Doctor doctor;
 
+    //Make this Embedable(?)
     @Column
     private Blood blood = null;
 

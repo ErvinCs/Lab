@@ -7,12 +7,11 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
-//@MappedSuperclass
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@MappedSuperclass
 public abstract class Person
 {
     @Id
+    @Column
     private Long CNP;
 
     @Column
@@ -22,6 +21,7 @@ public abstract class Person
     private String lastName;
 
     @Column
+    @Temporal(TemporalType.DATE)
     private LocalDate bDay;
 
     @Column
