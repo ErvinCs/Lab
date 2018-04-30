@@ -5,7 +5,9 @@ import ro.blooddonation.Domain.Address;
 import ro.blooddonation.Domain.Blood;
 import ro.blooddonation.Domain.Hospital;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.*;
@@ -14,20 +16,12 @@ import java.util.*;
  * 
  */
 @Entity
-@Table(name = "DOCTOR")
+@Table(name = "Doctors")
 public class Doctor extends Person
 {
-    private String firstName;
-    private String lastName;
-    private LocalDate bDay;
-    private Address address;
-    private Address residence;
-    private Long CNP;
-    private Account account;
-
+    //Make Hospital Embedable(?)
+    @Column
     private Hospital hospital;
-    //private Account account;
-    //private Long CNP;
 
     /**
      * Default constructor
@@ -50,13 +44,7 @@ public class Doctor extends Person
     {
         super(firstName, lastName, bDay, address, residence, CNP, account);
         this.hospital = hospital;
-        //this.account = account;
-        //this.CNP = CNP;
     }
-
-//    public Long getCNP() {
-//        return CNP;
-//    }
 
     public Hospital getHospital() {
         return hospital;
@@ -65,16 +53,6 @@ public class Doctor extends Person
     public void setHospital(Hospital hospital) {
         this.hospital = hospital;
     }
-
-//    public Account getAccount() {
-//        return account;
-//    }
-
-//    public void setAccount(Account account) {
-//        this.account = account;
-//    }
-
-    //Should the doctors be able to modify their account?
 
     /**
      *

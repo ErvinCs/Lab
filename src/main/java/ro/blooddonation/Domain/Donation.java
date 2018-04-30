@@ -9,25 +9,27 @@ public class Donation
 {
     @Id
     @GeneratedValue
-    @Column(name = "id")
+    @Column
     private Long id;
 
-    @Column(name = "blood")
+    @Column
+    @Embedded
     private Blood blood;
 
-    @Column(name = "bloodQuantity")
+    @Column
     private Double bloodQuantity;
 
-    @Column(name = "plasmaQuantity")
+    @Column
     private Double plasmaQuantity;
 
-    @Column(name = "thrombocytesQuantity")
+    @Column
     private Double thrombocytesQuantity;
 
-    @Column(name = "redCellsQuantity")
+    @Column
     private Double redCellsQuantity;
 
-    @Column(name = "donationDate")
+    @Column
+    @Temporal(TemporalType.DATE)
     private LocalDate donationDate;
 
     //private static Long idGen = Long.valueOf(1);

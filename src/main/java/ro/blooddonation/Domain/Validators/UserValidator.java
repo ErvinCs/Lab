@@ -14,7 +14,8 @@ public class UserValidator implements Validator<Person> {
             errors+="Invalid First Name!\n";
         if(entity.getLastName()=="")
             errors+="Invalid Last Name!\n";
-        throw new ValidatorException(errors);
+        if (!errors.equals(""))
+            throw new ValidatorException(errors);
 
     }
 }

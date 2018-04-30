@@ -1,7 +1,9 @@
 package ro.blooddonation.Domain;
 
+import javax.persistence.Embeddable;
 import java.util.Optional;
 
+@Embeddable
 public class Account
 {
     private String username;

@@ -3,18 +3,16 @@ package ro.blooddonation.Domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "HOSPITAL")
-public class Hospital {
-
+@Table(name = "Hospitals")
+public class Hospital
+{
     @Id
-    @GeneratedValue
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "HospitalID", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "address")
+    @Embedded
     private Address address;
-
-    //private static Long idGen = Long.valueOf(1);
 
     /**
      * Default constructor
@@ -26,8 +24,6 @@ public class Hospital {
     public Hospital(Address address)
     {
         this.address = address;
-        //this.id = idGen;
-        //idGen += 1;
     }
 
     public Address getAddress() {
@@ -38,7 +34,17 @@ public class Hospital {
         this.address = address;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Hospital{id=" + id + "; " + address.toString() + "}";
     }
 }

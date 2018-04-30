@@ -2,18 +2,28 @@ package ro.blooddonation.Domain.Users;
 
 import ro.blooddonation.Domain.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.Optional;
 
 @Entity
-@Table(name = "PATIENT")
+@Table(name = "Patients")
 public class Patient extends Person {
 
+    //Make this Embedable(?)
+    @Column
     private Doctor doctor;
+
+    //Make this Embedable(?)
+    @Column
     private Blood blood = null;
+
+    @Column
     private Double requestedBloodQuantity = null;
+
+    @Column
     private Integer urgency = null;
 
     /**

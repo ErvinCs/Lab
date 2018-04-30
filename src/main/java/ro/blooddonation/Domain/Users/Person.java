@@ -3,18 +3,38 @@ package ro.blooddonation.Domain.Users;
 import ro.blooddonation.Domain.Account;
 import ro.blooddonation.Domain.Address;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
+@MappedSuperclass
 public abstract class Person
 {
-    private String firstName;
-    private String lastName;
-    private LocalDate bDay;
-    private Address address;
-    private Address residence;
+    @Id
+    @Column
     private Long CNP;
+
+    @Column
+    private String firstName;
+
+    @Column
+    private String lastName;
+
+    @Column
+    @Temporal(TemporalType.DATE)
+    private LocalDate bDay;
+
+    @Column
+    @Embedded
+    private Address address;
+
+    @Column
+    @Embedded
+    private Address residence;
+
+    @Column
+    @Embedded   //We might need a separate table for accounts
     private Account account;
 
     /**
@@ -25,8 +45,8 @@ public abstract class Person
      * @param firstName: String
      * @param lastName: String
      * @param bDay: LocalDate
-     * @param address: Address
-     * @param residence: Address
+     * @param address: String
+     * @param residence: String
      * @param CNP: Long
      * @param account: Account
      */

@@ -1,15 +1,32 @@
 package ro.blooddonation.Domain;
 
+//import javax.persistence.*;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+/**
+ * Deprecated
+ */
+
+
+@Embeddable
 public class Address
 {
     private String address;
+
     private String town;
+
     private String country;
+
 
     /**
      * Default constructor
      */
     public Address() {}
+
     /**
      *
      * @param address: String
@@ -47,4 +64,27 @@ public class Address
         this.country = country;
     }
 
+    @Override
+    public String toString()
+    {
+        return "Address{address=" + address + ", town=" + town
+                + ", country=" + country + "}";
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof Address)) {
+            return false;
+        }
+
+        Address address = (Address) o;
+        return this.getAddress() == ((Address) o).getAddress() && this.getCountry() == ((Address) o).getCountry() &&
+                this.getTown() == ((Address) o).getTown();
+
+    }
 }

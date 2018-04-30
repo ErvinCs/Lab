@@ -1,23 +1,31 @@
 package ro.blooddonation.Domain;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "DoningCenter")
 public class DoningCenter
 {
-    private Address address;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private Long id;
-    private static Long idGen = Long.valueOf(1);
+
+    @Embedded
+    private Address address;
+
 
     /**
      * Default constructor
      */
     public DoningCenter() {}
+
     /**
      * @param address: Address
      */
     public DoningCenter(Address address)
     {
         this.address = address;
-        this.id = idGen;
-        idGen += 1;
     }
 
     public Address getAddress() {

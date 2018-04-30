@@ -5,6 +5,7 @@ import ro.blooddonation.Domain.Address;
 import ro.blooddonation.Domain.DoningCenter;
 import ro.blooddonation.Exceptions.AppointmentException;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDate;
@@ -12,20 +13,12 @@ import java.time.Period;
 import java.util.*;
 
 @Entity
-@Table(name = "DCPMEMBER")
+@Table(name = "DCPMembers")
 public class DCPMember extends Person
 {
-    private String firstName;
-    private String lastName;
-    private LocalDate bDay;
-    private Address address;
-    private Address residence;
-    private Long CNP;
-    private Account account;
-
+    //Make DoningCenter Embedable(?)
+    @Column
     private DoningCenter doningCenter;
-    //private Account account;
-    //private Long CNP;
 
     /**
      * Default constructor
@@ -48,13 +41,7 @@ public class DCPMember extends Person
     {
         super(firstName, lastName, bDay, address, residence, CNP, account);
         this.doningCenter = doningCenter;
-        //this.account = account;
-        //this.CNP = CNP;
     }
-
-//    public Long getCNP() {
-//        return CNP;
-//    }
 
     public DoningCenter getDoningCenter() {
         return doningCenter;
@@ -63,16 +50,6 @@ public class DCPMember extends Person
     public void setDoningCenter(DoningCenter doningCenter) {
         this.doningCenter = doningCenter;
     }
-
-//    public Account getAccount() {
-//        return account;
-//    }
-//
-//    public void setAccount(Account account) {
-//        this.account = account;
-//    }
-
-    //Should the DCP be able to modify their accounts?
 
     /**
      *
