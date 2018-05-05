@@ -5,12 +5,12 @@ import ro.blooddonation.Domain.Users.Doctor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "REQUEST")
+@Table(name = "Request")
 public class Request
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
+    @Column(name = "RequestID")
     private Long id;
 
     @Column

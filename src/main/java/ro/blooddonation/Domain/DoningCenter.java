@@ -8,12 +8,11 @@ public class DoningCenter
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
+    @Column(name = "DoningCenterID")
     private Long id;
 
     @Embedded
     private Address address;
-
 
     /**
      * Default constructor

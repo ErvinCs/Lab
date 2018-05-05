@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "DONATION")
+@Table(name = "Donation")
 public class Donation
 {
     @Id
     @GeneratedValue
-    @Column
+    @Column(name = "DonationID")
     private Long id;
 
     @Column
@@ -32,8 +32,6 @@ public class Donation
     @Temporal(TemporalType.DATE)
     private LocalDate donationDate;
 
-    //private static Long idGen = Long.valueOf(1);
-
     public static final Integer plasmaExp = 365;
     public static final Integer thrombocytesExp = 42;
     public static final Integer redCellsExp = 5;
@@ -49,8 +47,6 @@ public class Donation
     {
         this.donationDate = donationDate;
         this.bloodQuantity = bloodQuantity;
-        //this.id = idGen;
-        //idGen += 1;
     }
 
     public Blood getBlood() {

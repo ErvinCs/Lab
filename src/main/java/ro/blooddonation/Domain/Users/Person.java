@@ -25,16 +25,23 @@ public abstract class Person
     @Temporal(TemporalType.DATE)
     private LocalDate bDay;
 
-    @Column
+    @AttributeOverrides({
+                    @AttributeOverride(name = "address", column = @Column(name = "home_address")),
+                    @AttributeOverride(name = "town", column = @Column(name = "home_town")),
+                    @AttributeOverride(name = "country", column = @Column(name = "home_country"))
+            })
     @Embedded
     private Address address;
 
-    @Column
+    @AttributeOverrides({
+            @AttributeOverride(name = "address", column = @Column(name = "current_address")),
+            @AttributeOverride(name = "town", column = @Column(name = "current_town")),
+            @AttributeOverride(name = "country", column = @Column(name = "current_country"))
+    })
     @Embedded
     private Address residence;
 
     @Column
-    @Embedded   //We might need a separate table for accounts
     private Account account;
 
     /**
@@ -146,6 +153,16 @@ public abstract class Person
     public void updateCredentials(Optional<String> username, Optional<String> password)
     {
         account.updateCredentials(username, password);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof Person ))
+            return false;
+
+        return CNP != null && CNP.equals(((Person) o).getCNP());
     }
 
 }

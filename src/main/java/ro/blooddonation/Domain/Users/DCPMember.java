@@ -5,9 +5,7 @@ import ro.blooddonation.Domain.Address;
 import ro.blooddonation.Domain.DoningCenter;
 import ro.blooddonation.Exceptions.AppointmentException;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
@@ -16,8 +14,8 @@ import java.util.*;
 @Table(name = "DCPMembers")
 public class DCPMember extends Person
 {
-    //Make DoningCenter Embedable(?)
-    @Column
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
     private DoningCenter doningCenter;
 
     /**
