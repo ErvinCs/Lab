@@ -12,15 +12,15 @@
         </property>
 
         <property name = "hibernate.connection.url">
-            jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7234108
+            jdbc:postgresql://localhost:5432/se
         </property>
 
         <property name = "hibernate.connection.username">
-            sql7234108
+            postgres
         </property>
 
         <property name = "hibernate.connection.password">
-            bffwTudTUU
+            mamaliga1
         </property>
 
         <property name="hibernate.id.new_generator_mappings">
@@ -48,8 +48,12 @@
 
         <mapping class="ro.blooddonation.Domain.Address" />
         <mapping class="ro.blooddonation.Domain.Hospital" />
-        <!--<mapping class="ro.blooddonation.Domain.Request"/>-->
-        <!--<mapping class="ro.blooddonation.Domain.Donation"/>-->
+        <mapping class="ro.blooddonation.Domain.Donation" />
+        <mapping class="ro.blooddonation.Domain.Request" />
+        <mapping class="ro.blooddonation.Domain.Users.Donor" />
+        <mapping class="ro.blooddonation.Domain.Users.Doctor" />
+        <mapping class="ro.blooddonation.Domain.Users.Patient" />
+        <mapping class="ro.blooddonation.Domain.Users.DCPMember" />
 
    </session-factory>
 </hibernate-configuration>

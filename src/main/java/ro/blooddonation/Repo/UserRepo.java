@@ -1,9 +1,11 @@
 package ro.blooddonation.Repo;
 
+import org.hibernate.*;
 import ro.blooddonation.Domain.Users.Person;
 import ro.blooddonation.Domain.Validators.UserValidator;
 import ro.blooddonation.Domain.Validators.Validator;
 import ro.blooddonation.Exceptions.ValidatorException;
+import ro.blooddonation.Util.HibernateUtil;
 
 import java.util.*;
 
@@ -14,12 +16,18 @@ public class UserRepo<T extends Person> implements IRepo<T> {
 
     private List<T> repo;
     private Validator<Person> validator;
+    private SessionFactory factory;
     /**
      * Default constructor
      */
     public UserRepo() {
         repo = new ArrayList<>();
         validator = new UserValidator();
+        try {
+            factory = HibernateUtil.getSessionAnnotationFactory();
+        } catch (Throwable ex) {
+            throw new ExceptionInInitializerError("SessionFactory: " + ex);
+        }
     }
 
      /**
@@ -32,7 +40,31 @@ public class UserRepo<T extends Person> implements IRepo<T> {
         catch(ValidatorException e){
             throw new ValidatorException(e);
         }
-        repo.add(elem);
+
+        Session session = factory.openSession();
+        Transaction tx = null;
+        T u = null;
+
+        try{
+            tx = session.beginTransaction();
+
+            u.setAccount(elem.getAccount());
+            u.setAddress(elem.getAddress());
+            u.setFirstName(elem.getFirstName());
+            u.setLastName(elem.getLastName());
+            u.setResidence(elem.getResidence());
+            u.setCNP(elem.getCNP());
+            u.setbDay(elem.getbDay());
+            session.save(u);
+
+            session.flush();
+            tx.commit();
+        } catch (HibernateException ex) {
+            if (tx != null) tx.rollback();
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
         return elem.getCNP();
     }
 
@@ -40,35 +72,86 @@ public class UserRepo<T extends Person> implements IRepo<T> {
      * @param id
      */
     public void remove(Long id) {
-        Person u=find(id);
-        if (u==null)
+        T u = find(id);
+        if (u == null)
             throw new ValidatorException("Person with this ID does not exist!");
-        else
-            repo.remove(u);
+
+        Session session = factory.openSession();
+        Transaction tx = null;
+
+        try{
+            tx = session.beginTransaction();
+
+            u = (T) session.get(Person.class, id);
+            session.delete(u);
+
+            tx.commit();
+        } catch (HibernateException ex) {
+            if (tx!=null) tx.rollback();
+            ex.printStackTrace();
+        } finally {
+            session.flush();
+            session.close();
+        }
     }
 
     /**
      * @param id
      */
     public void update(Long id, T newItem) {
-        Person u=find(id);
-        if (u==null)
+        T u= find(id);
+        if (u == null)
             throw new ValidatorException("Person with this ID does not exist!");
-        else
-            try{
-                validator.validate(newItem);
-            }
-            catch (ValidatorException e){
-                throw new ValidatorException(e);
-            }
-        repo.toArray()[repo.indexOf(u)]=newItem;
+        try{
+            validator.validate(newItem);
+        }
+        catch (ValidatorException e){
+            throw new ValidatorException(e);
+        }
+
+        Session session = factory.openSession();
+        Transaction tx = null;
+
+        try{
+            tx = session.beginTransaction();
+
+            u = (T)session.get(Person.class, id);
+            u.setAddress(newItem.getAddress());
+            session.update(u);
+
+            session.flush();
+            tx.commit();
+        } catch (HibernateException ex) {
+            if (tx != null) tx.rollback();
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 
     /**
      * @return
      */
     public List<T> getAll() {
-        return repo;
+        Session session = factory.openSession();
+        Transaction tx = null;
+        List<T> userList = new ArrayList<T>();
+
+        try{
+            tx = session.beginTransaction();
+
+            Query q = session.createQuery("from Users");
+            userList = (List<T>) q.list();
+
+            session.flush();
+            tx.commit();
+        } catch (HibernateException ex) {
+            if (tx != null) tx.rollback();
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return userList;
     }
 
     /**

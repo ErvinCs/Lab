@@ -18,6 +18,14 @@ public abstract class Person
     @Column
     private String firstName;
 
+    public void setCNP(Long CNP) {
+        this.CNP = CNP;
+    }
+
+    public void setbDay(LocalDate bDay) {
+        this.bDay = bDay;
+    }
+
     @Column
     private String lastName;
 
@@ -26,17 +34,17 @@ public abstract class Person
     private LocalDate bDay;
 
     @AttributeOverrides({
-                    @AttributeOverride(name = "address", column = @Column(name = "home_address")),
-                    @AttributeOverride(name = "town", column = @Column(name = "home_town")),
-                    @AttributeOverride(name = "country", column = @Column(name = "home_country"))
+                    @AttributeOverride(name = "address", column = @Column(name = "hAddress")),
+                    @AttributeOverride(name = "town", column = @Column(name = "hTown")),
+                    @AttributeOverride(name = "country", column = @Column(name = "hCountry"))
             })
     @Embedded
     private Address address;
 
     @AttributeOverrides({
-            @AttributeOverride(name = "address", column = @Column(name = "current_address")),
-            @AttributeOverride(name = "town", column = @Column(name = "current_town")),
-            @AttributeOverride(name = "country", column = @Column(name = "current_country"))
+            @AttributeOverride(name = "address", column = @Column(name = "cAddress")),
+            @AttributeOverride(name = "town", column = @Column(name = "cTown")),
+            @AttributeOverride(name = "country", column = @Column(name = "cCountry"))
     })
     @Embedded
     private Address residence;
