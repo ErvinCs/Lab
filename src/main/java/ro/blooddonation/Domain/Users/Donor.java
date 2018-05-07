@@ -11,8 +11,7 @@ import java.util.*;
 @Entity
 @Table(name = "Donors")
 public class Donor extends Person {
-
-    //Make Donaion Embedable(?)
+    
     @Column
     private Donation currDonation = null;
 

@@ -1,13 +1,25 @@
 package ro.blooddonation.Domain;
 
-import javax.persistence.Embeddable;
+import ro.blooddonation.Domain.Users.Person;
+
+import javax.persistence.*;
 import java.util.Optional;
 
-@Embeddable
+@Entity
+@Table(name = "Accounts")
 public class Account
 {
+    @Id
+    @Column
     private String username;
+
+    @Column
     private String password;
+
+    @Column
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
+    private Person owner;
 
     /**
      * Default constructor
@@ -39,6 +51,14 @@ public class Account
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Person getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
     }
 
     public void updateCredentials(Optional<String> username, Optional<String> password)

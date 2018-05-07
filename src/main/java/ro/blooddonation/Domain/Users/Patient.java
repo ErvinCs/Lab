@@ -2,9 +2,7 @@ package ro.blooddonation.Domain.Users;
 
 import ro.blooddonation.Domain.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -12,12 +10,12 @@ import java.util.Optional;
 @Table(name = "Patients")
 public class Patient extends Person {
 
-    //Make this Embedable(?)
-    @Column
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CNP")
     private Doctor doctor;
 
-    //Make this Embedable(?)
     @Column
+    @Embedded
     private Blood blood = null;
 
     @Column
@@ -69,6 +67,14 @@ public class Patient extends Person {
 
     public void setUrgency(Integer urgency) {
         this.urgency = urgency;
+    }
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
 }

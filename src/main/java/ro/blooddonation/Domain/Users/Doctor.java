@@ -5,10 +5,7 @@ import ro.blooddonation.Domain.Address;
 import ro.blooddonation.Domain.Blood;
 import ro.blooddonation.Domain.Hospital;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -19,9 +16,13 @@ import java.util.*;
 @Table(name = "Doctors")
 public class Doctor extends Person
 {
-    //Make Hospital Embedable(?)
-    @Column
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
     private Hospital hospital;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "CNP")
+    private List<Patient> patients;
 
     /**
      * Default constructor
@@ -44,6 +45,7 @@ public class Doctor extends Person
     {
         super(firstName, lastName, bDay, address, residence, CNP, account);
         this.hospital = hospital;
+        this.patients = new ArrayList<Patient>();
     }
 
     public Hospital getHospital() {
@@ -66,6 +68,18 @@ public class Doctor extends Person
     {
         super.updateData(firstName, lastName, address, residence);
         Hospital h = hospital.isPresent() ? this.hospital = hospital.get() : this.hospital;
+    }
+
+    public void addPatient(Patient patient)
+    {
+        this.patients.add(patient);
+        patient.setDoctor(this);
+    }
+
+    public void removePatient(Patient patient)
+    {
+        this.patients.remove(patient);
+        patient.setDoctor(null);
     }
 
 }
