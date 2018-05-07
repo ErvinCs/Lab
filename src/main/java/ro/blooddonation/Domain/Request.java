@@ -21,7 +21,7 @@ public class Request
     private Integer urgency;
 
     @Column
-    //
+    @Embedded
     private Doctor doctor;
 
     @Column
@@ -49,13 +49,19 @@ public class Request
         return blood;
     }
 
+    public void setBlood(Blood blood) {this.blood = blood;}
+
     public Integer getUrgency() {
         return urgency;
     }
 
+    public void setUrgency(Integer urgency){this.urgency = urgency;}
+
     public Doctor getDoctor() {
         return doctor;
     }
+
+    public void setDoctor(Doctor doctor) {this.doctor = doctor;}
 
     public String getStatus() {
         return status;
@@ -68,4 +74,6 @@ public class Request
     public Long getId() {
         return this.id;
     }
+
+    public void setId(Long id) {this.id = id;}
 }

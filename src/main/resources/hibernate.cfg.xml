@@ -48,8 +48,9 @@
 
         <mapping class="ro.blooddonation.Domain.Address" />
         <mapping class="ro.blooddonation.Domain.Hospital" />
-        <!--<mapping class="ro.blooddonation.Domain.Request"/>-->
-        <!--<mapping class="ro.blooddonation.Domain.Donation"/>-->
+        <mapping class="ro.blooddonation.Domain.Request"/>
+        <mapping class="ro.blooddonation.Domain.Blood"/>
+        <mapping class="ro.blooddonation.Domain.Donation"/>
 
    </session-factory>
 </hibernate-configuration>

@@ -65,6 +65,8 @@ public class Donation
         return this.bloodQuantity;
     }
 
+    public void setBloodQuantity(Double bloodQuantity) {this.bloodQuantity = bloodQuantity;}
+
     public Double getPlasmaQuantity() {
         return plasmaQuantity;
     }
@@ -96,4 +98,6 @@ public class Donation
     public Long getId() {
         return id;
     }
+
+    public void setId(Long id) {this.id = id;}
 }

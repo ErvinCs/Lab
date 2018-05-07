@@ -1,9 +1,11 @@
 package ro.blooddonation.Repo;
 
+import org.hibernate.*;
 import ro.blooddonation.Domain.Donation;
 import ro.blooddonation.Domain.Validators.DonationValidator;
 import ro.blooddonation.Domain.Validators.Validator;
 import ro.blooddonation.Exceptions.ValidatorException;
+import ro.blooddonation.Util.HibernateUtil;
 
 import java.util.*;
 
@@ -14,11 +16,18 @@ public class DonationRepo implements IRepo<Donation> {
 
     private List<Donation> repo;
     private Validator<Donation> validator;
+    private SessionFactory factory;
 
 
     public DonationRepo() {
         validator = new DonationValidator();
         repo = new ArrayList<>();
+        try{
+            factory = HibernateUtil.getSessionAnnotationFactory();
+        }catch (Throwable ex)
+        {
+            throw new ExceptionInInitializerError("SessionFactory: " + ex);
+        }
     }
 
 
@@ -36,8 +45,35 @@ public class DonationRepo implements IRepo<Donation> {
         {
             throw new ValidatorException(e);
         }
-        repo.add(elem);
-        return elem.getId();
+
+        Session session = factory.openSession();
+        Transaction tx = null;
+        Long id = null;
+        Donation d = null;
+        try{
+            tx = session.beginTransaction();
+
+            d = new Donation();
+            d.setBlood(elem.getBlood());
+            d.setPlasmaQuantity(elem.getPlasmaQuantity());
+            d.setRedCellsQuantity(elem.getRedCellsQuantity());
+            d.setThrombocytesQuantity(elem.getThrombocytesQuantity());
+            d.setBloodQuantity(elem.getBloodQuantity());
+
+            id = (Long)session.save(d);
+            d.setId(id);
+
+            session.flush();
+            tx.commit();
+        }catch (HibernateException ex)
+        {
+            if(tx != null) tx.rollback();
+            ex.printStackTrace();
+        }finally {
+            session.close();
+        }
+
+        return id;
     }
 
     /**
@@ -47,11 +83,29 @@ public class DonationRepo implements IRepo<Donation> {
         if(id == null)
             throw new IllegalArgumentException("ID must not be null!");
         if(find(id) == null)
-            throw new IllegalArgumentException("ID does not exist!");
+            throw new IllegalArgumentException("Donation with this ID does not exist!");
 
-        for(Donation d: repo)
-            if(d.getId() == id)
-                repo.remove(d);
+        Donation d = find(id);
+
+        Session session = factory.openSession();
+        Transaction tx = null;
+
+        try{
+            tx = session.beginTransaction();
+
+            d = (Donation)session.get(Donation.class, id);
+            session.delete(d);
+
+            tx.commit();
+        }catch (HibernateException ex)
+        {
+            if (tx != null) tx.rollback();
+            ex.printStackTrace();
+        }finally {
+            session.flush();
+            session.close();
+        }
+
     }
 
     /**
@@ -62,6 +116,8 @@ public class DonationRepo implements IRepo<Donation> {
             throw new IllegalArgumentException("Null item!");
 
         Donation d = find(id);
+        if(d == null)
+            throw new ValidatorException("Donation with this ID does not exist!");
 
         try{
             validator.validate(newItem);
@@ -71,14 +127,56 @@ public class DonationRepo implements IRepo<Donation> {
             throw new ValidatorException(e);
         }
 
-        repo.toArray()[repo.indexOf(d)] = newItem;
+        Session session = factory.openSession();
+        Transaction tx = null;
+
+        try{
+            tx = session.beginTransaction();
+
+            d = (Donation)session.get(Donation.class, id);
+            d.setBloodQuantity(newItem.getBloodQuantity());
+            d.setBlood(newItem.getBlood());
+            d.setThrombocytesQuantity(newItem.getThrombocytesQuantity());
+            d.setRedCellsQuantity(newItem.getRedCellsQuantity());
+            d.setPlasmaQuantity(newItem.getPlasmaQuantity());
+            session.update(d);
+
+            session.flush();
+            tx.commit();
+        }catch (HibernateException ex)
+        {
+            if(tx != null) tx.rollback();
+            ex.printStackTrace();
+        }finally {
+            session.close();
+        }
     }
 
     /**
      * @return
      */
     public List<Donation> getAll() {
-        return repo;
+        Session session = factory.openSession();
+        Transaction tx = null;
+        List<Donation> donationList = new ArrayList<Donation>();
+
+        try{
+            tx = session.beginTransaction();
+
+            Query q = session.createQuery("from Donation");
+            donationList = (List<Donation>) q.list();
+
+            session.flush();
+            tx.commit();
+        }catch (HibernateException ex)
+        {
+            if(tx != null) tx.rollback();
+            ex.printStackTrace();
+        }finally {
+            session.close();
+        }
+
+        return donationList;
     }
 
     /**
@@ -89,8 +187,8 @@ public class DonationRepo implements IRepo<Donation> {
         if(id == null)
             throw new IllegalArgumentException("Id must not be null!");
 
-        for(Donation d: repo)
-            if(d.getId() == id)
+        for(Donation d: this.getAll())
+            if(d.getId().equals(id))
                 return d;
 
         return null;

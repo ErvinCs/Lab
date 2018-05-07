@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Hospitals")
+@Embeddable
 public class Hospital
 {
     @Id

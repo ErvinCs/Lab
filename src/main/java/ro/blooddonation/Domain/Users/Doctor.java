@@ -5,10 +5,7 @@ import ro.blooddonation.Domain.Address;
 import ro.blooddonation.Domain.Blood;
 import ro.blooddonation.Domain.Hospital;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -17,10 +14,12 @@ import java.util.*;
  */
 @Entity
 @Table(name = "Doctors")
+@Embeddable
 public class Doctor extends Person
 {
     //Make Hospital Embedable(?)
     @Column
+    @Embedded
     private Hospital hospital;
 
     /**
