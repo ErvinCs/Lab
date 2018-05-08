@@ -3,12 +3,12 @@ package ro.blooddonation.Domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Hospitals")
+@Table(name = "hospital")
 public class Hospital
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "HospitalID", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "hid", updatable = false, nullable = false)
     private Long id;
 
     @Embedded

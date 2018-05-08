@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 @Entity
-@Table(name = "Donors")
+@Table(name = "donors")
 public class Donor extends Person {
     
     @Column

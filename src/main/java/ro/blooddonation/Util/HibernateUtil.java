@@ -20,6 +20,7 @@ public class HibernateUtil {
             Configuration configuration = new Configuration();
             configuration.addAnnotatedClass(ro.blooddonation.Domain.Address.class);
             configuration.addAnnotatedClass(ro.blooddonation.Domain.Hospital.class);
+            //!!!! daca adaugi alte clase crapa....
             configuration.configure("hibernate.cfg.xml");
             System.out.println("Hibernate Annotation Configuration loaded");
 

@@ -8,11 +8,11 @@
 
         <!-- Database connection settings -->
         <property name = "hibernate.connection.driver_class">
-            com.mysql.cj.jdbc.Driver
+            org.postgresql.Driver
         </property>
 
         <property name = "hibernate.connection.url">
-            jdbc:postgresql://localhost:5432/se
+            jdbc:postgresql://localhost:5432/iss
         </property>
 
         <property name = "hibernate.connection.username">
@@ -33,7 +33,7 @@
 
         <!-- SQL dialect -->
         <property name = "hibernate.dialect">
-            org.hibernate.dialect.MySQLDialect
+            org.hibernate.dialect.PostgreSQL94Dialect
         </property>
 
         <!-- JDBC connection pool (use the built-in) -->
@@ -54,6 +54,7 @@
         <mapping class="ro.blooddonation.Domain.Users.Doctor" />
         <mapping class="ro.blooddonation.Domain.Users.Patient" />
         <mapping class="ro.blooddonation.Domain.Users.DCPMember" />
+        <mapping class="ro.blooddonation.Domain.Users.Person" />
 
    </session-factory>
 </hibernate-configuration>
