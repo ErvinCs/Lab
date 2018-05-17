@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.blooddonation.core.Domain.Hospital;
-import ro.blooddonation.core.Repo.IHospitalRepo;
+import ro.blooddonation.core.Repo.HospitalRepo;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +17,7 @@ public class HospitalServiceImpl implements HospitalService
     private static final Logger log = LoggerFactory.getLogger(HospitalService.class);
 
     @Autowired
-    private IHospitalRepo hospitalRepo;
+    private HospitalRepo hospitalRepo;
 
     /**
      *

@@ -8,8 +8,6 @@ import javax.persistence.*;
 /**
  * Deprecated
  */
-
-
 @Embeddable
 public class Address
 {

@@ -3,6 +3,7 @@ package ro.blooddonation.client.Console;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import ro.blooddonation.web.Dto.DonationDto;
 import ro.blooddonation.web.Dto.DoningCenterDto;
 import ro.blooddonation.web.Dto.HospitalDto;
 
@@ -16,12 +17,15 @@ public class Console
 
     public void run()
     {
-        HospitalDto hDto = restTemplate.postForObject("http://localhost:8080/api/hospitals",
-                new HospitalDto("TestAddress1"), HospitalDto.class);
-        System.out.println(hDto.toString());
-
-        DoningCenterDto dcDto = restTemplate.postForObject("http://localhost:8080/api/doningCenters",
-                new DoningCenterDto("TestAddress2"), DoningCenterDto.class);
-        System.out.println(dcDto.toString());
+//        HospitalDto hDto = restTemplate.postForObject("http://localhost:8080/api/hospitals",
+//                new HospitalDto("TestAddress1"), HospitalDto.class);
+//        System.out.println(hDto.toString());
+//
+//        DoningCenterDto dcDto = restTemplate.postForObject("http://localhost:8080/api/doningCenters",
+//                new DoningCenterDto("TestAddress2"), DoningCenterDto.class);
+//        System.out.println(dcDto.toString());
+//        DonationDto donDto = restTemplate.postForObject("http://localhost:8080/api/donations",
+//                new DonationDto(), DonationDto.class);
+//        System.out.println(donDto.toString());
     }
 }

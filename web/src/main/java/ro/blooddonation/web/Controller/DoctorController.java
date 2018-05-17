@@ -1,14 +1,14 @@
 package ro.blooddonation.web.Controller;
 
 import ro.blooddonation.core.Domain.Doctor;
-import ro.blooddonation.core.Repo.Handmade.UserRepo;
 
 import java.util.*;
 
 /**
  * 
  */
-public class DoctorController //implements IController<Doctor>
+//@RestController
+public class DoctorController //implements IController<>
 {
 
     /**
@@ -17,10 +17,6 @@ public class DoctorController //implements IController<Doctor>
     public DoctorController() {
     }
 
-    /**
-     * 
-     */
-    private UserRepo<Doctor> repo;
 
     /**
      * @param doctor 

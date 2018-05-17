@@ -1,11 +1,15 @@
 package ro.blooddonation.core.Domain;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Blood
 {
+    @Column
     private String rh;
+
+    @Column
     private String type;
 
     /**

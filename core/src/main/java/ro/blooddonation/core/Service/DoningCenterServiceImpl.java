@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.blooddonation.core.Domain.DoningCenter;
-import ro.blooddonation.core.Repo.IDoningCenterRepo;
+import ro.blooddonation.core.Repo.DoningCenterRepo;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +17,7 @@ public class DoningCenterServiceImpl implements DoningCenterService
     private static final Logger log = LoggerFactory.getLogger(HospitalService.class);
 
     @Autowired
-    private IDoningCenterRepo dcRepo;
+    private DoningCenterRepo dcRepo;
 
     /**
      *

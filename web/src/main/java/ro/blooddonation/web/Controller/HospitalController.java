@@ -19,7 +19,7 @@ import java.util.*;
  * 
  */
 @RestController
-public class HospitalController //implements IController<HospitalDto, HospitalsDto>
+public class HospitalController implements IController<HospitalDto, HospitalsDto>
 {
 
     private static final Logger log = LoggerFactory.getLogger(HospitalController.class);

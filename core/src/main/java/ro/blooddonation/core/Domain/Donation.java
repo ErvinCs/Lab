@@ -4,15 +4,22 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.Map;
 
-//@Entity
-//@NoArgsConstructor
-//@Table(name = "donations")
+@Entity
+@NoArgsConstructor
+@Table(name = "donations")
 public class Donation extends BaseEntity<Long>
 {
-//    @Column
 //    @Embedded
-    private Blood blood;
+//    @AttributeOverride(name = "type", column = @Column(name = "rh"))
+//    private Blood blood;
+
+    @Enumerated(EnumType.STRING)
+//    @Column
+    private BloodEnum blood;
 
 //    @Column
     private Double bloodQuantity;
@@ -29,6 +36,13 @@ public class Donation extends BaseEntity<Long>
 //    @Column
     private LocalDate donationDate;
 
+    @ElementCollection
+    @CollectionTable(name = "donationsDiseases")
+    @MapKeyEnumerated(EnumType.STRING)
+    @MapKeyColumn(name = "diseaseName")
+//    @Column
+    private Map<DiseasesEnum, Boolean> diseases;
+
     public static final Integer plasmaExp = 365;
     public static final Integer thrombocytesExp = 42;
     public static final Integer redCellsExp = 5;
@@ -40,16 +54,17 @@ public class Donation extends BaseEntity<Long>
     {
         this.donationDate = donationDate;
         this.bloodQuantity = bloodQuantity;
+        this.diseases = new EnumMap<DiseasesEnum, Boolean>(DiseasesEnum.class);
         this.bloodQuantity = null;
         this.plasmaQuantity = null;
         this.thrombocytesQuantity = null;
     }
 
-    public Blood getBlood() {
+    public BloodEnum getBlood() {
         return blood;
     }
 
-    public void setBlood(Blood blood) {
+    public void setBlood(BloodEnum blood) {
         this.blood = blood;
     }
 
@@ -83,5 +98,13 @@ public class Donation extends BaseEntity<Long>
 
     public LocalDate getDonationDate() {
         return this.donationDate;
+    }
+
+    public Map<DiseasesEnum, Boolean> getDiseases() {
+        return diseases;
+    }
+
+    public void setDiseases(Map<DiseasesEnum, Boolean> diseases) {
+        this.diseases = diseases;
     }
 }

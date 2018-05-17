@@ -1,69 +1,114 @@
 package ro.blooddonation.web.Controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ro.blooddonation.core.Domain.Donation;
-import ro.blooddonation.core.Repo.Handmade.DonationRepo;
+import ro.blooddonation.core.Service.DonationService;
+import ro.blooddonation.web.Converter.DonationConverter;
+import ro.blooddonation.web.Dto.DonationDto;
+import ro.blooddonation.web.Dto.DonationDtos;
+import ro.blooddonation.web.Dto.EmptyJsonResponse;
 
 import java.util.*;
 
 /**
  * 
  */
-public class DonationController //implements IController<Donation>
+@RestController
+public class DonationController implements IController<DonationDto, DonationDtos>
 {
+    private static final Logger log = LoggerFactory.getLogger(DonationController.class);
 
-    /**
-     * Default constructor
-     */
-    public DonationController() {
+    @Autowired
+    private DonationService donationService;
+
+    @Autowired
+    private DonationConverter donationConverter;
+
+
+    @RequestMapping(value = "/donations", method = RequestMethod.POST)
+    public DonationDto add(@RequestBody final DonationDto donationDto)
+    {
+        log.trace("addDonation: donationDtoMap={}", donationDto);
+
+        Donation d = new Donation(donationDto.getDonationDate(), donationDto.getBloodQuantity());
+        d.setBlood(donationDto.getBlood());
+        d.setPlasmaQuantity(donationDto.getPlasmaQuantity());
+        d.setRedCellsQuantity(donationDto.getRedCellsQuantity());
+        d.setThrombocytesQuantity(donationDto.getThrombocytesQuantity());
+        d.setDiseases(donationDto.getDiseases());
+        d.setId(donationDto.getId());
+
+        DonationDto result = donationConverter.convertModelToDto(d);
+
+        log.trace("addDonation: result={}", result);
+
+        return result;
     }
 
     /**
-     * 
-     */
-    public DonationRepo repo;
-
-    /**
-     * @param donation 
+     * @param id
      * @return
      */
-    public boolean add(Donation donation) {
-        // TODO implement here
-        return false;
+    @RequestMapping(value = "donations/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity remove(@PathVariable final Long id)
+    {
+        log.trace("removeDonation: id={}", id);
+
+        donationService.remove(id);
+
+        log.trace("removeDonation - method end");
+
+        return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.OK);
     }
 
     /**
-     * @param id 
+     * @param id
      * @return
      */
-    public boolean remove(Long id) {
-        // TODO implement here
-        return false;
+    @RequestMapping(value = "/donations/{id}", method = RequestMethod.PUT)
+    public DonationDto update(@PathVariable final Long id,
+                                  @RequestBody final DonationDto newDonationDto) {
+        log.trace("updateDonation: id={}, donationDtoMap={}", id, newDonationDto);
+
+        Donation d = new Donation(newDonationDto.getDonationDate(), newDonationDto.getBloodQuantity());
+        d.setBlood(newDonationDto.getBlood());
+        d.setPlasmaQuantity(newDonationDto.getPlasmaQuantity());
+        d.setRedCellsQuantity(newDonationDto.getRedCellsQuantity());
+        d.setThrombocytesQuantity(newDonationDto.getThrombocytesQuantity());
+        d.setDiseases(newDonationDto.getDiseases());
+        d.setId(id);
+
+        Optional<Donation> donation = donationService.update(id, d);
+
+        Map<String, DonationDto> result = new HashMap<>();
+        if (donation.isPresent())
+            result.put("donation", donationConverter.convertModelToDto(donation.get()));
+        else
+            result.put("donation", donationConverter.convertModelToDto(new Donation()));
+
+        log.trace("updateDonation: result={}", result);
+
+        return result.get("donation");
     }
 
     /**
-     * @param id 
      * @return
      */
-    public boolean update(Long id, Donation newDonation) {
-        // TODO implement here
-        return false;
-    }
+    @RequestMapping(value = "/donations", method = RequestMethod.GET)
+    public DonationDtos getAll()
+    {
+        log.trace("getAllDonations");
 
-    /**
-     * @param id 
-     * @return
-     */
-    public Optional<Donation> getOne(Long id) {
-        // TODO implement here
-        return null;
-    }
+        List<Donation> donations = donationService.findAll();
 
-    /**
-     * @return
-     */
-    public List<Donation> getAll() {
-        // TODO implement here
-        return null;
+        log.trace("getAllDonations: doningCenters={}", donations);
+
+        return new DonationDtos(donationConverter.convertModelsToDtos(donations));
     }
 
 }

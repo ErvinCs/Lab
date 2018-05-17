@@ -1,11 +1,14 @@
 package ro.blooddonation.core.Domain;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
 
-//@Entity
-//@Table(name = "donors")
+@Entity
+@NoArgsConstructor
+@Table(name = "donors")
 public class Donor extends Person {
     
 //    @Column
@@ -18,13 +21,9 @@ public class Donor extends Person {
     private LocalDate lastDonation;
 
 //    @Column
-//    @ElementCollection
+    @ElementCollection
     private List<Donation> donationHistory;
 
-    /**
-     * Default constructor
-     */
-    public Donor() {}
     /**
      *
      * @param firstName: String

@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-public class DoningCenterController
+public class DoningCenterController implements IController<DoningCenterDto, DoningCentersDto>
 {
     private static final Logger log = LoggerFactory.getLogger(DoningCenterController.class);
 

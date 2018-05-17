@@ -1,14 +1,14 @@
 package ro.blooddonation.web.Controller;
 
 import ro.blooddonation.core.Domain.DCPMember;
-import ro.blooddonation.core.Repo.Handmade.UserRepo;
 
 import java.util.*;
 
 /**
  * 
  */
-public class DCPMemberController //implements IController<DCPMember>
+//@RestController
+public class DCPMemberController //implements IController<>
 {
 
     /**
@@ -17,10 +17,6 @@ public class DCPMemberController //implements IController<DCPMember>
     public DCPMemberController() {
     }
 
-    /**
-     * 
-     */
-    private UserRepo<DCPMember> repo;
 
     /**
      * @param dcpMember 

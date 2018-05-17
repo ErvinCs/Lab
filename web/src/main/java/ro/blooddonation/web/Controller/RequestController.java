@@ -1,14 +1,14 @@
 package ro.blooddonation.web.Controller;
 
 import ro.blooddonation.core.Domain.Request;
-import ro.blooddonation.core.Repo.Handmade.RequestRepo;
 
 import java.util.*;
 
 /**
  * 
  */
-public class RequestController //implements IController<Request>
+//@RestController
+public class RequestController //implements IController<>
 {
 
     /**
@@ -17,10 +17,6 @@ public class RequestController //implements IController<Request>
     public RequestController() {
     }
 
-    /**
-     * 
-     */
-    private RequestRepo repo;
 
     /**
      * @param request 
@@ -66,13 +62,13 @@ public class RequestController //implements IController<Request>
         return null;
     }
 
-    /**
-     * @return
-     */
-    public RequestRepo filterByUrgency() {
-        // TODO implement here
-        return null;
-    }
+//    /**
+//     * @return
+//     */
+//    public RequestRepo filterByUrgency() {
+//        // TODO implement here
+//        return null;
+//    }
 
 
 }

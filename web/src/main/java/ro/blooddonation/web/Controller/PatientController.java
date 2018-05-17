@@ -1,14 +1,14 @@
 package ro.blooddonation.web.Controller;
 
 import ro.blooddonation.core.Domain.Patient;
-import ro.blooddonation.core.Repo.Handmade.UserRepo;
 
 import java.util.*;
 
 /**
  * 
  */
-public class PatientController //implements IController<Patient>
+//@RestController
+public class PatientController //implements IController<>
 {
 
     /**
@@ -17,10 +17,6 @@ public class PatientController //implements IController<Patient>
     public PatientController() {
     }
 
-    /**
-     * 
-     */
-    private UserRepo<Patient> repo;
 
     /**
      * @param patient 
@@ -66,13 +62,13 @@ public class PatientController //implements IController<Patient>
         return null;
     }
 
-    /**
-     * @return
-     */
-    public UserRepo<Patient> filterByUrgency() {
-        // TODO implement here
-        return null;
-    }
+//    /**
+//     * @return
+//     */
+//    public UserRepo<Patient> filterByUrgency() {
+//        // TODO implement here
+//        return null;
+//    }
 
     /**
      * @param id 
