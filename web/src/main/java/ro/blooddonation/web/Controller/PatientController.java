@@ -1,15 +1,15 @@
 package ro.blooddonation.web.Controller;
 
-import ro.blooddonation.core.Domain.Users.Patient;
+import ro.blooddonation.core.Domain.Patient;
 import ro.blooddonation.core.Repo.Handmade.UserRepo;
-import ro.blooddonation.web.Controller.WillProbablyNotNeed.IController;
 
 import java.util.*;
 
 /**
  * 
  */
-public class PatientController implements IController<Patient> {
+public class PatientController //implements IController<Patient>
+{
 
     /**
      * Default constructor

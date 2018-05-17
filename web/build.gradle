@@ -14,7 +14,7 @@ apply plugin: 'war'
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
-//    compile project(':bookstore-core')
+    compile project(':core')
 //
 //    compile group: 'org.springframework', name: 'spring-webmvc', version: "$springVersion"
 //

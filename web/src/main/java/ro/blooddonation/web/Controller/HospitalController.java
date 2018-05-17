@@ -19,7 +19,7 @@ import java.util.*;
  * 
  */
 @RestController
-public class HospitalController //implements IController<Hospital>
+public class HospitalController //implements IController<HospitalDto, HospitalsDto>
 {
 
     private static final Logger log = LoggerFactory.getLogger(HospitalController.class);
@@ -41,6 +41,7 @@ public class HospitalController //implements IController<Hospital>
         log.trace("addHospital: hospitalDtoMap={}", hospitalDto);
 
         Hospital hospital = new Hospital(hospitalDto.getAddress());
+        hospital.setId(hospitalDto.getId());
         hospitalService.add(hospital);
 
         HospitalDto result = hospitalConverter.convertModelToDto(hospital);
@@ -70,12 +71,14 @@ public class HospitalController //implements IController<Hospital>
      * @param id 
      * @return
      */
-    @RequestMapping(value = "/students/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/hospitals/{id}", method = RequestMethod.PUT)
     public HospitalDto update(@PathVariable final Long id,
                               @RequestBody final HospitalDto newHospitalDto) {
         log.trace("updateHospital: id={}, hospitalDtoMap={}", id, newHospitalDto);
 
         Hospital h = new Hospital(newHospitalDto.getAddress());
+        h.setId(id);
+
         Optional<Hospital> hospital = hospitalService.update(id, h);
 
         Map<String, HospitalDto> result = new HashMap<>();
@@ -103,19 +106,4 @@ public class HospitalController //implements IController<Hospital>
 
         return new HospitalsDto(hospitalConverter.convertModelsToDtos(hospitals));
     }
-
-//    /**
-//     * @param id
-//     * @return
-//     */
-//    @RequestMapping(value = "/hospitals", method = RequestMethod.GET)
-//    public Optional<Hospital> getOne(Long id) {
-//        log.trace("getOneHospital");
-//
-//        Optional<Hospital> hospital = hospitalService.findOne(id);
-//
-//        log.trace("getOneHospital: hospitals={}", hospital);
-//
-//        return new HospitalDto(hospitalConverter.convertModelsToDtos(hospital));
-//    }
 }

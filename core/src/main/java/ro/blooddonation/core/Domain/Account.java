@@ -1,24 +1,21 @@
 package ro.blooddonation.core.Domain;
 
-import ro.blooddonation.core.Domain.Users.Person;
-
 import javax.persistence.*;
 import java.util.Optional;
 
-@Entity
-@Table(name = "Accounts")
-public class Account
+//@Entity
+//@Table(name = "accounts")
+public class Account extends BaseEntity<Long>
 {
-    @Id
-    @Column
+    //Column
     private String username;
 
-    @Column
+    //@Column
     private String password;
 
-    @Column
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
+//    @Column
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @MapsId
     private Person owner;
 
     /**

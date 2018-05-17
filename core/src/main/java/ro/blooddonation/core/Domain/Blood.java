@@ -8,7 +8,6 @@ public class Blood
     private String rh;
     private String type;
 
-
     /**
      * Default constructor
      */

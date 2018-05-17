@@ -1,24 +1,19 @@
 package ro.blooddonation.core.Domain;
 
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "hospitals")
-public class Hospital extends BaseEntity<Long> implements Serializable
+public class Hospital extends BaseEntity<Long>
 {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "hid", updatable = false, nullable = false)
-//    private Long id;
-
-    @Column
+    //@Column
     private String address;
 
-    /**
-     * Default constructor
-     */
-    public Hospital() {}
     /**
      * @param address: Address
      */
@@ -34,14 +29,6 @@ public class Hospital extends BaseEntity<Long> implements Serializable
     public void setAddress(String address) {
         this.address = address;
     }
-
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-//
-//    public Long getId() {
-//        return id;
-//    }
 
     @Override
     public String toString()

@@ -1,23 +1,16 @@
 package ro.blooddonation.core.Domain;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "DoningCenter")
-public class DoningCenter
+@NoArgsConstructor
+@Table(name = "doningcenters")
+public class DoningCenter extends BaseEntity<Long>
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "DoningCenterID")
-    private Long id;
-
-    @Column
+    //@Column
     private String address;
-
-    /**
-     * Default constructor
-     */
-    public DoningCenter() {}
 
     /**
      * @param address: Address
@@ -33,9 +26,5 @@ public class DoningCenter
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Long getId() {
-        return id;
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.blooddonation.core.Domain.Hospital;
-import ro.blooddonation.core.Repo.Jpa.IHospitalRepo;
+import ro.blooddonation.core.Repo.IHospitalRepo;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +44,7 @@ public class HospitalServiceImpl implements HospitalService
     @Transactional
     public void remove(Long id)
     {
-        log.trace("remove: id={}", id);
+        log.trace("removeHospital: id={}", id);
 
         hospitalRepo.deleteById(id);
 
@@ -60,11 +60,13 @@ public class HospitalServiceImpl implements HospitalService
     {
         log.trace("updateHospital: hospital={}", newItem);
 
-        Optional<Hospital> hospitalOptional = hospitalRepo.findById(newItem.getId());
-        if (hospitalOptional.isPresent()) {
-            Hospital h = hospitalOptional.get();
-            h.setAddress(newItem.getAddress());
-        }
+        Optional<Hospital> hospitalOptional = hospitalRepo.findById(id);
+
+        hospitalOptional.ifPresent(h ->
+                {
+                    h.setAddress(newItem.getAddress());
+                }
+        );
 
         log.trace("updateHospital: hospitalOptional={}", hospitalOptional);
 
@@ -77,7 +79,7 @@ public class HospitalServiceImpl implements HospitalService
     @Override
     public List<Hospital> findAll()
     {
-        log.trace("findAll");
+        log.trace("findAllHospitals");
 
         List<Hospital> hospitals = hospitalRepo.findAll();
 

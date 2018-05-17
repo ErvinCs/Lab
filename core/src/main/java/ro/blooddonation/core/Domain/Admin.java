@@ -2,7 +2,6 @@ package ro.blooddonation.core.Domain;
 
 public class Admin
 {
-
     private String username;
     private String password;
 

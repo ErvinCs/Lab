@@ -2,14 +2,14 @@ package ro.blooddonation.web.Controller;
 
 import ro.blooddonation.core.Domain.Request;
 import ro.blooddonation.core.Repo.Handmade.RequestRepo;
-import ro.blooddonation.web.Controller.WillProbablyNotNeed.IController;
 
 import java.util.*;
 
 /**
  * 
  */
-public class RequestController implements IController<Request> {
+public class RequestController //implements IController<Request>
+{
 
     /**
      * Default constructor

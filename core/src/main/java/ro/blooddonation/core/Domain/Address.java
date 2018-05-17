@@ -19,7 +19,6 @@ public class Address
 
     private String country;
 
-
     /**
      * Default constructor
      */

@@ -1,35 +1,32 @@
 package ro.blooddonation.core.Domain;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "Donation")
-public class Donation
+//@Entity
+//@NoArgsConstructor
+//@Table(name = "donations")
+public class Donation extends BaseEntity<Long>
 {
-    @Id
-    @GeneratedValue
-    @Column(name = "DonationID")
-    private Long id;
-
-    @Column
-    @Embedded
+//    @Column
+//    @Embedded
     private Blood blood;
 
-    @Column
+//    @Column
     private Double bloodQuantity;
 
-    @Column
+//    @Column
     private Double plasmaQuantity;
 
-    @Column
+//    @Column
     private Double thrombocytesQuantity;
 
-    @Column
+//    @Column
     private Double redCellsQuantity;
 
-    @Column
-    @Temporal(TemporalType.DATE)
+//    @Column
     private LocalDate donationDate;
 
     public static final Integer plasmaExp = 365;
@@ -37,16 +34,15 @@ public class Donation
     public static final Integer redCellsExp = 5;
 
     /**
-     * Default constructor
-     */
-    public Donation() {}
-    /**
      * @param donationDate: LocalDate
      */
     public Donation(LocalDate donationDate, Double bloodQuantity)
     {
         this.donationDate = donationDate;
         this.bloodQuantity = bloodQuantity;
+        this.bloodQuantity = null;
+        this.plasmaQuantity = null;
+        this.thrombocytesQuantity = null;
     }
 
     public Blood getBlood() {
@@ -87,9 +83,5 @@ public class Donation
 
     public LocalDate getDonationDate() {
         return this.donationDate;
-    }
-
-    public Long getId() {
-        return id;
     }
 }

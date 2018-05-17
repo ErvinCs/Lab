@@ -38,17 +38,21 @@ public class JPAConfig {
     @Value("${db.generateDDL}")
     private Boolean generateDDL;
 
+    @Value("${db.driverClass}")
+    private String driverClass;
+
     @Bean
     public DataSource dataSource() {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl(jdbcUrl);
         config.setUsername(username);
         config.setPassword(password);
+        config.setDriverClassName(driverClass);
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
-        HikariDataSource dataSource = new HikariDataSource(config);
-        return dataSource;
+
+        return new HikariDataSource(config);
     }
 
     @Bean
@@ -61,7 +65,7 @@ public class JPAConfig {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setPackagesToScan("ro.blooddonation.core.Domain");
-        factory.setDataSource(dataSource());
+        factory.setDataSource(this.dataSource());
         factory.afterPropertiesSet();
         return factory.getObject();
     }

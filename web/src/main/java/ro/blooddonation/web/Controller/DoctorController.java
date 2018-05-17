@@ -1,6 +1,6 @@
 package ro.blooddonation.web.Controller;
 
-import ro.blooddonation.core.Domain.Users.Doctor;
+import ro.blooddonation.core.Domain.Doctor;
 import ro.blooddonation.core.Repo.Handmade.UserRepo;
 
 import java.util.*;

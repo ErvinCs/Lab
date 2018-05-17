@@ -1,36 +1,29 @@
 package ro.blooddonation.core.Domain;
 
-import ro.blooddonation.core.Domain.Users.Doctor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "Request")
-public class Request
+//@Entity
+//@NoArgsConstructor
+//@Table(name = "Request")
+public class Request extends BaseEntity<Long>
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "RequestID")
-    private Long id;
 
-    @Column
-    @Embedded
+//    @Column
+//    @Embedded
     private Blood blood;
 
-    @Column
+//    @Column
     private Integer urgency;
 
-    @Column
-    //
+//    @Column
     private Doctor doctor;
 
-    @Column
+//    @Column
     private String status;
 
-    /**
-     * Default constructor
-     */
-    public Request() {}
+
     /**
      *
      * @param blood
@@ -63,9 +56,5 @@ public class Request
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Long getId() {
-        return this.id;
     }
 }

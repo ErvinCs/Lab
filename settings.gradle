@@ -1,4 +1,5 @@
 rootProject.name = 'blooddonation'
 include 'core'
 include 'web'
+include 'client'
 

@@ -2,14 +2,14 @@ package ro.blooddonation.web.Controller;
 
 import ro.blooddonation.core.Domain.Donation;
 import ro.blooddonation.core.Repo.Handmade.DonationRepo;
-import ro.blooddonation.web.Controller.WillProbablyNotNeed.IController;
 
 import java.util.*;
 
 /**
  * 
  */
-public class DonationController implements IController<Donation> {
+public class DonationController //implements IController<Donation>
+{
 
     /**
      * Default constructor

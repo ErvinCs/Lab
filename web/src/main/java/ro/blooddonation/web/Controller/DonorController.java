@@ -2,9 +2,8 @@ package ro.blooddonation.web.Controller;
 
 import ro.blooddonation.core.Domain.Donation;
 import ro.blooddonation.core.Domain.DoningCenter;
-import ro.blooddonation.core.Domain.Users.Donor;
+import ro.blooddonation.core.Domain.Donor;
 import ro.blooddonation.core.Repo.Handmade.UserRepo;
-import ro.blooddonation.web.Controller.WillProbablyNotNeed.IController;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -12,7 +11,8 @@ import java.util.*;
 /**
  * 
  */
-public class DonorController implements IController<Donor> {
+public class DonorController //implements IController<Donor>
+{
 
     /**
      * Default constructor

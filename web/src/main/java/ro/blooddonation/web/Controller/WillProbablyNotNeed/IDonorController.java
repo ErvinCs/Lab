@@ -2,11 +2,10 @@ package ro.blooddonation.web.Controller.WillProbablyNotNeed;
 
 import ro.blooddonation.core.Domain.Donation;
 import ro.blooddonation.core.Domain.DoningCenter;
-import ro.blooddonation.core.Domain.Users.Donor;
 
 import java.time.LocalDate;
 
-public interface IDonorController extends IController<Donor>
+public interface IDonorController //extends IController<Donor>
 {
     /**
      *
