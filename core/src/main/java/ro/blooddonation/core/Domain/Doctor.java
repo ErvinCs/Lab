@@ -1,5 +1,6 @@
 package ro.blooddonation.core.Domain;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,17 +10,19 @@ import java.util.*;
 /**
  * 
  */
-//@Entity
-//@NoArgsConstructor
-//@Table(name = "Doctors")
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "doctors")
 public class Doctor extends Person
 {
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @MapsId
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "hospitals_id")
     private Hospital hospital;
 
-//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-//    @JoinColumn(name = "CNP")
+    @OneToMany(mappedBy = "doctors",
+               cascade = CascadeType.ALL,
+               orphanRemoval = true)
     private List<Patient> patients;
 
     /**
@@ -34,7 +37,7 @@ public class Doctor extends Person
      * @param hospital
      */
     public Doctor(String firstName, String lastName, LocalDate bDay, String address, String residence,
-                  Long CNP, Account account, Hospital hospital) //, Account account, Long CNP)
+                  Long CNP, Account account, Hospital hospital)
     {
         super(firstName, lastName, bDay, address, residence, CNP, account);
         this.hospital = hospital;
@@ -47,6 +50,14 @@ public class Doctor extends Person
 
     public void setHospital(Hospital hospital) {
         this.hospital = hospital;
+    }
+
+    public List<Patient> getPatients() {
+        return patients;
+    }
+
+    public void setPatients(List<Patient> patients) {
+        this.patients = patients;
     }
 
     /**

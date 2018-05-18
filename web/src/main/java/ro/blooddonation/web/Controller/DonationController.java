@@ -35,25 +35,19 @@ public class DonationController implements IController<DonationDto, DonationDtos
     {
         log.trace("addDonation: donationDtoMap={}", donationDto);
 
-        Donation d = new Donation(donationDto.getDonationDate(), donationDto.getBloodQuantity());
-        d.setBlood(donationDto.getBlood());
-        d.setPlasmaQuantity(donationDto.getPlasmaQuantity());
-        d.setRedCellsQuantity(donationDto.getRedCellsQuantity());
-        d.setThrombocytesQuantity(donationDto.getThrombocytesQuantity());
-        d.setDiseases(donationDto.getDiseases());
-        d.setId(donationDto.getId());
+        Donation d = new Donation(
+
+        );
 
         DonationDto result = donationConverter.convertModelToDto(d);
+        donationService.add(d);
 
         log.trace("addDonation: result={}", result);
 
         return result;
     }
 
-    /**
-     * @param id
-     * @return
-     */
+
     @RequestMapping(value = "donations/{id}", method = RequestMethod.DELETE)
     public ResponseEntity remove(@PathVariable final Long id)
     {
@@ -66,21 +60,15 @@ public class DonationController implements IController<DonationDto, DonationDtos
         return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.OK);
     }
 
-    /**
-     * @param id
-     * @return
-     */
+
     @RequestMapping(value = "/donations/{id}", method = RequestMethod.PUT)
     public DonationDto update(@PathVariable final Long id,
                                   @RequestBody final DonationDto newDonationDto) {
         log.trace("updateDonation: id={}, donationDtoMap={}", id, newDonationDto);
 
-        Donation d = new Donation(newDonationDto.getDonationDate(), newDonationDto.getBloodQuantity());
-        d.setBlood(newDonationDto.getBlood());
-        d.setPlasmaQuantity(newDonationDto.getPlasmaQuantity());
-        d.setRedCellsQuantity(newDonationDto.getRedCellsQuantity());
-        d.setThrombocytesQuantity(newDonationDto.getThrombocytesQuantity());
-        d.setDiseases(newDonationDto.getDiseases());
+        Donation d = new Donation(
+
+        );
         d.setId(id);
 
         Optional<Donation> donation = donationService.update(id, d);
@@ -96,9 +84,7 @@ public class DonationController implements IController<DonationDto, DonationDtos
         return result.get("donation");
     }
 
-    /**
-     * @return
-     */
+
     @RequestMapping(value = "/donations", method = RequestMethod.GET)
     public DonationDtos getAll()
     {

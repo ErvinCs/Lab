@@ -3,19 +3,18 @@ package ro.blooddonation.core.Domain;
 import javax.persistence.*;
 import java.util.Optional;
 
-//@Entity
-//@Table(name = "accounts")
+@Entity
+@Table(name = "accounts")
 public class Account extends BaseEntity<Long>
 {
-    //Column
+    @Column
     private String username;
 
-    //@Column
+    @Column
     private String password;
 
-//    @Column
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
     private Person owner;
 
     /**
@@ -64,6 +63,13 @@ public class Account extends BaseEntity<Long>
             this.setUsername(username.get());
         if (password.isPresent())
              this.setPassword(password.get());
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Account{username=" + this.username +
+                ", password=" + this.password + "}";
     }
 
 }

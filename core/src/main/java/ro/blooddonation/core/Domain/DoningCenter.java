@@ -1,15 +1,23 @@
 package ro.blooddonation.core.Domain;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "doningcenters")
 public class DoningCenter extends BaseEntity<Long>
 {
-    //@Column
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dcpmember_id")
+    private DCPMember dcpMember;
+
+
+
+    @Column
     private String address;
 
     /**
@@ -26,5 +34,19 @@ public class DoningCenter extends BaseEntity<Long>
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public DCPMember getDcpMember() {
+        return dcpMember;
+    }
+
+    public void setDcpMember(DCPMember dcpMember) {
+        this.dcpMember = dcpMember;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "DoningCenter{id=" + this.getId() + "; " + address.toString() + "}";
     }
 }

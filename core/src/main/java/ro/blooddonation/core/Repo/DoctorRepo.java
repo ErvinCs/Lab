@@ -1,4 +1,6 @@
 package ro.blooddonation.core.Repo;
 
-public class DoctorRepo {
+import ro.blooddonation.core.Domain.Doctor;
+
+public interface DoctorRepo extends Repository<Doctor, Long> {
 }

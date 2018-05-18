@@ -3,12 +3,12 @@ package ro.blooddonation.core.Validators;
 import ro.blooddonation.core.Domain.Person;
 import ro.blooddonation.core.Exceptions.ValidatorException;
 
-public class UserValidator implements Validator<Person> {
+public class PersonValidator extends BaseValidator<Person> {
 
     @Override
     public void validate(Person entity) throws ValidatorException {
         String errors="";
-        if(entity.getCNP()==null)
+        if(entity.getCNP().toString().length() < 13)
             errors+="Invalid CNP!\n";
         if(entity.getFirstName()=="")
             errors+="Invalid First Name!\n";

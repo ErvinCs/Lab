@@ -1,6 +1,4 @@
-package ro.blooddonation.web.Controller.WillProbablyNotNeed;
-
-import ro.blooddonation.core.Domain.Patient;
+package ro.blooddonation.web.Controller.Depr;
 
 public interface IPatientController //extends IController<Patient>
 {

@@ -1,27 +1,33 @@
 package ro.blooddonation.core.Domain;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-//@Entity
-//@NoArgsConstructor
-//@Table(name = "Patients")
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "patients")
 public class Patient extends Person {
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "CNP")
+//    @Embedded
+//    @AttributeOverride(name = "type", column = @Column(name = "rh"))
+//    private Blood blood;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "doctors_id")
     private Doctor doctor;
 
-//    @Column
-//    @Embedded
-    private Blood blood;
+    @Enumerated(EnumType.STRING)
+    @Column
+    private BloodEnum blood;
 
-//    @Column
+    @Column
     private Double requestedBloodQuantity;
 
-//    @Column
+    @Column
     private Integer urgency;
 
     /**
@@ -44,11 +50,11 @@ public class Patient extends Person {
         this.urgency = null;
     }
 
-    public Blood getBlood() {
+    public BloodEnum getBlood() {
         return blood;
     }
 
-    public void setBlood(Blood blood) {
+    public void setBlood(BloodEnum blood) {
         this.blood = blood;
     }
 

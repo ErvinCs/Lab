@@ -35,7 +35,9 @@ public class DoningCenterController implements IController<DoningCenterDto, Doni
     {
         log.trace("addDoningCenter: doningCenterDtoMap={}", dcDto);
 
-        DoningCenter dc = new DoningCenter(dcDto.getAddress());
+        DoningCenter dc = new DoningCenter(
+                //TODO
+        );
         dc.setId(dcDto.getId());
         doningCenterService.add(dc);
 
@@ -46,10 +48,7 @@ public class DoningCenterController implements IController<DoningCenterDto, Doni
         return result;
     }
 
-    /**
-     * @param id
-     * @return
-     */
+
     @RequestMapping(value = "doningCenters/{id}", method = RequestMethod.DELETE)
     public ResponseEntity remove(@PathVariable final Long id)
     {
@@ -62,16 +61,15 @@ public class DoningCenterController implements IController<DoningCenterDto, Doni
         return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.OK);
     }
 
-    /**
-     * @param id
-     * @return
-     */
+
     @RequestMapping(value = "/doningCenters/{id}", method = RequestMethod.PUT)
     public DoningCenterDto update(@PathVariable final Long id,
                                   @RequestBody final DoningCenterDto newDcDto) {
         log.trace("updateDoningCenter: id={}, doningCenterDtoMap={}", id, newDcDto);
 
-        DoningCenter dc = new DoningCenter(newDcDto.getAddress());
+        DoningCenter dc = new DoningCenter(
+                //TODO
+        );
         dc.setId(id);
 
         Optional<DoningCenter> doningCenter = doningCenterService.update(id, dc);
@@ -87,9 +85,7 @@ public class DoningCenterController implements IController<DoningCenterDto, Doni
         return result.get("doningCenter");
     }
 
-    /**
-     * @return
-     */
+
     @RequestMapping(value = "/doningCenters", method = RequestMethod.GET)
     public DoningCentersDto getAll()
     {

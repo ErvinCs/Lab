@@ -1,18 +1,19 @@
 package ro.blooddonation.core.Domain;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
 
-//@Entity
-//@NoArgsConstructor
-//@Table(name = "DCPMembers")
+@Entity
+@NoArgsConstructor
+@Table(name = "dcpmembers")
 public class DCPMember extends Person
 {
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @MapsId
+    @OneToOne(mappedBy = "dcpmembers", cascade = CascadeType.ALL,
+              fetch = FetchType.LAZY, optional = false)
     private DoningCenter doningCenter;
 
     /**
@@ -27,7 +28,7 @@ public class DCPMember extends Person
      * @param doningCenter
      */
     public DCPMember(String firstName, String lastName, LocalDate bDay, String address, String residence,
-                     Long CNP, Account account, DoningCenter doningCenter) //, Account account, Long CNP)
+                     Long CNP, Account account, DoningCenter doningCenter)
     {
         super(firstName, lastName, bDay, address, residence, CNP, account);
         this.doningCenter = doningCenter;

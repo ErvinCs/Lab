@@ -1,82 +1,103 @@
 package ro.blooddonation.web.Controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ro.blooddonation.core.Domain.Patient;
+import ro.blooddonation.core.Service.PatientService;
+import ro.blooddonation.web.Converter.PatientConverter;
+import ro.blooddonation.web.Dto.EmptyJsonResponse;
+import ro.blooddonation.web.Dto.PatientDto;
+import ro.blooddonation.web.Dto.PatientsDto;
 
 import java.util.*;
 
 /**
  * 
  */
-//@RestController
-public class PatientController //implements IController<>
+@RestController
+public class PatientController implements IController<PatientDto, PatientsDto>
 {
 
-    /**
-     * Default constructor
-     */
-    public PatientController() {
+
+    private static final Logger log = LoggerFactory.getLogger(PatientController.class);
+
+    @Autowired
+    private PatientService patientService;
+
+    @Autowired
+    private PatientConverter patientConverter;
+
+
+    @RequestMapping(value = "/patients", method = RequestMethod.POST)
+    public PatientDto add(@RequestBody final PatientDto patientDto)
+    {
+        log.trace("addPatient: patientDtoMap={}", patientDto);
+
+        Patient patient = new Patient(
+                //TODO
+        );
+        patient.setId(patientDto.getId());
+        patientService.add(patient);
+
+        PatientDto result = patientConverter.convertModelToDto(patient);
+
+        log.trace("addPatient: result={}", result);
+
+        return result;
     }
 
 
-    /**
-     * @param patient 
-     * @return
-     */
-    public boolean add(Patient patient) {
-        // TODO implement here
-        return false;
+    @RequestMapping(value = "patients/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity remove(@PathVariable final Long id)
+    {
+        log.trace("removePatient: id={}", id);
+
+        patientService.remove(id);
+
+        log.trace("removePatient - method end");
+
+        return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.OK);
     }
 
-    /**
-     * @param id 
-     * @return
-     */
-    public boolean remove(Long id) {
-        // TODO implement here
-        return false;
+
+    @RequestMapping(value = "/patients/{id}", method = RequestMethod.PUT)
+    public PatientDto update(@PathVariable final Long id,
+                            @RequestBody final PatientDto newPatientDto) {
+        log.trace("updatePatient: id={}, patientDtoMap={}", id, newPatientDto);
+
+        Patient p = new Patient(
+                //TODO
+        );
+        p.setId(id);
+
+        Optional<Patient> patient = patientService.update(id, p);
+
+        Map<String, PatientDto> result = new HashMap<>();
+        if (patient.isPresent())
+            result.put("patient", patientConverter.convertModelToDto(patient.get()));
+        else
+            result.put("patient", patientConverter.convertModelToDto(new Patient()));
+
+        log.trace("updatePatient: result={}", result);
+
+        return result.get("patient");
     }
 
-    /**
-     * @param id 
-     * @return
-     */
-    public boolean update(Long id, Patient newPatient) {
-        // TODO implement here
-        return false;
-    }
 
-    /**
-     * @param id 
-     * @return
-     */
-    public Optional<Patient> getOne(Long id) {
-        // TODO implement here
-        return null;
-    }
+    @RequestMapping(value = "/patients", method = RequestMethod.GET)
+    public PatientsDto getAll()
+    {
+        log.trace("getAllPatients");
 
-    /**
-     * @return
-     */
-    public List<Patient> getAll() {
-        // TODO implement here
-        return null;
-    }
+        List<Patient> patients = patientService.findAll();
 
-//    /**
-//     * @return
-//     */
-//    public UserRepo<Patient> filterByUrgency() {
-//        // TODO implement here
-//        return null;
-//    }
+        log.trace("getAllPatient: patientS={}", patients);
 
-    /**
-     * @param id 
-     * @return
-     */
-    public Double enoughDonations(Long id) {
-        // TODO implement here
-        return null;
+        return new PatientsDto(patientConverter.convertModelsToDtos(patients));
     }
 
 

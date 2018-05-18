@@ -1,74 +1,104 @@
 package ro.blooddonation.web.Controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ro.blooddonation.core.Domain.Request;
+import ro.blooddonation.core.Service.RequestService;
+import ro.blooddonation.web.Converter.RequestConverter;
+import ro.blooddonation.web.Dto.EmptyJsonResponse;
+import ro.blooddonation.web.Dto.RequestDto;
+import ro.blooddonation.web.Dto.RequestsDto;
 
 import java.util.*;
 
 /**
  * 
  */
-//@RestController
-public class RequestController //implements IController<>
+@RestController
+public class RequestController implements IController<RequestDto, RequestsDto>
 {
 
-    /**
-     * Default constructor
-     */
-    public RequestController() {
+
+    private static final Logger log = LoggerFactory.getLogger(RequestController.class);
+
+    @Autowired
+    private RequestService requestService;
+
+    @Autowired
+    private RequestConverter requestConverter;
+
+
+    @RequestMapping(value = "/requests", method = RequestMethod.POST)
+    public RequestDto add(@RequestBody final RequestDto requestDto)
+    {
+        log.trace("addRequest: requestDtoMap={}", requestDto);
+
+        Request request = new Request(
+                //TODO
+        );
+        request.setId(requestDto.getId());
+        requestService.add(request);
+
+        RequestDto result = requestConverter.convertModelToDto(request);
+
+        log.trace("addRequest: result={}", result);
+
+        return result;
     }
 
 
-    /**
-     * @param request 
-     * @return
-     */
-    public boolean add(Request request) {
-        // TODO implement here
-        return false;
+    @RequestMapping(value = "requests/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity remove(@PathVariable final Long id)
+    {
+        log.trace("removeRequest: id={}", id);
+
+        requestService.remove(id);
+
+        log.trace("removeRequest - method end");
+
+        return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.OK);
     }
 
-    /**
-     * @param id 
-     * @return
-     */
-    public boolean remove(Long id) {
-        // TODO implement here
-        return false;
+
+    @RequestMapping(value = "/requests/{id}", method = RequestMethod.PUT)
+    public RequestDto update(@PathVariable final Long id,
+                            @RequestBody final RequestDto newRequestDto) {
+        log.trace("updateRequest: id={}, requestDtoMap={}", id, newRequestDto);
+
+        Request r = new Request(
+                //TODO
+        );
+        r.setId(id);
+
+        Optional<Request> request = requestService.update(id, r);
+
+        Map<String, RequestDto> result = new HashMap<>();
+        if (request.isPresent())
+            result.put("request", requestConverter.convertModelToDto(request.get()));
+        else
+            result.put("request", requestConverter.convertModelToDto(new Request()));
+
+        log.trace("updateRequest: result={}", result);
+
+        return result.get("request");
     }
 
-    /**
-     * @param id 
-     * @return
-     */
-    public boolean update(Long id, Request newRequest) {
-        // TODO implement here
-        return false;
-    }
 
-    /**
-     * @return
-     */
-    public List<Request> getAll() {
-        // TODO implement here
-        return null;
-    }
+    @RequestMapping(value = "/requests", method = RequestMethod.GET)
+    public RequestsDto getAll()
+    {
+        log.trace("getAllRequests");
 
-    /**
-     * @param id 
-     * @return
-     */
-    public Optional<Request> getOne(Long id) {
-        // TODO implement here
-        return null;
-    }
+        List<Request> requests = requestService.findAll();
 
-//    /**
-//     * @return
-//     */
-//    public RequestRepo filterByUrgency() {
-//        // TODO implement here
-//        return null;
-//    }
+        log.trace("getAllRequests: requests={}", requests);
+
+        return new RequestsDto(requestConverter.convertModelsToDtos(requests));
+    }
 
 
 }

@@ -48,7 +48,7 @@ public class HospitalServiceImpl implements HospitalService
 
         hospitalRepo.deleteById(id);
 
-        log.trace("remove --- method finished");
+        log.trace("removeHospital --- method finished");
     }
 
     /**

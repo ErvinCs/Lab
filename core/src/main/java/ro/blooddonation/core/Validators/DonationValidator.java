@@ -4,12 +4,10 @@ import ro.blooddonation.core.Domain.Donation;
 import ro.blooddonation.core.Exceptions.ValidatorException;
 
 
-public class DonationValidator implements Validator<Donation> {
+public class DonationValidator extends BaseValidator<Donation> {
     @Override
     public void validate(Donation entity) throws ValidatorException {
         String errors = "";
-        if (entity.getId() == null)
-            errors += "Invalid ID!\n";
         if (entity.getBloodQuantity() <= 0)
             errors += "Invalid blood quantity!\n";
         if (!errors.equals(""))

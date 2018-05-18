@@ -1,4 +1,6 @@
 package ro.blooddonation.core.Repo;
 
-public class DCPMemberRepo {
+import ro.blooddonation.core.Domain.DCPMember;
+
+public interface DCPMemberRepo extends Repository<DCPMember, Long> {
 }

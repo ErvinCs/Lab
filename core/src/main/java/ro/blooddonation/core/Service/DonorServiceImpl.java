@@ -48,7 +48,7 @@ public class DonorServiceImpl implements DonorService
 
         donorRepo.deleteById(id);
 
-        log.trace("remove --- method finished");
+        log.trace("removeDonor --- method finished");
     }
 
     /**

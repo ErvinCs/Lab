@@ -48,7 +48,7 @@ public class DoningCenterServiceImpl implements DoningCenterService
 
         dcRepo.deleteById(id);
 
-        log.trace("remove --- method finished");
+        log.trace("removeDoningCenter --- method finished");
     }
 
     /**

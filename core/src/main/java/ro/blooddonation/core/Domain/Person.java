@@ -8,25 +8,25 @@ import java.util.*;
 @MappedSuperclass
 public abstract class Person extends BaseEntity<Long>
 {
-    //@Column
+    @Column
     private Long CNP;
 
-    //@Column
+    @Column
     private String firstName;
 
-    //@Column
+    @Column
     private String lastName;
 
-    //@Column
+    @Column
     private LocalDate bDay;
 
-    //@Column
+    @Column
     private String address;
 
-    //@Column
+    @Column
     private String residence;
 
-    //@Column
+    @Column
     private Account account;
 
     /**

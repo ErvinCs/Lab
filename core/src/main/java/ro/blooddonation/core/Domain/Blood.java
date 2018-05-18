@@ -3,6 +3,9 @@ package ro.blooddonation.core.Domain;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+/**
+ * Deprecated
+ */
 @Embeddable
 public class Blood
 {
@@ -42,5 +45,10 @@ public class Blood
         this.type = type;
     }
 
+    @Override
+    public String toString()
+    {
+        return "Blood{rh=" + this.rh + ", type=" + this.type + "}";
+    }
 
 }

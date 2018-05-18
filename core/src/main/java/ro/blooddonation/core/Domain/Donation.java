@@ -1,5 +1,6 @@
 package ro.blooddonation.core.Domain;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Map;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "donations")
 public class Donation extends BaseEntity<Long>
 {
@@ -18,33 +20,36 @@ public class Donation extends BaseEntity<Long>
 //    private Blood blood;
 
     @Enumerated(EnumType.STRING)
-//    @Column
+    @Column
     private BloodEnum blood;
 
-//    @Column
+    @Column
     private Double bloodQuantity;
 
-//    @Column
+    @Column
     private Double plasmaQuantity;
 
-//    @Column
+    @Column
     private Double thrombocytesQuantity;
 
-//    @Column
+    @Column
     private Double redCellsQuantity;
 
-//    @Column
+    @Column
     private LocalDate donationDate;
 
     @ElementCollection
     @CollectionTable(name = "donationsDiseases")
     @MapKeyEnumerated(EnumType.STRING)
     @MapKeyColumn(name = "diseaseName")
-//    @Column
+    @Column
     private Map<DiseasesEnum, Boolean> diseases;
 
+    @Transient
     public static final Integer plasmaExp = 365;
+    @Transient
     public static final Integer thrombocytesExp = 42;
+    @Transient
     public static final Integer redCellsExp = 5;
 
     /**
@@ -54,10 +59,12 @@ public class Donation extends BaseEntity<Long>
     {
         this.donationDate = donationDate;
         this.bloodQuantity = bloodQuantity;
+        this.blood = null;
         this.diseases = new EnumMap<DiseasesEnum, Boolean>(DiseasesEnum.class);
         this.bloodQuantity = null;
         this.plasmaQuantity = null;
         this.thrombocytesQuantity = null;
+        this.redCellsQuantity = null;
     }
 
     public BloodEnum getBlood() {
@@ -106,5 +113,35 @@ public class Donation extends BaseEntity<Long>
 
     public void setDiseases(Map<DiseasesEnum, Boolean> diseases) {
         this.diseases = diseases;
+    }
+
+    public void setBloodQuantity(Double bloodQuantity) {
+        this.bloodQuantity = bloodQuantity;
+    }
+
+    public void setDonationDate(LocalDate donationDate) {
+        this.donationDate = donationDate;
+    }
+
+    private Boolean hasDisease()
+    {
+        for(Map.Entry<DiseasesEnum, Boolean> entry : diseases.entrySet())
+        {
+            if(entry.getValue())
+                return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Donation{blood=" + blood.toString() +
+                ", bloodQ=" + bloodQuantity.toString() +
+                ", plasmaQ=" + plasmaQuantity.toString() +
+                ", thrombocytesQ=" + thrombocytesQuantity.toString() +
+                ", redCellsQ" + redCellsQuantity.toString() +
+                ", donationDate=" + donationDate.toString() +
+                ", diseases=" + this.hasDisease() + "}";
     }
 }

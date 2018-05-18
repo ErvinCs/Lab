@@ -48,7 +48,7 @@ public class DonationServiceImpl implements DonationService
 
         donationRepo.deleteById(id);
 
-        log.trace("remove --- method finished");
+        log.trace("removeDonation --- method finished");
     }
 
     /**
@@ -64,6 +64,7 @@ public class DonationServiceImpl implements DonationService
 
         donationOptional.ifPresent(d ->
                 {
+                    d.setBlood(newItem.getBlood());
                     d.setPlasmaQuantity(newItem.getPlasmaQuantity());
                     d.setRedCellsQuantity(newItem.getRedCellsQuantity());
                     d.setThrombocytesQuantity(newItem.getThrombocytesQuantity());

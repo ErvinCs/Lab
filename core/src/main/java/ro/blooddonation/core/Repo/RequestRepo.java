@@ -1,4 +1,6 @@
 package ro.blooddonation.core.Repo;
 
-public class RequestRepo {
+import ro.blooddonation.core.Domain.Request;
+
+public interface RequestRepo extends Repository<Request, Long> {
 }

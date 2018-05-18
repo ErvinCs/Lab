@@ -31,16 +31,15 @@ public class HospitalController implements IController<HospitalDto, HospitalsDto
     private HospitalConverter hospitalConverter;
 
 
-    /**
-     * @param hospitalDto
-     * @return
-     */
+
     @RequestMapping(value = "/hospitals", method = RequestMethod.POST)
     public HospitalDto add(@RequestBody final HospitalDto hospitalDto)
     {
         log.trace("addHospital: hospitalDtoMap={}", hospitalDto);
 
-        Hospital hospital = new Hospital(hospitalDto.getAddress());
+        Hospital hospital = new Hospital(
+                //TODO
+        );
         hospital.setId(hospitalDto.getId());
         hospitalService.add(hospital);
 
@@ -51,10 +50,7 @@ public class HospitalController implements IController<HospitalDto, HospitalsDto
         return result;
     }
 
-    /**
-     * @param id 
-     * @return
-     */
+
     @RequestMapping(value = "hospitals/{id}", method = RequestMethod.DELETE)
     public ResponseEntity remove(@PathVariable final Long id)
     {
@@ -67,16 +63,15 @@ public class HospitalController implements IController<HospitalDto, HospitalsDto
         return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.OK);
     }
 
-    /**
-     * @param id 
-     * @return
-     */
+
     @RequestMapping(value = "/hospitals/{id}", method = RequestMethod.PUT)
     public HospitalDto update(@PathVariable final Long id,
                               @RequestBody final HospitalDto newHospitalDto) {
         log.trace("updateHospital: id={}, hospitalDtoMap={}", id, newHospitalDto);
 
-        Hospital h = new Hospital(newHospitalDto.getAddress());
+        Hospital h = new Hospital(
+                //TODO
+        );
         h.setId(id);
 
         Optional<Hospital> hospital = hospitalService.update(id, h);
@@ -92,9 +87,7 @@ public class HospitalController implements IController<HospitalDto, HospitalsDto
         return result.get("hospital");
     }
 
-    /**
-     * @return
-     */
+
     @RequestMapping(value = "/hospitals", method = RequestMethod.GET)
     public HospitalsDto getAll()
     {

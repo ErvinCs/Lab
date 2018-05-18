@@ -8,6 +8,7 @@ import ro.blooddonation.core.Domain.BloodEnum;
 import ro.blooddonation.core.Domain.DiseasesEnum;
 
 import java.time.LocalDate;
+import java.util.EnumMap;
 import java.util.Map;
 
 @NoArgsConstructor

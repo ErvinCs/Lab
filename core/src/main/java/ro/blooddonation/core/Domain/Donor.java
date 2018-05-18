@@ -1,5 +1,6 @@
 package ro.blooddonation.core.Domain;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -8,19 +9,20 @@ import java.util.*;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "donors")
 public class Donor extends Person {
-    
-//    @Column
+
+    @Column
     private Donation currDonation;
 
-//    @Column
+    @Column
     private LocalDate currAppointment;
 
-//    @Column
+    @Column
     private LocalDate lastDonation;
 
-//    @Column
+    @Column
     @ElementCollection
     private List<Donation> donationHistory;
 
@@ -72,6 +74,10 @@ public class Donor extends Person {
     public List<Donation> getDonationHistory()
     {
         return this.donationHistory;
+    }
+
+    public void setDonationHistory(List<Donation> donationHistory) {
+        this.donationHistory = donationHistory;
     }
 
 
