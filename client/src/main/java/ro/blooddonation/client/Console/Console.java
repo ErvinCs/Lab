@@ -32,10 +32,8 @@ public class Console
 //                new DoningCenterDto("TestAddress2"), DoningCenterDto.class);
 //        System.out.println(dcDto.toString());
 //
-//        HospitalsDto hDtos = restTemplate.getForObject("http://localhost:8080/api/hospitals", HospitalsDto.class);
-//        hDtos.getHospitals()
-//                .forEach(System.out::println);
-
-
+        HospitalsDto hDtos = restTemplate.getForObject("http://localhost:8080/api/hospitals", HospitalsDto.class);
+        hDtos.getHospitals()
+                .forEach(System.out::println);
     }
 }

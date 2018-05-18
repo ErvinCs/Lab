@@ -6,8 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Getter
 @Setter
-public class DoctorDto extends BaseDto{
+public class DoctorDto extends BaseDto
+{
 }

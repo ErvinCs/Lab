@@ -1,12 +1,13 @@
 package ro.blooddonation.core.Domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
 @MappedSuperclass
-public abstract class Person extends BaseEntity<Long>
+public abstract class Person extends BaseEntity<Long> implements Serializable
 {
     @Column
     private Long CNP;
@@ -33,6 +34,7 @@ public abstract class Person extends BaseEntity<Long>
      * Default constructor
      */
     protected Person() {}
+
     /**
      * @param firstName: String
      * @param lastName: String
