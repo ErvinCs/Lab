@@ -13,5 +13,5 @@ import java.util.Set;
 @Setter
 public class DoningCentersDto
 {
-    private Set<DoningCenterDto> doningCenters;
+    public Set<DoningCenterDto> doningCenters;
 }

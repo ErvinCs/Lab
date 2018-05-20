@@ -14,18 +14,19 @@ public class DoctorConverter extends BaseConverter<Doctor, DoctorDto>
     @Override
     public Doctor convertDtoToModel(DoctorDto dto)
     {
-        Doctor d = new Doctor(
-
-        );
-        return d;
+        HospitalConverter hospitalConverter = new HospitalConverter();
+        Doctor doctor = new Doctor(dto.getFirstName(), dto.getLastName(), dto.getbDay(), dto.getAddress(), dto.getResidence(),
+                            dto.getCNP(), null, hospitalConverter.convertDtoToModel(dto.getHospital()));
+        return doctor;
     }
 
     @Override
     public DoctorDto convertModelToDto(Doctor doctor)
     {
-        DoctorDto doctorDto = new DoctorDto(
-
-        );
+        HospitalConverter hospitalConverter = new HospitalConverter();
+        DoctorDto doctorDto = new DoctorDto(doctor.getFirstName(), doctor.getLastName(), doctor.getbDay(),
+                                doctor.getAddress(), doctor.getResidence(),
+                                doctor.getCNP(), hospitalConverter.convertModelToDto(doctor.getHospital()));
         doctorDto.setId(doctor.getId());
         return doctorDto;
     }

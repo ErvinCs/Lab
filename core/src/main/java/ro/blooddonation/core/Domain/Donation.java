@@ -123,7 +123,7 @@ public class Donation extends BaseEntity<Long>
         this.donationDate = donationDate;
     }
 
-    private Boolean hasDisease()
+    public Boolean hasDisease()
     {
         for(Map.Entry<DiseasesEnum, Boolean> entry : diseases.entrySet())
         {

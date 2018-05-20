@@ -13,5 +13,5 @@ import java.util.Set;
 @Setter
 public class DCPMembersDto
 {
-    private Set<DCPMemberDto> dcpMembers;
+    public Set<DCPMemberDto> dcpMembers;
 }

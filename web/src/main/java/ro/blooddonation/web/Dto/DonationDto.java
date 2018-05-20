@@ -24,41 +24,79 @@ public class DonationDto extends BaseDto
     private Double redCellsQuantity;
     private LocalDate donationDate;
     private Map<DiseasesEnum, Boolean> diseases;
+    private Boolean hasDisease;
 
-    /**
-     * Deprecated
-     */
-    private String diseasesToString()
-    {
-        String str = "(";
-        for(Map.Entry<DiseasesEnum, Boolean> entry : diseases.entrySet())
-        {
-            str += "<" + entry.getKey().toString() + ", " +
-                    entry.getValue().toString() + ">";
-        }
-        str += ")";
-        return str;
+    public DonationDto(BloodEnum blood, Double bloodQuantity, Double plasmaQuantity, Double thrombocytesQuantity, Double redCellsQuantity, LocalDate donationDate, Map<DiseasesEnum, Boolean> diseases, Boolean status) {
+        super();
+        this.blood = blood;
+        this.bloodQuantity = bloodQuantity;
+        this.plasmaQuantity = plasmaQuantity;
+        this.thrombocytesQuantity = thrombocytesQuantity;
+        this.redCellsQuantity = redCellsQuantity;
+        this.donationDate = donationDate;
+        this.diseases = diseases;
+        this.hasDisease = status;
     }
 
-    private Boolean hasDisease()
-    {
-        for(Map.Entry<DiseasesEnum, Boolean> entry : diseases.entrySet())
-        {
-            if(entry.getValue())
-                return true;
-        }
-        return false;
+    public BloodEnum getBlood() {
+        return blood;
     }
 
-    @Override
-    public String toString()
-    {
-        return "Donation{blood=" + blood.toString() +
-                ", bloodQ=" + bloodQuantity.toString() +
-                ", plasmaQ=" + plasmaQuantity.toString() +
-                ", thrombocytesQ=" + thrombocytesQuantity.toString() +
-                ", redCellsQ" + redCellsQuantity.toString() +
-                ", donationDate=" + donationDate.toString() +
-                ", diseases=" + this.hasDisease() + "}";
+    public void setBlood(BloodEnum blood) {
+        this.blood = blood;
+    }
+
+    public Double getBloodQuantity() {
+        return this.bloodQuantity;
+    }
+
+    public Double getPlasmaQuantity() {
+        return plasmaQuantity;
+    }
+
+    public void setPlasmaQuantity(Double plasmaQuantity) {
+        this.plasmaQuantity = plasmaQuantity;
+    }
+
+    public Double getThrombocytesQuantity() {
+        return thrombocytesQuantity;
+    }
+
+    public void setThrombocytesQuantity(Double thrombocytesQuantity) {
+        this.thrombocytesQuantity = thrombocytesQuantity;
+    }
+
+    public Double getRedCellsQuantity() {
+        return redCellsQuantity;
+    }
+
+    public void setRedCellsQuantity(Double redCellsQuantity) {
+        this.redCellsQuantity = redCellsQuantity;
+    }
+
+    public LocalDate getDonationDate() {
+        return this.donationDate;
+    }
+
+    public Map<DiseasesEnum, Boolean> getDiseases() {
+        return diseases;
+    }
+
+    public void setDiseases(Map<DiseasesEnum, Boolean> diseases) {
+        this.diseases = diseases;
+    }
+
+    public void setBloodQuantity(Double bloodQuantity) { this.bloodQuantity = bloodQuantity; }
+
+    public void setDonationDate(LocalDate donationDate) {
+        this.donationDate = donationDate;
+    }
+
+    public Boolean getHasDisease() {
+        return hasDisease;
+    }
+
+    public void setHasDisease(Boolean status) {
+        this.hasDisease = status;
     }
 }

@@ -27,9 +27,9 @@ public class DonationConverter extends BaseConverter<Donation, DonationDto>
     public DonationDto convertModelToDto(Donation donation)
     {
         DonationDto donationDto = new DonationDto(donation.getBlood(),
-                donation.getBloodQuantity(), donation.getPlasmaQuantity(),
-                donation.getThrombocytesQuantity(), donation.getRedCellsQuantity(),
-                donation.getDonationDate(), donation.getDiseases());
+                                donation.getBloodQuantity(), donation.getPlasmaQuantity(),
+                                donation.getThrombocytesQuantity(), donation.getRedCellsQuantity(),
+                                donation.getDonationDate(), donation.getDiseases(), donation.hasDisease());
         donationDto.setId(donation.getId());
         return donationDto;
     }

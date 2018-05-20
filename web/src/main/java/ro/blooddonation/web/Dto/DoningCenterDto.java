@@ -11,12 +11,27 @@ import lombok.Setter;
 @Setter
 public class DoningCenterDto extends BaseDto
 {
+    private DCPMemberDto dcpMember;
     private String address;
 
-    @Override
-    public String toString()
-    {
-        return "DoningCenter{id=" + this.getId() + "; " + address.toString() + "}";
+    public DoningCenterDto(String address) {
+        super();
+        this.address = address;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public DCPMemberDto getDcpMember() {
+        return dcpMember;
+    }
+
+    public void setDcpMember(DCPMemberDto dcpMember) {
+        this.dcpMember = dcpMember;
+    }
 }

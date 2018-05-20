@@ -13,5 +13,5 @@ import java.util.Set;
 @Setter
 public class DonationDtos
 {
-    private Set<DonationDto> donations;
+    public Set<DonationDto> donations;
 }
