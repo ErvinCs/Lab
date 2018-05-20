@@ -10,5 +10,13 @@ import java.util.Set;
 @Setter
 public class HospitalsDto
 {
-    private Set<HospitalDto> hospitals;
+    public Set<HospitalDto> hospitals;
+
+    public Set<HospitalDto> getHospitals() {
+        return hospitals;
+    }
+
+    public void setHospitals(Set<HospitalDto> hospitals) {
+        this.hospitals = hospitals;
+    }
 }

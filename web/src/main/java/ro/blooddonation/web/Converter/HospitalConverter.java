@@ -12,16 +12,13 @@ public class HospitalConverter extends BaseConverter<Hospital, HospitalDto>
     private static final Logger log = LoggerFactory.getLogger(HospitalConverter.class);
 
     @Override
-    public Hospital convertDtoToModel(HospitalDto dto)
-    {
-        Hospital h = new Hospital(dto.getAddress());
-        h.setId(dto.getId());
-        return h;
+    public Hospital convertDtoToModel(HospitalDto dto) {
+        Hospital hosp = new Hospital(dto.getAddress());
+        return hosp;
     }
 
     @Override
-    public HospitalDto convertModelToDto(Hospital hospital)
-    {
+    public HospitalDto convertModelToDto(Hospital hospital) {
         HospitalDto hospitalDto = new HospitalDto(hospital.getAddress());
         hospitalDto.setId(hospital.getId());
         return hospitalDto;

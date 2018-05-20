@@ -14,14 +14,21 @@ public class DonorConverter extends BaseConverter<Donor, DonorDto>
     @Override
     public Donor convertDtoToModel(DonorDto dto)
     {
-        //TODO
-        return null;
+        Donor donor = new Donor(dto.getFirstName(), dto.getLastName(), dto.getbDay(), dto.getAddress(), dto.getResidence(), dto.getCNP(), null);
+        donor.setCurrAppointment(dto.getCurrAppointment());
+        donor.setCurrDonation(dto.getCurrDonation());
+        donor.setDonationHistory(dto.getDonationHistory());
+        donor.setLastDonation(dto.getLastDonation());
+        return donor;
     }
 
     @Override
-    public DonorDto convertModelToDto(Donor hospital)
+    public DonorDto convertModelToDto(Donor donor)
     {
-        //TODO
-        return null;
+        DonorDto donorDto = new DonorDto(donor.getFirstName(),donor.getLastName(), donor.getbDay(), donor.getAddress(), donor.getResidence(),
+                donor.getCNP(), donor.getAccount(), donor.getDonationHistory(), donor.getCurrDonation(),
+                donor.getCurrAppointment(), donor.getLastDonation());
+        donorDto.setId(donor.getId());
+        return donorDto;
     }
 }

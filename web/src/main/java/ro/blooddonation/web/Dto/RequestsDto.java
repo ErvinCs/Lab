@@ -13,5 +13,13 @@ import java.util.Set;
 @Setter
 public class RequestsDto
 {
-    private Set<RequestDto> requests;
+    public Set<RequestDto> requests;
+
+    public Set<RequestDto> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(Set<RequestDto> requests) {
+        this.requests = requests;
+    }
 }

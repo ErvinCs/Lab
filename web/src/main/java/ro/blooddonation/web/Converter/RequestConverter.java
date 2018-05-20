@@ -14,18 +14,16 @@ public class RequestConverter extends BaseConverter<Request, RequestDto>
     @Override
     public Request convertDtoToModel(RequestDto dto)
     {
-        Request r = new Request(
-
-        );
+        Request r = new Request(dto.getBlood(), dto.getUrgency(), dto.getDoctor());
+        r.setStatus(dto.getStatus());
         return r;
     }
 
     @Override
     public RequestDto convertModelToDto(Request request)
     {
-        RequestDto requestDto = new RequestDto(
-
-        );
+        RequestDto requestDto = new RequestDto(request.getBlood(), request.getUrgency(), request.getDoctor(),
+                request.getStatus());
         requestDto.setId(request.getId());
         return requestDto;
     }

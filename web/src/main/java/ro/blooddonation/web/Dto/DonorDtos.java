@@ -13,5 +13,13 @@ import java.util.Set;
 @Setter
 public class DonorDtos
 {
-    private Set<DonorDto> donors;
+    public Set<DonorDto> donors;
+
+    public Set<DonorDto> getDonors() {
+        return donors;
+    }
+
+    public void setDonors(Set<DonorDto> donors) {
+        this.donors = donors;
+    }
 }
