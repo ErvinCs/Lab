@@ -18,7 +18,8 @@ public class Hospital extends BaseEntity<Long>
     @Column
     private String address;
 
-    @OneToMany( mappedBy = "hospitals",
+    @OneToMany( fetch = FetchType.LAZY,
+                mappedBy = "hospital",
                 cascade = CascadeType.ALL,
                 orphanRemoval = true)
     private List<Doctor> doctors;

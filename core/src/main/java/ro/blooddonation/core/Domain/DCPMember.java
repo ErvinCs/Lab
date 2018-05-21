@@ -12,8 +12,11 @@ import java.util.*;
 @Table(name = "dcpmembers")
 public class DCPMember extends Person
 {
-    @OneToOne(mappedBy = "dcpmembers", cascade = CascadeType.ALL,
-              fetch = FetchType.LAZY, optional = false)
+//    @OneToOne(  mappedBy = "dcpmembers",
+//                cascade = CascadeType.ALL,
+//                fetch = FetchType.LAZY,
+//                optional = false)
+
     private DoningCenter doningCenter;
 
     /**

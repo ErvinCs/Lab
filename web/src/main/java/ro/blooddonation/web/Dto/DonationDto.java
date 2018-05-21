@@ -12,7 +12,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Getter
 @Setter
 public class DonationDto extends BaseDto

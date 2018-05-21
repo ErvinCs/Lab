@@ -17,7 +17,7 @@ public class Patient extends Person {
 //    private Blood blood;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "doctors_id")
+    @JoinColumn(name = "doctor")
     private Doctor doctor;
 
     @Enumerated(EnumType.STRING)

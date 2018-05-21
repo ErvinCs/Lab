@@ -5,8 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import ro.blooddonation.core.Domain.Address;
 import ro.blooddonation.core.Domain.Hospital;
-import ro.blooddonation.core.Repo.Handmade.HospitalRepo;
-import ro.blooddonation.core.Repo.Handmade.IRepo;
+
 
 import static org.junit.Assert.*;
 

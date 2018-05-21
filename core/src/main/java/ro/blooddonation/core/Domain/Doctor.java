@@ -16,13 +16,14 @@ import java.util.*;
 @Table(name = "doctors")
 public class Doctor extends Person
 {
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hospitals_id")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "hospital_id")
     private Hospital hospital;
 
-    @OneToMany(mappedBy = "doctors",
-               cascade = CascadeType.ALL,
-               orphanRemoval = true)
+    @OneToMany( fetch = FetchType.LAZY,
+                mappedBy = "doctor",
+                cascade = CascadeType.ALL,
+                orphanRemoval = true )
     private List<Patient> patients;
 
     /**

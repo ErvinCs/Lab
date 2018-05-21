@@ -4,7 +4,7 @@ import lombok.*;
 
 
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Getter
 @Setter
 public class HospitalDto extends BaseDto {

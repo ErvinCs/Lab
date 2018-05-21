@@ -11,8 +11,10 @@ import javax.persistence.*;
 @Table(name = "doningcenters")
 public class DoningCenter extends BaseEntity<Long>
 {
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "dcpmember_id")
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dcpmember_id")
+    @MapsId
     private DCPMember dcpMember;
 
 
