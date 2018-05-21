@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.blooddonation.core.Domain.Doctor;
+import ro.blooddonation.core.Domain.Hospital;
 import ro.blooddonation.core.Service.DoctorService;
 import ro.blooddonation.web.Converter.DoctorConverter;
 import ro.blooddonation.web.Dto.DoctorDto;
@@ -36,8 +37,13 @@ public class DoctorController implements IController<DoctorDto, DoctorsDto>
     {
         log.trace("addDoctor: doctorDtoMap={}", doctorDto);
 
+        Hospital hospital = new Hospital(doctorDto.getHospital().getAddress());
+        hospital.setId(doctorDto.getHospital().getId());
+
         Doctor doctor = new Doctor(
-                //TODO
+                doctorDto.getFirstName(), doctorDto.getLastName(), doctorDto.getbDay(),
+                doctorDto.getAddress(), doctorDto.getResidence(), doctorDto.getCNP(),
+                /*doctorDto.getAccount()*/null, hospital
         );
         doctor.setId(doctorDto.getId());
         doctorService.add(doctor);
@@ -68,8 +74,13 @@ public class DoctorController implements IController<DoctorDto, DoctorsDto>
                               @RequestBody final DoctorDto newDoctorDto) {
         log.trace("updateDoctor: id={}, doctorDtoMap={}", id, newDoctorDto);
 
+        Hospital hospital = new Hospital(newDoctorDto.getHospital().getAddress());
+        hospital.setId(newDoctorDto.getHospital().getId());
+
         Doctor d = new Doctor(
-                //TODO
+                newDoctorDto.getFirstName(), newDoctorDto.getLastName(), newDoctorDto.getbDay(),
+                newDoctorDto.getAddress(), newDoctorDto.getResidence(), newDoctorDto.getCNP(),
+                /*doctorDto.getAccount()*/null, hospital
         );
         d.setId(id);
 

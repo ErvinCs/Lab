@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Setter
 @Getter
-public class PersonDto extends BaseDto
+public abstract class PersonDto extends BaseDto
 {
     private Long CNP;
 

@@ -34,6 +34,7 @@ public class Console
 //
         HospitalsDto hDtos = restTemplate.getForObject("http://localhost:8080/api/hospitals", HospitalsDto.class);
         hDtos.getHospitals()
-                .forEach(System.out::println);
+                //.forEach(System.out::println);
+                .forEach(item -> System.out.println(item.getId()));
     }
 }

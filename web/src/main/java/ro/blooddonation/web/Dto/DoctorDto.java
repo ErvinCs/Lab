@@ -37,16 +37,16 @@ public class DoctorDto extends PersonDto
         this.patients = patients;
     }
 
-    public void addPatient(PatientDto patient)
-    {
-        this.patients.add(patient);
-        patient.setDoctorDto(this);
-    }
+//    public void addPatient(PatientDto patient)
+//    {
+//        this.patients.add(patient);
+//        patient.setDoctorDto(this);
+//    }
 
-    public void removePatient(PatientDto patient)
-    {
-        this.patients.remove(patient);
-        patient.setDoctorDto(null);
-    }
+//    public void removePatient(PatientDto patient)
+//    {
+//        this.patients.remove(patient);
+//        patient.setDoctorDto(null);
+//    }
 
 }

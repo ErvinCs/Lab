@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ro.blooddonation.core.Domain.Doctor;
 import ro.blooddonation.core.Domain.Patient;
 import ro.blooddonation.core.Service.PatientService;
 import ro.blooddonation.web.Converter.PatientConverter;
@@ -37,8 +38,14 @@ public class PatientController implements IController<PatientDto, PatientsDto>
     {
         log.trace("addPatient: patientDtoMap={}", patientDto);
 
+        Doctor doctor = new Doctor(
+                //@TODO
+        );
+
         Patient patient = new Patient(
-                //TODO
+                patientDto.getFirstName(), patientDto.getLastName(), patientDto.getbDay(),
+                patientDto.getAddress(), patientDto.getResidence(), patientDto.getCNP(),
+                null, doctor
         );
         patient.setId(patientDto.getId());
         patientService.add(patient);
@@ -69,8 +76,15 @@ public class PatientController implements IController<PatientDto, PatientsDto>
                             @RequestBody final PatientDto newPatientDto) {
         log.trace("updatePatient: id={}, patientDtoMap={}", id, newPatientDto);
 
+        Doctor doctor = new Doctor(
+                //@TODO
+        );
+
         Patient p = new Patient(
-                //TODO
+                newPatientDto.getFirstName(), newPatientDto.getLastName(), newPatientDto.getbDay(),
+                newPatientDto.getAddress(), newPatientDto.getResidence(), newPatientDto.getCNP(),
+                null, doctor
+
         );
         p.setId(id);
 
