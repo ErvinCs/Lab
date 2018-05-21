@@ -35,10 +35,8 @@ public class DonationController implements IController<DonationDto, DonationDtos
     {
         log.trace("addDonation: donationDtoMap={}", donationDto);
 
-        Donation d = new Donation(
-
-        );
-
+        Donation d = new Donation(donationDto.getDonationDate(), donationDto.getBloodQuantity());
+        d.setId(donationDto.getId());
         DonationDto result = donationConverter.convertModelToDto(d);
         donationService.add(d);
 
@@ -66,9 +64,7 @@ public class DonationController implements IController<DonationDto, DonationDtos
                                   @RequestBody final DonationDto newDonationDto) {
         log.trace("updateDonation: id={}, donationDtoMap={}", id, newDonationDto);
 
-        Donation d = new Donation(
-
-        );
+        Donation d = new Donation(newDonationDto.getDonationDate(), newDonationDto.getBloodQuantity());
         d.setId(id);
 
         Optional<Donation> donation = donationService.update(id, d);

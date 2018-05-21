@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ro.blooddonation.core.Domain.Doctor;
 import ro.blooddonation.core.Domain.Patient;
 import ro.blooddonation.core.Service.PatientService;
+import ro.blooddonation.web.Converter.DoctorConverter;
 import ro.blooddonation.web.Converter.PatientConverter;
 import ro.blooddonation.web.Dto.EmptyJsonResponse;
 import ro.blooddonation.web.Dto.PatientDto;
@@ -37,16 +38,13 @@ public class PatientController implements IController<PatientDto, PatientsDto>
     public PatientDto add(@RequestBody final PatientDto patientDto)
     {
         log.trace("addPatient: patientDtoMap={}", patientDto);
-
-        Doctor doctor = new Doctor(
-                //@TODO
-        );
+        DoctorConverter doc = new DoctorConverter();
+        Doctor doctor = doc.convertDtoToModel(patientDto.getDoctor());
 
         Patient patient = new Patient(
                 patientDto.getFirstName(), patientDto.getLastName(), patientDto.getbDay(),
                 patientDto.getAddress(), patientDto.getResidence(), patientDto.getCNP(),
-                null, doctor
-        );
+                null, doctor);
         patient.setId(patientDto.getId());
         patientService.add(patient);
 
@@ -76,16 +74,13 @@ public class PatientController implements IController<PatientDto, PatientsDto>
                             @RequestBody final PatientDto newPatientDto) {
         log.trace("updatePatient: id={}, patientDtoMap={}", id, newPatientDto);
 
-        Doctor doctor = new Doctor(
-                //@TODO
-        );
+        DoctorConverter doc = new DoctorConverter();
+        Doctor doctor = doc.convertDtoToModel(newPatientDto.getDoctor());
 
         Patient p = new Patient(
                 newPatientDto.getFirstName(), newPatientDto.getLastName(), newPatientDto.getbDay(),
                 newPatientDto.getAddress(), newPatientDto.getResidence(), newPatientDto.getCNP(),
-                null, doctor
-
-        );
+                null, doctor );
         p.setId(id);
 
         Optional<Patient> patient = patientService.update(id, p);

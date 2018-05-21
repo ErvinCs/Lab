@@ -37,9 +37,7 @@ public class HospitalController implements IController<HospitalDto, HospitalsDto
     {
         log.trace("addHospital: hospitalDtoMap={}", hospitalDto);
 
-        Hospital hospital = new Hospital(
-                //TODO
-        );
+        Hospital hospital = new Hospital(hospitalDto.getAddress());
         hospital.setId(hospitalDto.getId());
         hospitalService.add(hospital);
 
@@ -69,9 +67,8 @@ public class HospitalController implements IController<HospitalDto, HospitalsDto
                               @RequestBody final HospitalDto newHospitalDto) {
         log.trace("updateHospital: id={}, hospitalDtoMap={}", id, newHospitalDto);
 
-        Hospital h = new Hospital(
-                //TODO
-        );
+        Hospital h = new Hospital(newHospitalDto.getAddress());
+
         h.setId(id);
 
         Optional<Hospital> hospital = hospitalService.update(id, h);

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.blooddonation.core.Domain.DCPMember;
+import ro.blooddonation.core.Domain.DoningCenter;
 import ro.blooddonation.core.Service.DCPMemberService;
 import ro.blooddonation.web.Converter.DCPMemberConverter;
 import ro.blooddonation.web.Dto.DCPMemberDto;
@@ -36,12 +37,15 @@ public class DCPMemberController implements IController<DCPMemberDto, DCPMembers
     {
         log.trace("addDCPMember: dcpMemberDtoMap={}", dcpDto);
 
-        DCPMember dcpMember = new DCPMember(
-            //TODO
-        );
+        DoningCenter doningCenter = new DoningCenter(dcpDto.getAddress());
+
+        DCPMember dcpMember = new DCPMember(dcpDto.getFirstName(), dcpDto.getLastName(), dcpDto.getbDay(), dcpDto.getAddress(),
+                dcpDto.getResidence(), dcpDto.getCNP(),null, doningCenter);
+        dcpMember.setId(dcpMember.getId());
+        dcpMemberService.add(dcpMember);
 
         DCPMemberDto result = dcpMemberConverter.convertModelToDto(dcpMember);
-        dcpMemberService.add(dcpMember);
+
 
         log.trace("addDCPMember: result={}", result);
 
@@ -66,10 +70,10 @@ public class DCPMemberController implements IController<DCPMemberDto, DCPMembers
     public DCPMemberDto update(@PathVariable final Long id,
                               @RequestBody final DCPMemberDto newDcpDto) {
         log.trace("updateDCPMember: id={}, dcpMemberDtoMap={}", id, newDcpDto);
+        DoningCenter doningCenter = new DoningCenter(newDcpDto.getAddress());
 
-        DCPMember d = new DCPMember(
-            //TODO
-        );
+        DCPMember d = new DCPMember(newDcpDto.getFirstName(), newDcpDto.getLastName(), newDcpDto.getbDay(), newDcpDto.getAddress(),
+                newDcpDto.getResidence(), newDcpDto.getCNP(),null, doningCenter);
         d.setId(id);
 
         Optional<DCPMember> dcpMember = dcpMemberService.update(id, d);

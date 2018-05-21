@@ -35,9 +35,7 @@ public class DoningCenterController implements IController<DoningCenterDto, Doni
     {
         log.trace("addDoningCenter: doningCenterDtoMap={}", dcDto);
 
-        DoningCenter dc = new DoningCenter(
-                //TODO
-        );
+        DoningCenter dc = new DoningCenter(dcDto.getAddress());
         dc.setId(dcDto.getId());
         doningCenterService.add(dc);
 
@@ -67,9 +65,7 @@ public class DoningCenterController implements IController<DoningCenterDto, Doni
                                   @RequestBody final DoningCenterDto newDcDto) {
         log.trace("updateDoningCenter: id={}, doningCenterDtoMap={}", id, newDcDto);
 
-        DoningCenter dc = new DoningCenter(
-                //TODO
-        );
+        DoningCenter dc = new DoningCenter(newDcDto.getAddress());
         dc.setId(id);
 
         Optional<DoningCenter> doningCenter = doningCenterService.update(id, dc);

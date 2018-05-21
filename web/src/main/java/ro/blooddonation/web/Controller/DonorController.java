@@ -39,9 +39,8 @@ public class DonorController implements IController<DonorDto, DonorDtos>
     {
         log.trace("addDonor: donorDtoMap={}", donorDto);
 
-        Donor donor = new Donor(
-                //TODO
-        );
+        Donor donor = new Donor(donorDto.getFirstName(), donorDto.getLastName(), donorDto.getbDay(),
+                donorDto.getAddress(), donorDto.getResidence(), donorDto.getCNP(), null);
         donor.setId(donorDto.getId());
         donorService.add(donor);
 
@@ -71,9 +70,8 @@ public class DonorController implements IController<DonorDto, DonorDtos>
                             @RequestBody final DonorDto newDonorDto) {
         log.trace("updateDonor: id={}, donorDtoMap={}", id, newDonorDto);
 
-        Donor d = new Donor(
-                //TODO
-        );
+        Donor d = new Donor(newDonorDto.getFirstName(), newDonorDto.getLastName(), newDonorDto.getbDay(),
+                newDonorDto.getAddress(), newDonorDto.getResidence(), newDonorDto.getCNP(), null);
         d.setId(id);
 
         Optional<Donor> donor = donorService.update(id, d);

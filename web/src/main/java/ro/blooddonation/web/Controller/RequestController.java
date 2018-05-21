@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ro.blooddonation.core.Domain.Doctor;
 import ro.blooddonation.core.Domain.Request;
 import ro.blooddonation.core.Service.RequestService;
+import ro.blooddonation.web.Converter.DoctorConverter;
 import ro.blooddonation.web.Converter.RequestConverter;
 import ro.blooddonation.web.Dto.EmptyJsonResponse;
 import ro.blooddonation.web.Dto.RequestDto;
@@ -36,10 +38,9 @@ public class RequestController implements IController<RequestDto, RequestsDto>
     public RequestDto add(@RequestBody final RequestDto requestDto)
     {
         log.trace("addRequest: requestDtoMap={}", requestDto);
-
-        Request request = new Request(
-                //TODO
-        );
+        DoctorConverter doc = new DoctorConverter();
+        Doctor doctor = doc.convertDtoToModel(requestDto.getDoctor());
+        Request request = new Request(requestDto.getBlood(), requestDto.getUrgency(), doctor);
         request.setId(requestDto.getId());
         requestService.add(request);
 
@@ -69,9 +70,9 @@ public class RequestController implements IController<RequestDto, RequestsDto>
                             @RequestBody final RequestDto newRequestDto) {
         log.trace("updateRequest: id={}, requestDtoMap={}", id, newRequestDto);
 
-        Request r = new Request(
-                //TODO
-        );
+        DoctorConverter doc = new DoctorConverter();
+        Doctor doctor = doc.convertDtoToModel(newRequestDto.getDoctor());
+        Request r = new Request(newRequestDto.getBlood(), newRequestDto.getUrgency(), doctor);
         r.setId(id);
 
         Optional<Request> request = requestService.update(id, r);
