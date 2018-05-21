@@ -12,17 +12,17 @@ public class RequestConverter extends BaseConverter<Request, RequestDto>
     private static final Logger log = LoggerFactory.getLogger(Request.class);
 
     @Override
-    public Request convertDtoToModel(RequestDto dto)
-    {
-        Request r = new Request(dto.getBlood(), dto.getUrgency(), dto.getDoctor());
+    public Request convertDtoToModel(RequestDto dto) {
+        DoctorConverter doctorConverter = new DoctorConverter();
+        Request r = new Request(dto.getBlood(), dto.getUrgency(), doctorConverter.convertDtoToModel(dto.getDoctor()));
         r.setStatus(dto.getStatus());
         return r;
     }
 
     @Override
-    public RequestDto convertModelToDto(Request request)
-    {
-        RequestDto requestDto = new RequestDto(request.getBlood(), request.getUrgency(), request.getDoctor(),
+    public RequestDto convertModelToDto(Request request) {
+        DoctorConverter doctorConverter = new DoctorConverter();
+        RequestDto requestDto = new RequestDto(request.getBlood(), request.getUrgency(), doctorConverter.convertModelToDto(request.getDoctor()),
                 request.getStatus());
         requestDto.setId(request.getId());
         return requestDto;

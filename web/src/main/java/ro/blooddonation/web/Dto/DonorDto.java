@@ -19,24 +19,24 @@ import java.util.List;
 public class DonorDto extends PersonDto {
 
     public DonorDto(String firstName, String lastName, LocalDate bDay, String address, String residence, Long CNP,
-                 Account account, List<Donation> donationHistory, Donation currDonation, LocalDate currAppointment, LocalDate lastDonation){
-        super(firstName, lastName, bDay, address, residence, CNP, account);
+                    List<DonationDto> donationHistory, DonationDto currDonation, LocalDate currAppointment, LocalDate lastDonation){
+        super(firstName, lastName, bDay, address, residence, CNP);
         this.donationHistory = donationHistory;
         this.currDonation = currDonation;
         this.currAppointment = currAppointment;
         this.lastDonation = lastDonation;
     }
 
-    private Donation currDonation;
+    private DonationDto currDonation;
     private LocalDate currAppointment;
     private LocalDate lastDonation;
-    private List<Donation> donationHistory;
+    private List<DonationDto> donationHistory;
 
-    public Donation getCurrDonation() {
+    public DonationDto getCurrDonation() {
         return currDonation;
     }
 
-    public List<Donation> getDonationHistory() {
+    public List<DonationDto> getDonationHistory() {
         return donationHistory;
     }
 
@@ -52,11 +52,11 @@ public class DonorDto extends PersonDto {
         this.currAppointment = currAppointment;
     }
 
-    public void setCurrDonation(Donation currDonation) {
+    public void setCurrDonation(DonationDto currDonation) {
         this.currDonation = currDonation;
     }
 
-    public void setDonationHistory(List<Donation> donationHistory) {
+    public void setDonationHistory(List<DonationDto> donationHistory) {
         this.donationHistory = donationHistory;
     }
 

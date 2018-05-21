@@ -14,8 +14,9 @@ public class PatientConverter extends BaseConverter<Patient, PatientDto>
 
     @Override
     public Patient convertDtoToModel(PatientDto dto) {
+        DoctorConverter doctorConverter = new DoctorConverter();
         Patient p = new Patient(dto.getFirstName(), dto.getLastName(), dto.getbDay(),dto.getAddress(), dto.getResidence(),
-                dto.getCNP(), null, dto.getDoctor());
+                dto.getCNP(), null, doctorConverter.convertDtoToModel(dto.getDoctor()));
         p.setBlood(dto.getBlood());
         p.setRequestedBloodQuantity(dto.getRequestedBloodQuantity());
         p.setUrgency(dto.getUrgency());
@@ -24,10 +25,10 @@ public class PatientConverter extends BaseConverter<Patient, PatientDto>
 
     @Override
     public PatientDto convertModelToDto(Patient patient) {
-
+        DoctorConverter doctorConverter = new DoctorConverter() ;
         PatientDto patientDto = new PatientDto(patient.getFirstName(), patient.getLastName(), patient.getbDay(),
-                patient.getAddress(), patient.getResidence(), patient.getCNP(), patient.getDoctor(), patient.getBlood(),
-                patient.getRequestedBloodQuantity(), patient.getUrgency());
+                patient.getAddress(), patient.getResidence(), patient.getCNP(), doctorConverter.convertModelToDto(patient.getDoctor()),
+                patient.getBlood(), patient.getRequestedBloodQuantity(), patient.getUrgency());
         patientDto.setId(patient.getId());
         return patientDto;
     }

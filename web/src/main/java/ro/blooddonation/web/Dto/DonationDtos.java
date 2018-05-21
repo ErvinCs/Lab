@@ -14,4 +14,5 @@ import java.util.Set;
 public class DonationDtos
 {
     public Set<DonationDto> donations;
+
 }

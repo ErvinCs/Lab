@@ -16,10 +16,10 @@ public class RequestDto extends BaseDto {
 
     private BloodEnum blood;
     private Integer urgency;
-    private Doctor doctor;
+    private DoctorDto doctor;
     private String status;
 
-    public RequestDto(BloodEnum blood, Integer urgency, Doctor doctor, String status){
+    public RequestDto(BloodEnum blood, Integer urgency, DoctorDto doctor, String status){
         this.blood = blood;
         this.urgency = urgency;
         this.doctor = doctor;
@@ -29,7 +29,7 @@ public class RequestDto extends BaseDto {
         this.urgency = urgency;
     }
 
-    public void setDoctor(Doctor doctor) {
+    public void setDoctor(DoctorDto doctor) {
         this.doctor = doctor;
     }
 
@@ -41,7 +41,7 @@ public class RequestDto extends BaseDto {
         return urgency;
     }
 
-    public Doctor getDoctor() {
+    public DoctorDto getDoctor() {
         return doctor;
     }
 

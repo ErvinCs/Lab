@@ -15,11 +15,4 @@ public class PatientsDto
 {
     public Set<PatientDto> patients;
 
-    public Set<PatientDto> getPatients() {
-        return patients;
-    }
-
-    public void setPatients(Set<PatientDto> patients) {
-        this.patients = patients;
-    }
 }

@@ -12,11 +12,4 @@ public class HospitalsDto
 {
     public Set<HospitalDto> hospitals;
 
-    public Set<HospitalDto> getHospitals() {
-        return hospitals;
-    }
-
-    public void setHospitals(Set<HospitalDto> hospitals) {
-        this.hospitals = hospitals;
-    }
 }

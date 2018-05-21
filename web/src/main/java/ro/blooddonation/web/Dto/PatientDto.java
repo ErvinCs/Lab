@@ -16,7 +16,7 @@ public class PatientDto extends PersonDto {
 
 
     public PatientDto(String firstName, String lastName, LocalDate bDay, String address, String residence, Long CNP,
-                      Doctor doctor, BloodEnum blood, Double requestedBloodQuantity, Integer urgency){
+                      DoctorDto doctor, BloodEnum blood, Double requestedBloodQuantity, Integer urgency){
         super(firstName, lastName, bDay, address, residence, CNP);
         this.doctor = doctor;
         this.blood = blood;
@@ -25,7 +25,7 @@ public class PatientDto extends PersonDto {
 
     }
 
-    private Doctor doctor;
+    private DoctorDto doctor;
     private BloodEnum blood;
     private Double requestedBloodQuantity;
     private Integer urgency;
@@ -34,7 +34,7 @@ public class PatientDto extends PersonDto {
         return blood;
     }
 
-    public Doctor getDoctor() {
+    public DoctorDto getDoctor() {
         return doctor;
     }
 
@@ -50,7 +50,7 @@ public class PatientDto extends PersonDto {
         this.blood = blood;
     }
 
-    public void setDoctor(Doctor doctor) {
+    public void setDoctor(DoctorDto doctor) {
         this.doctor = doctor;
     }
 
