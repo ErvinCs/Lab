@@ -90,10 +90,7 @@ public class DonationController implements IController<DonationDto, DonationDtos
 
         log.trace("getAllDonations: doningCenters={}", donations);
 
-        DonationDtos donationsDto = new DonationDtos();
-        donationsDto.donations = donationConverter.convertModelsToDtos(donations);
-
-        return donationsDto;
+        return new DonationDtos(donationConverter.convertModelsToDtos(donations));
     }
 
 }

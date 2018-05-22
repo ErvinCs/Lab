@@ -14,5 +14,4 @@ import java.util.Set;
 public class RequestsDto
 {
     public Set<RequestDto> requests;
-
 }

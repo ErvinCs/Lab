@@ -11,18 +11,4 @@ import java.io.Serializable;
 @ToString
 public abstract class BaseDto implements Serializable {
     private Long id;
-
-    public BaseDto(Long id) {
-        this.id = id;
-    }
-
-    public Long getId()
-    {
-        return this.id;
-    }
-
-    public void setId(Long value)
-    {
-        this.id = value;
-    }
 }

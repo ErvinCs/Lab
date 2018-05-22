@@ -24,7 +24,7 @@ public class DonorConverter extends BaseConverter<Donor, DonorDto>
     {
         DonationConverter donationConvertor = new DonationConverter();
 
-        Donor donor = new Donor(dto.getFirstName(), dto.getLastName(), dto.getbDay(), dto.getAddress(), dto.getResidence(), dto.getCNP(), null);
+        Donor donor = new Donor(dto.getFirstName(), dto.getLastName(), dto.getBDay(), dto.getAddress(), dto.getResidence(), dto.getCNP(), null);
         donor.setCurrDonation(donationConvertor.convertDtoToModel(dto.getCurrDonation()));
         donor.setCurrAppointment(dto.getCurrAppointment());
         donor.setLastDonation(dto.getLastDonation());
@@ -49,9 +49,15 @@ public class DonorConverter extends BaseConverter<Donor, DonorDto>
             donationHistory.add(donationConvertor.convertModelToDto(item));
         });
 
-        DonorDto donorDto = new DonorDto(donor.getId(), donor.getFirstName(), donor.getLastName(), donor.getbDay(),
-                donor.getAddress(), donor.getResidence(), donor.getCNP(), donationHistory,
-                donationConvertor.convertModelToDto(donor.getCurrDonation()), donor.getCurrAppointment(), donor.getLastDonation());
+        DonorDto donorDto = new DonorDto(donationConvertor.convertModelToDto(donor.getCurrDonation()), donor.getCurrAppointment(),
+                donor.getLastDonation(), donationHistory);
+        donorDto.setId(donor.getId());
+        donorDto.setFirstName(donor.getFirstName());
+        donorDto.setLastName(donor.getLastName());
+        donorDto.setAddress(donor.getAddress());
+        donorDto.setBDay(donor.getbDay());
+        donorDto.setCNP(donor.getCNP());
+        donorDto.setResidence(donor.getResidence());
         return donorDto;
     }
 }

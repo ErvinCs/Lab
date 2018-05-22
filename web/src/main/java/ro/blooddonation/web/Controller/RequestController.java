@@ -98,10 +98,7 @@ public class RequestController implements IController<RequestDto, RequestsDto>
 
         log.trace("getAllRequests: requests={}", requests);
 
-        RequestsDto requestsDto = new RequestsDto();
-        requestsDto.requests = requestConverter.convertModelsToDtos(requests);
-
-        return requestsDto;
+        return new RequestsDto(requestConverter.convertModelsToDtos(requests));
     }
 
 

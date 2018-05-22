@@ -50,10 +50,6 @@ public class Patient extends Person {
         this.urgency = null;
     }
 
-    public Patient() {
-
-    }
-
     public BloodEnum getBlood() {
         return blood;
     }

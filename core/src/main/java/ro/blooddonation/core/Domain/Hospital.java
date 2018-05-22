@@ -33,10 +33,6 @@ public class Hospital extends BaseEntity<Long>
         this.doctors = new ArrayList<>();
     }
 
-    public Hospital() {
-
-    }
-
     public String getAddress() {
         return address;
     }

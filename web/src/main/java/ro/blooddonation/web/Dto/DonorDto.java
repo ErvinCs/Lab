@@ -18,58 +18,8 @@ import java.util.List;
 @Setter
 public class DonorDto extends PersonDto {
 
-    public DonorDto(Long id, String firstName, String lastName, LocalDate bDay, String address, String residence, Long CNP,
-                    List<DonationDto> donationHistory, DonationDto currDonation, LocalDate currAppointment, LocalDate lastDonation){
-        super(id, firstName, lastName, bDay, address, residence, CNP);
-        this.donationHistory = donationHistory;
-        this.currDonation = currDonation;
-        this.currAppointment = currAppointment;
-        this.lastDonation = lastDonation;
-    }
-
     private DonationDto currDonation;
     private LocalDate currAppointment;
     private LocalDate lastDonation;
     private List<DonationDto> donationHistory;
-
-    public DonationDto getCurrDonation() {
-        return currDonation;
-    }
-
-    public List<DonationDto> getDonationHistory() {
-        return donationHistory;
-    }
-
-    public LocalDate getCurrAppointment() {
-        return currAppointment;
-    }
-
-    public LocalDate getLastDonation() {
-        return lastDonation;
-    }
-
-    public void setCurrAppointment(LocalDate currAppointment) {
-        this.currAppointment = currAppointment;
-    }
-
-    public void setCurrDonation(DonationDto currDonation) {
-        this.currDonation = currDonation;
-    }
-
-    public void setDonationHistory(List<DonationDto> donationHistory) {
-        this.donationHistory = donationHistory;
-    }
-
-    public void setLastDonation(LocalDate lastDonation) {
-        this.lastDonation = lastDonation;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "Donor{currentDonation=" + currDonation.getId().toString() +
-                ", currentAppointment=" + currAppointment.toString() +
-                ", lastDonation=" + lastDonation.toString() +
-                ", donationHistorySize=" + donationHistory.size() + "}";
-    }
 }

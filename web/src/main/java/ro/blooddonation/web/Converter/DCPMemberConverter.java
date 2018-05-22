@@ -15,9 +15,9 @@ public final class DCPMemberConverter extends BaseConverter<DCPMember, DCPMember
     public DCPMember convertDtoToModel(DCPMemberDto dto)
     {
         DoningCenterConverter dcConverter = new DoningCenterConverter();
-        DCPMember dcpMember = new DCPMember(dto.getFirstName(), dto.getLastName(), dto.getbDay(),
-                                    dto.getAddress(), dto.getResidence(), dto.getCNP(), null,
-                                    dcConverter.convertDtoToModel(dto.getDoningCenter()));
+        DCPMember dcpMember = new DCPMember(dto.getFirstName(), dto.getLastName(), dto.getBDay(),
+                dto.getAddress(), dto.getResidence(), dto.getCNP(), null,
+                dcConverter.convertDtoToModel(dto.getDoningCenter()));
         return dcpMember;
     }
 
@@ -25,9 +25,15 @@ public final class DCPMemberConverter extends BaseConverter<DCPMember, DCPMember
     public DCPMemberDto convertModelToDto(DCPMember dcpMember)
     {
         DoningCenterConverter dcConverter = new DoningCenterConverter();
-        DCPMemberDto dcpMemberDto = new DCPMemberDto(dcpMember.getId(), dcpMember.getFirstName(), dcpMember.getLastName(),
-                                    dcpMember.getbDay(), dcpMember.getAddress(), dcpMember.getResidence(),
-                                    dcpMember.getCNP(), dcConverter.convertModelToDto(dcpMember.getDoningCenter()));
+
+        DCPMemberDto dcpMemberDto = new DCPMemberDto(dcConverter.convertModelToDto(dcpMember.getDoningCenter()));
+        dcpMemberDto.setId(dcpMember.getId());
+        dcpMemberDto.setFirstName(dcpMember.getFirstName());
+        dcpMemberDto.setLastName(dcpMember.getLastName());
+        dcpMemberDto.setAddress(dcpMember.getAddress());
+        dcpMemberDto.setBDay(dcpMember.getbDay());
+        dcpMemberDto.setCNP(dcpMember.getCNP());
+        dcpMemberDto.setResidence(dcpMember.getResidence());
         return dcpMemberDto;
     }
 }

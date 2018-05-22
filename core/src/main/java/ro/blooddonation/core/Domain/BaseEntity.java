@@ -12,7 +12,7 @@ public abstract class BaseEntity<ID extends Serializable> implements Serializabl
     @Id
     @GeneratedValue
     @Column(unique = true, nullable = false)
-    protected ID id;
+    private ID id;
 
     public BaseEntity() { }
 

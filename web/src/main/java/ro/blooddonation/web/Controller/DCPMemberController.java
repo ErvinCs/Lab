@@ -39,7 +39,7 @@ public class DCPMemberController implements IController<DCPMemberDto, DCPMembers
 
         DoningCenter doningCenter = new DoningCenter(dcpDto.getAddress());
 
-        DCPMember dcpMember = new DCPMember(dcpDto.getFirstName(), dcpDto.getLastName(), dcpDto.getbDay(), dcpDto.getAddress(),
+        DCPMember dcpMember = new DCPMember(dcpDto.getFirstName(), dcpDto.getLastName(), dcpDto.getBDay(), dcpDto.getAddress(),
                 dcpDto.getResidence(), dcpDto.getCNP(),null, doningCenter);
         dcpMember.setId(dcpMember.getId());
         dcpMemberService.add(dcpMember);
@@ -72,7 +72,7 @@ public class DCPMemberController implements IController<DCPMemberDto, DCPMembers
         log.trace("updateDCPMember: id={}, dcpMemberDtoMap={}", id, newDcpDto);
         DoningCenter doningCenter = new DoningCenter(newDcpDto.getAddress());
 
-        DCPMember d = new DCPMember(newDcpDto.getFirstName(), newDcpDto.getLastName(), newDcpDto.getbDay(), newDcpDto.getAddress(),
+        DCPMember d = new DCPMember(newDcpDto.getFirstName(), newDcpDto.getLastName(), newDcpDto.getBDay(), newDcpDto.getAddress(),
                 newDcpDto.getResidence(), newDcpDto.getCNP(),null, doningCenter);
         d.setId(id);
 
@@ -99,10 +99,7 @@ public class DCPMemberController implements IController<DCPMemberDto, DCPMembers
 
         log.trace("getAllDCPMembers: DCPMembers={}", dcpMembers);
 
-        DCPMembersDto dcpMembersDto = new DCPMembersDto();
-        dcpMembersDto.dcpMembers = dcpMemberConverter.convertModelsToDtos(dcpMembers);
-
-        return dcpMembersDto;
+        return new DCPMembersDto(dcpMemberConverter.convertModelsToDtos(dcpMembers));
     }
 
 

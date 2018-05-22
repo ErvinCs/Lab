@@ -4,7 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import ro.blooddonation.core.Domain.Doctor;
+import ro.blooddonation.core.Domain.Patient;
 import ro.blooddonation.web.Dto.DoctorDto;
+import ro.blooddonation.web.Dto.PatientDto;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class DoctorConverter extends BaseConverter<Doctor, DoctorDto>
@@ -15,8 +20,8 @@ public class DoctorConverter extends BaseConverter<Doctor, DoctorDto>
     public Doctor convertDtoToModel(DoctorDto dto)
     {
         HospitalConverter hospitalConverter = new HospitalConverter();
-        Doctor doctor = new Doctor(dto.getFirstName(), dto.getLastName(), dto.getbDay(), dto.getAddress(), dto.getResidence(),
-                            dto.getCNP(), null, hospitalConverter.convertDtoToModel(dto.getHospital()));
+        Doctor doctor = new Doctor(dto.getFirstName(), dto.getLastName(), dto.getBDay(), dto.getAddress(), dto.getResidence(),
+                dto.getCNP(), null, hospitalConverter.convertDtoToModel(dto.getHospital()));
         return doctor;
     }
 
@@ -24,9 +29,23 @@ public class DoctorConverter extends BaseConverter<Doctor, DoctorDto>
     public DoctorDto convertModelToDto(Doctor doctor)
     {
         HospitalConverter hospitalConverter = new HospitalConverter();
-        DoctorDto doctorDto = new DoctorDto(doctor.getId(), doctor.getFirstName(), doctor.getLastName(), doctor.getbDay(),
-                                doctor.getAddress(), doctor.getResidence(),
-                                doctor.getCNP(), hospitalConverter.convertModelToDto(doctor.getHospital()));
+        PatientConverter patientConverter = new PatientConverter();
+        RequestConverter requestConverter = new RequestConverter();
+
+        List<Patient> patients = doctor.getPatients();
+        List<PatientDto> patientDtos = new ArrayList<>();
+        patients.forEach(patient -> {
+            patientDtos.add(patientConverter.convertModelToDto(patient));
+        });
+
+        DoctorDto doctorDto = new DoctorDto(hospitalConverter.convertModelToDto(doctor.getHospital()), patientDtos);
+        doctorDto.setId(doctor.getId());
+        doctorDto.setFirstName(doctor.getFirstName());
+        doctorDto.setLastName(doctor.getLastName());
+        doctorDto.setAddress(doctor.getAddress());
+        doctorDto.setBDay(doctor.getbDay());
+        doctorDto.setCNP(doctor.getCNP());
+        doctorDto.setResidence(doctor.getResidence());
         return doctorDto;
     }
 }

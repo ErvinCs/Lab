@@ -22,8 +22,9 @@ public class RequestConverter extends BaseConverter<Request, RequestDto>
     @Override
     public RequestDto convertModelToDto(Request request) {
         DoctorConverter doctorConverter = new DoctorConverter();
-        RequestDto requestDto = new RequestDto(request.getId(), request.getBlood(), request.getUrgency(), doctorConverter.convertModelToDto(request.getDoctor()),
+        RequestDto requestDto = new RequestDto(request.getBlood(), request.getUrgency(), doctorConverter.convertModelToDto(request.getDoctor()),
                 request.getStatus());
+        requestDto.setId(request.getId());
         return requestDto;
     }
 }

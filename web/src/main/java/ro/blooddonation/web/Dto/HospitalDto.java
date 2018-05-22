@@ -4,28 +4,9 @@ import lombok.*;
 
 
 @NoArgsConstructor
-//@AllArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class HospitalDto extends BaseDto {
     private String address;
-
-    public HospitalDto(Long id, String address){
-        super(id);
-        this.address = address;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "Hospital{id=" + this.getId() + "; " + address.toString() + "}";
-    }
 }

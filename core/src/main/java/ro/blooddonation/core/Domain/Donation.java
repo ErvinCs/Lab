@@ -67,10 +67,6 @@ public class Donation extends BaseEntity<Long>
         this.redCellsQuantity = null;
     }
 
-    public Donation() {
-
-    }
-
     public BloodEnum getBlood() {
         return blood;
     }

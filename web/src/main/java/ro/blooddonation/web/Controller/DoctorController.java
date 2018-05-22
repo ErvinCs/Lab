@@ -41,7 +41,7 @@ public class DoctorController implements IController<DoctorDto, DoctorsDto>
         hospital.setId(doctorDto.getHospital().getId());
 
         Doctor doctor = new Doctor(
-                doctorDto.getFirstName(), doctorDto.getLastName(), doctorDto.getbDay(),
+                doctorDto.getFirstName(), doctorDto.getLastName(), doctorDto.getBDay(),
                 doctorDto.getAddress(), doctorDto.getResidence(), doctorDto.getCNP(),
                 /*doctorDto.getAccount()*/null, hospital
         );
@@ -78,7 +78,7 @@ public class DoctorController implements IController<DoctorDto, DoctorsDto>
         hospital.setId(newDoctorDto.getHospital().getId());
 
         Doctor d = new Doctor(
-                newDoctorDto.getFirstName(), newDoctorDto.getLastName(), newDoctorDto.getbDay(),
+                newDoctorDto.getFirstName(), newDoctorDto.getLastName(), newDoctorDto.getBDay(),
                 newDoctorDto.getAddress(), newDoctorDto.getResidence(), newDoctorDto.getCNP(),
                 /*doctorDto.getAccount()*/null, hospital
         );
@@ -107,9 +107,6 @@ public class DoctorController implements IController<DoctorDto, DoctorsDto>
 
         log.trace("getAllDoctors: doctors={}", doctors);
 
-        DoctorsDto doctorsDto = new DoctorsDto();
-        doctorsDto.doctors = doctorConverter.convertModelsToDtos(doctors);
-
-        return doctorsDto;
+        return new DoctorsDto(doctorConverter.convertModelsToDtos(doctors));
     }
 }

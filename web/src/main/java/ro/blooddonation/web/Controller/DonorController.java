@@ -39,7 +39,7 @@ public class DonorController implements IController<DonorDto, DonorDtos>
     {
         log.trace("addDonor: donorDtoMap={}", donorDto);
 
-        Donor donor = new Donor(donorDto.getFirstName(), donorDto.getLastName(), donorDto.getbDay(),
+        Donor donor = new Donor(donorDto.getFirstName(), donorDto.getLastName(), donorDto.getBDay(),
                 donorDto.getAddress(), donorDto.getResidence(), donorDto.getCNP(), null);
         donor.setId(donorDto.getId());
         donorService.add(donor);
@@ -70,7 +70,7 @@ public class DonorController implements IController<DonorDto, DonorDtos>
                             @RequestBody final DonorDto newDonorDto) {
         log.trace("updateDonor: id={}, donorDtoMap={}", id, newDonorDto);
 
-        Donor d = new Donor(newDonorDto.getFirstName(), newDonorDto.getLastName(), newDonorDto.getbDay(),
+        Donor d = new Donor(newDonorDto.getFirstName(), newDonorDto.getLastName(), newDonorDto.getBDay(),
                 newDonorDto.getAddress(), newDonorDto.getResidence(), newDonorDto.getCNP(), null);
         d.setId(id);
 
@@ -97,9 +97,6 @@ public class DonorController implements IController<DonorDto, DonorDtos>
 
         log.trace("getAllDonors: doctors={}", donors);
 
-        DonorDtos donorDtos = new DonorDtos();
-        donorDtos.donors = donorConverter.convertModelsToDtos(donors);
-
-        return donorDtos;
+        return new DonorDtos(donorConverter.convertModelsToDtos(donors));
     }
 }

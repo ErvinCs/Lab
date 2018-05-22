@@ -37,10 +37,6 @@ public class DCPMember extends Person
         this.doningCenter = doningCenter;
     }
 
-    public DCPMember() {
-
-    }
-
     public DoningCenter getDoningCenter() {
         return doningCenter;
     }

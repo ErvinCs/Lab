@@ -15,17 +15,4 @@ import java.time.LocalDate;
 public class DCPMemberDto extends PersonDto
 {
     private DoningCenterDto doningCenter;
-
-    public DCPMemberDto(Long id, String firstName, String lastName, LocalDate bDay, String address, String residence, Long cnp, DoningCenterDto doningCenter) {
-        super(id, firstName, lastName, bDay, address, residence, cnp);
-        this.doningCenter = doningCenter;
-    }
-
-    public DoningCenterDto getDoningCenter() {
-        return doningCenter;
-    }
-
-    public void setDoningCenter(DoningCenterDto doningCenter) {
-        this.doningCenter = doningCenter;
-    }
 }
