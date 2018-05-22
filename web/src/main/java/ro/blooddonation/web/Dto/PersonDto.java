@@ -8,14 +8,14 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Setter
 @Getter
 public abstract class PersonDto extends BaseDto
 {
-    private Long CNP;
+    public Long CNP;
 
-    private String firstName;
+    public String firstName;
 
     private String lastName;
 
