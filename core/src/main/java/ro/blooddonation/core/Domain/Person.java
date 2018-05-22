@@ -9,6 +9,11 @@ import java.util.*;
 @MappedSuperclass
 public abstract class Person extends BaseEntity<Long> implements Serializable
 {
+    @Id
+    @GeneratedValue
+    @Column(unique = true, nullable = false)
+    protected Long id;
+
     @Column
     private Long CNP;
 

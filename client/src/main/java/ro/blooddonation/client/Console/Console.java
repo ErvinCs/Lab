@@ -5,10 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import ro.blooddonation.core.Domain.BloodEnum;
 import ro.blooddonation.core.Domain.DiseasesEnum;
-import ro.blooddonation.web.Dto.DonationDto;
-import ro.blooddonation.web.Dto.DoningCenterDto;
-import ro.blooddonation.web.Dto.HospitalDto;
-import ro.blooddonation.web.Dto.HospitalsDto;
+import ro.blooddonation.web.Dto.*;
 
 import java.time.LocalDate;
 import java.util.EnumMap;
@@ -34,7 +31,16 @@ public class Console
 //
         HospitalsDto hDtos = restTemplate.getForObject("http://localhost:8080/api/hospitals", HospitalsDto.class);
         hDtos.getHospitals()
-                //.forEach(System.out::println);
-                .forEach(item -> System.out.println(item.getId()));
+                .forEach(System.out::println);
+
+        Long cnp = Long.valueOf("19711120000000");
+        LocalDate bday = LocalDate.of(2005, 10, 10);
+        DoctorDto dDto = restTemplate.postForObject("http://localhost:8080/api/doctors",
+
+                new DoctorDto("firstName", "lastName", bday, "address", "residence", cnp, hDtos.getHospitals().iterator().next()),
+                DoctorDto.class);
+        DoctorsDto dddDto = restTemplate.getForObject("http://localhost:8080/api/doctors", DoctorsDto.class);
+        dddDto.getDoctors()
+                .forEach(System.out::println);
     }
 }
