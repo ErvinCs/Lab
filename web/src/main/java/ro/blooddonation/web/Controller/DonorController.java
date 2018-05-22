@@ -97,6 +97,9 @@ public class DonorController implements IController<DonorDto, DonorDtos>
 
         log.trace("getAllDonors: doctors={}", donors);
 
-        return new DonorDtos(donorConverter.convertModelsToDtos(donors));
+        DonorDtos donorDtos = new DonorDtos();
+        donorDtos.donors = donorConverter.convertModelsToDtos(donors);
+
+        return donorDtos;
     }
 }

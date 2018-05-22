@@ -107,6 +107,9 @@ public class DoctorController implements IController<DoctorDto, DoctorsDto>
 
         log.trace("getAllDoctors: doctors={}", doctors);
 
-        return new DoctorsDto(doctorConverter.convertModelsToDtos(doctors));
+        DoctorsDto doctorsDto = new DoctorsDto();
+        doctorsDto.doctors = doctorConverter.convertModelsToDtos(doctors);
+
+        return doctorsDto;
     }
 }

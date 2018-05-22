@@ -106,7 +106,10 @@ public class PatientController implements IController<PatientDto, PatientsDto>
 
         log.trace("getAllPatient: patientS={}", patients);
 
-        return new PatientsDto(patientConverter.convertModelsToDtos(patients));
+        PatientsDto patientsDto = new PatientsDto();
+        patientsDto.patients = patientConverter.convertModelsToDtos(patients);
+
+        return patientsDto;
     }
 
 

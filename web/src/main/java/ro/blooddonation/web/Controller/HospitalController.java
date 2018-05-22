@@ -94,6 +94,9 @@ public class HospitalController implements IController<HospitalDto, HospitalsDto
 
         log.trace("getAllHospitals: hospitals={}", hospitals);
 
-        return new HospitalsDto(hospitalConverter.convertModelsToDtos(hospitals));
+        HospitalsDto hospitalsDto = new HospitalsDto();
+        hospitalsDto.hospitals = hospitalConverter.convertModelsToDtos(hospitals);
+
+        return hospitalsDto;
     }
 }

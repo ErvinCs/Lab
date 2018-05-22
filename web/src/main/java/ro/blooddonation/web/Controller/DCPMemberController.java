@@ -99,7 +99,10 @@ public class DCPMemberController implements IController<DCPMemberDto, DCPMembers
 
         log.trace("getAllDCPMembers: DCPMembers={}", dcpMembers);
 
-        return new DCPMembersDto(dcpMemberConverter.convertModelsToDtos(dcpMembers));
+        DCPMembersDto dcpMembersDto = new DCPMembersDto();
+        dcpMembersDto.dcpMembers = dcpMemberConverter.convertModelsToDtos(dcpMembers);
+
+        return dcpMembersDto;
     }
 
 

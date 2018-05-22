@@ -91,6 +91,9 @@ public class DoningCenterController implements IController<DoningCenterDto, Doni
 
         log.trace("getAllDoningCenters: doningCenters={}", dcs);
 
-        return new DoningCentersDto(doningCenterConverter.convertModelsToDtos(dcs));
+        DoningCentersDto doningCentersDto = new DoningCentersDto();
+        doningCentersDto.doningCenters = doningCenterConverter.convertModelsToDtos(dcs);
+
+        return doningCentersDto;
     }
 }
