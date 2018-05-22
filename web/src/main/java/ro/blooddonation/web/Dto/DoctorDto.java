@@ -18,8 +18,8 @@ public class DoctorDto extends PersonDto
 
     private List<PatientDto> patients;
 
-    public DoctorDto(String firstName, String lastName, LocalDate bDay, String address, String residence, Long cnp, HospitalDto hospitalDto) {
-        super(firstName, lastName, bDay, address, residence, cnp);
+    public DoctorDto(Long id, String firstName, String lastName, LocalDate bDay, String address, String residence, Long cnp, HospitalDto hospitalDto) {
+        super(id, firstName, lastName, bDay, address, residence, cnp);
         this.hospital = hospitalDto;
     }
 

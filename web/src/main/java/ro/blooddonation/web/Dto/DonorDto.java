@@ -18,9 +18,9 @@ import java.util.List;
 @Setter
 public class DonorDto extends PersonDto {
 
-    public DonorDto(String firstName, String lastName, LocalDate bDay, String address, String residence, Long CNP,
+    public DonorDto(Long id, String firstName, String lastName, LocalDate bDay, String address, String residence, Long CNP,
                     List<DonationDto> donationHistory, DonationDto currDonation, LocalDate currAppointment, LocalDate lastDonation){
-        super(firstName, lastName, bDay, address, residence, CNP);
+        super(id, firstName, lastName, bDay, address, residence, CNP);
         this.donationHistory = donationHistory;
         this.currDonation = currDonation;
         this.currAppointment = currAppointment;

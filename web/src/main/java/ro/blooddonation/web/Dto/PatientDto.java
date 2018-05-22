@@ -15,9 +15,9 @@ import java.time.LocalDate;
 public class PatientDto extends PersonDto {
 
 
-    public PatientDto(String firstName, String lastName, LocalDate bDay, String address, String residence, Long CNP,
+    public PatientDto(Long id, String firstName, String lastName, LocalDate bDay, String address, String residence, Long CNP,
                       DoctorDto doctor, BloodEnum blood, Double requestedBloodQuantity, Integer urgency){
-        super(firstName, lastName, bDay, address, residence, CNP);
+        super(id, firstName, lastName, bDay, address, residence, CNP);
         this.doctor = doctor;
         this.blood = blood;
         this.requestedBloodQuantity = requestedBloodQuantity;

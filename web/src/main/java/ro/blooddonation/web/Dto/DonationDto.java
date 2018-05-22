@@ -26,8 +26,8 @@ public class DonationDto extends BaseDto
     private Map<DiseasesEnum, Boolean> diseases;
     private Boolean hasDisease;
 
-    public DonationDto(BloodEnum blood, Double bloodQuantity, Double plasmaQuantity, Double thrombocytesQuantity, Double redCellsQuantity, LocalDate donationDate, Map<DiseasesEnum, Boolean> diseases, Boolean status) {
-        super();
+    public DonationDto(Long id, BloodEnum blood, Double bloodQuantity, Double plasmaQuantity, Double thrombocytesQuantity, Double redCellsQuantity, LocalDate donationDate, Map<DiseasesEnum, Boolean> diseases, Boolean status) {
+        super(id);
         this.blood = blood;
         this.bloodQuantity = bloodQuantity;
         this.plasmaQuantity = plasmaQuantity;

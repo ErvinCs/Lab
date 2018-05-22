@@ -10,7 +10,8 @@ import lombok.*;
 public class HospitalDto extends BaseDto {
     private String address;
 
-    public HospitalDto(String address){
+    public HospitalDto(Long id, String address){
+        super(id);
         this.address = address;
     }
 

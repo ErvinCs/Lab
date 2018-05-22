@@ -25,7 +25,8 @@ public abstract class PersonDto extends BaseDto
 
     private String residence;
 
-    public PersonDto(String firstName, String lastName, LocalDate bDay, String address, String residence, Long cnp) {
+    public PersonDto(Long id, String firstName, String lastName, LocalDate bDay, String address, String residence, Long cnp) {
+        super(id);
         this.CNP = cnp;
         this.firstName = firstName;
         this.lastName = lastName;

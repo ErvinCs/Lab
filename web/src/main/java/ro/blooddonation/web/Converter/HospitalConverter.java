@@ -19,8 +19,7 @@ public class HospitalConverter extends BaseConverter<Hospital, HospitalDto>
 
     @Override
     public HospitalDto convertModelToDto(Hospital hospital) {
-        HospitalDto hospitalDto = new HospitalDto(hospital.getAddress());
-        hospitalDto.setId(hospital.getId());
+        HospitalDto hospitalDto = new HospitalDto(hospital.getId(), hospital.getAddress());
         return hospitalDto;
     }
 }

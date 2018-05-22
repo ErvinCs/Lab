@@ -24,10 +24,9 @@ public class DoctorConverter extends BaseConverter<Doctor, DoctorDto>
     public DoctorDto convertModelToDto(Doctor doctor)
     {
         HospitalConverter hospitalConverter = new HospitalConverter();
-        DoctorDto doctorDto = new DoctorDto(doctor.getFirstName(), doctor.getLastName(), doctor.getbDay(),
+        DoctorDto doctorDto = new DoctorDto(doctor.getId(), doctor.getFirstName(), doctor.getLastName(), doctor.getbDay(),
                                 doctor.getAddress(), doctor.getResidence(),
                                 doctor.getCNP(), hospitalConverter.convertModelToDto(doctor.getHospital()));
-        doctorDto.setId(doctor.getId());
         return doctorDto;
     }
 }

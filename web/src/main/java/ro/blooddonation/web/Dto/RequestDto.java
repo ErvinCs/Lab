@@ -19,7 +19,8 @@ public class RequestDto extends BaseDto {
     private DoctorDto doctor;
     private String status;
 
-    public RequestDto(BloodEnum blood, Integer urgency, DoctorDto doctor, String status){
+    public RequestDto(Long id, BloodEnum blood, Integer urgency, DoctorDto doctor, String status){
+        super(id);
         this.blood = blood;
         this.urgency = urgency;
         this.doctor = doctor;

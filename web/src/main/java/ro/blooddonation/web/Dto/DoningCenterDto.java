@@ -14,8 +14,8 @@ public class DoningCenterDto extends BaseDto
     private DCPMemberDto dcpMember;
     private String address;
 
-    public DoningCenterDto(String address) {
-        super();
+    public DoningCenterDto(Long id, String address) {
+        super(id);
         this.address = address;
     }
 

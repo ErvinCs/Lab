@@ -22,8 +22,7 @@ public class DoningCenterConverter extends BaseConverter<DoningCenter, DoningCen
     @Override
     public DoningCenterDto convertModelToDto(DoningCenter dc)
     {
-        DoningCenterDto dcDto = new DoningCenterDto(dc.getAddress());
-        dcDto.setId(dc.getId());
+        DoningCenterDto dcDto = new DoningCenterDto(dc.getId(), dc.getAddress());
         return dcDto;
     }
 }

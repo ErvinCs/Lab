@@ -12,6 +12,10 @@ import java.io.Serializable;
 public abstract class BaseDto implements Serializable {
     private Long id;
 
+    public BaseDto(Long id) {
+        this.id = id;
+    }
+
     public Long getId()
     {
         return this.id;

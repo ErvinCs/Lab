@@ -49,10 +49,9 @@ public class DonorConverter extends BaseConverter<Donor, DonorDto>
             donationHistory.add(donationConvertor.convertModelToDto(item));
         });
 
-        DonorDto donorDto = new DonorDto(donor.getFirstName(), donor.getLastName(), donor.getbDay(),
+        DonorDto donorDto = new DonorDto(donor.getId(), donor.getFirstName(), donor.getLastName(), donor.getbDay(),
                 donor.getAddress(), donor.getResidence(), donor.getCNP(), donationHistory,
                 donationConvertor.convertModelToDto(donor.getCurrDonation()), donor.getCurrAppointment(), donor.getLastDonation());
-        donorDto.setId(donor.getId());
         return donorDto;
     }
 }

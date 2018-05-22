@@ -25,10 +25,9 @@ public final class DCPMemberConverter extends BaseConverter<DCPMember, DCPMember
     public DCPMemberDto convertModelToDto(DCPMember dcpMember)
     {
         DoningCenterConverter dcConverter = new DoningCenterConverter();
-        DCPMemberDto dcpMemberDto = new DCPMemberDto(dcpMember.getFirstName(), dcpMember.getLastName(),
+        DCPMemberDto dcpMemberDto = new DCPMemberDto(dcpMember.getId(), dcpMember.getFirstName(), dcpMember.getLastName(),
                                     dcpMember.getbDay(), dcpMember.getAddress(), dcpMember.getResidence(),
                                     dcpMember.getCNP(), dcConverter.convertModelToDto(dcpMember.getDoningCenter()));
-        dcpMemberDto.setId(dcpMember.getId());
         return dcpMemberDto;
     }
 }

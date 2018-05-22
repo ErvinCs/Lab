@@ -16,8 +16,8 @@ public class DCPMemberDto extends PersonDto
 {
     private DoningCenterDto doningCenter;
 
-    public DCPMemberDto(String firstName, String lastName, LocalDate bDay, String address, String residence, Long cnp, DoningCenterDto doningCenter) {
-        super(firstName, lastName, bDay, address, residence, cnp);
+    public DCPMemberDto(Long id, String firstName, String lastName, LocalDate bDay, String address, String residence, Long cnp, DoningCenterDto doningCenter) {
+        super(id, firstName, lastName, bDay, address, residence, cnp);
         this.doningCenter = doningCenter;
     }
 
