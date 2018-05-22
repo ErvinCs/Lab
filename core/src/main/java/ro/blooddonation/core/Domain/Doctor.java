@@ -45,6 +45,10 @@ public class Doctor extends Person
         this.patients = new ArrayList<Patient>();
     }
 
+    public Doctor() {
+
+    }
+
     public Hospital getHospital() {
         return hospital;
     }

@@ -44,6 +44,10 @@ public class Request extends BaseEntity<Long>
         this.status = "Request sent.";
     }
 
+    public Request() {
+
+    }
+
     public BloodEnum getBlood() {
         return blood;
     }

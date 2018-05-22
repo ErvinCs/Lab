@@ -30,6 +30,10 @@ public class DoningCenter extends BaseEntity<Long>
         this.address = address;
     }
 
+    public DoningCenter() {
+
+    }
+
     public String getAddress() {
         return address;
     }

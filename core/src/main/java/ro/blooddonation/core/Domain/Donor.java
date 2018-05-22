@@ -47,6 +47,10 @@ public class Donor extends Person {
 
     }
 
+    public Donor() {
+
+    }
+
     public Donation getCurrDonation() {
         return currDonation;
     }
