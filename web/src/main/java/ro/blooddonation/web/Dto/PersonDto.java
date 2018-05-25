@@ -11,18 +11,29 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Setter
 @Getter
-public abstract class PersonDto extends BaseDto
+public class PersonDto extends BaseDto
 {
-    private Long CNP;
+    protected Long CNP;
 
-    private String firstName;
+    protected String firstName;
 
-    private String lastName;
+    protected String lastName;
 
-    private LocalDate bDay;
+    protected LocalDate bDay;
 
-    private String address;
+    protected String address;
 
-    private String residence;
+    protected String residence;
+
+    public String toString()
+    {
+        return "Person{firstName=" + this.firstName.toString() +
+                ", lastName=" + this.lastName.toString() +
+                ", bDay=" + this.bDay.toString() +
+                ", address=" + this.address.toString() +
+                ", residence=" + this.residence.toString() +
+                ", CNP=" + this.CNP.toString() +
+                "}" + super.toString();
+    }
 
 }

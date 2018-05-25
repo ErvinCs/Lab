@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class DoctorServiceImpl implements DoctorService
 {
-    private static final Logger log = LoggerFactory.getLogger(DoctorService.class);
+    private static final Logger log = LoggerFactory.getLogger(DoctorServiceImpl.class);
 
     @Autowired
     private DoctorRepo doctorRepo;
@@ -62,8 +62,15 @@ public class DoctorServiceImpl implements DoctorService
 
         Optional<Doctor> doctorOptional = doctorRepo.findById(id);
 
-        doctorOptional.ifPresent(r ->
+        doctorOptional.ifPresent(d ->
                 {
+                    d.setHospital(newItem.getHospital());
+                    d.setPatients(newItem.getPatients());
+
+                    d.setFirstName(newItem.getFirstName());
+                    d.setLastName(newItem.getLastName());
+                    d.setResidence(newItem.getResidence());
+                    d.setAddress(newItem.getAddress());
                 }
         );
 

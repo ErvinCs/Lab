@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -14,5 +15,4 @@ import java.util.Set;
 public class PatientsDto
 {
     public Set<PatientDto> patients;
-
 }

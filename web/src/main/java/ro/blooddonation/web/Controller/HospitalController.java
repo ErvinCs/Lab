@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ro.blooddonation.core.Domain.Doctor;
 import ro.blooddonation.core.Domain.Hospital;
 import ro.blooddonation.core.Service.HospitalService;
+import ro.blooddonation.web.Converter.DoctorConverter;
 import ro.blooddonation.web.Converter.HospitalConverter;
 import ro.blooddonation.web.Dto.EmptyJsonResponse;
 import ro.blooddonation.web.Dto.HospitalDto;
@@ -30,6 +32,8 @@ public class HospitalController implements IController<HospitalDto, HospitalsDto
     @Autowired
     private HospitalConverter hospitalConverter;
 
+    @Autowired
+    private DoctorConverter doctorConverter;
 
 
     @RequestMapping(value = "/hospitals", method = RequestMethod.POST)
@@ -37,7 +41,12 @@ public class HospitalController implements IController<HospitalDto, HospitalsDto
     {
         log.trace("addHospital: hospitalDtoMap={}", hospitalDto);
 
-        Hospital hospital = new Hospital(hospitalDto.getAddress());
+        List<Doctor> doctors = new ArrayList<>();
+        hospitalDto.getDoctors().getDoctors().forEach(doc -> {
+            doctors.add(doctorConverter.convertDtoToModel(doc));
+        });
+
+        Hospital hospital = new Hospital(hospitalDto.getAddress(), doctors);
         hospital.setId(hospitalDto.getId());
         hospitalService.add(hospital);
 
@@ -67,8 +76,12 @@ public class HospitalController implements IController<HospitalDto, HospitalsDto
                               @RequestBody final HospitalDto newHospitalDto) {
         log.trace("updateHospital: id={}, hospitalDtoMap={}", id, newHospitalDto);
 
-        Hospital h = new Hospital(newHospitalDto.getAddress());
+        List<Doctor> doctors = new ArrayList<>();
+        newHospitalDto.getDoctors().getDoctors().forEach(doc -> {
+            doctors.add(doctorConverter.convertDtoToModel(doc));
+        });
 
+        Hospital h = new Hospital(newHospitalDto.getAddress(), doctors);
         h.setId(id);
 
         Optional<Hospital> hospital = hospitalService.update(id, h);

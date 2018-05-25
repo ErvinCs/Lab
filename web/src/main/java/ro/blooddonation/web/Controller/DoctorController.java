@@ -8,8 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.blooddonation.core.Domain.Doctor;
 import ro.blooddonation.core.Domain.Hospital;
+import ro.blooddonation.core.Domain.Patient;
 import ro.blooddonation.core.Service.DoctorService;
 import ro.blooddonation.web.Converter.DoctorConverter;
+import ro.blooddonation.web.Converter.PatientConverter;
 import ro.blooddonation.web.Dto.DoctorDto;
 import ro.blooddonation.web.Dto.DoctorsDto;
 import ro.blooddonation.web.Dto.EmptyJsonResponse;
@@ -31,6 +33,9 @@ public class DoctorController implements IController<DoctorDto, DoctorsDto>
     @Autowired
     private DoctorConverter doctorConverter;
 
+    @Autowired
+    private PatientConverter patientConverter;
+
 
     @RequestMapping(value = "/doctors", method = RequestMethod.POST)
     public DoctorDto add(@RequestBody final DoctorDto doctorDto)
@@ -40,10 +45,15 @@ public class DoctorController implements IController<DoctorDto, DoctorsDto>
         Hospital hospital = new Hospital(doctorDto.getHospital().getAddress());
         hospital.setId(doctorDto.getHospital().getId());
 
+        List<Patient> patients = new ArrayList<>();
+        doctorDto.getPatients().getPatients().forEach(p -> {
+            patients.add(patientConverter.convertDtoToModel(p));
+        });
+
         Doctor doctor = new Doctor(
                 doctorDto.getFirstName(), doctorDto.getLastName(), doctorDto.getBDay(),
                 doctorDto.getAddress(), doctorDto.getResidence(), doctorDto.getCNP(),
-                /*doctorDto.getAccount()*/null, hospital
+                null, hospital, patients
         );
         doctor.setId(doctorDto.getId());
         doctorService.add(doctor);
@@ -77,10 +87,15 @@ public class DoctorController implements IController<DoctorDto, DoctorsDto>
         Hospital hospital = new Hospital(newDoctorDto.getHospital().getAddress());
         hospital.setId(newDoctorDto.getHospital().getId());
 
+        List<Patient> patients = new ArrayList<>();
+        newDoctorDto.getPatients().getPatients().forEach(p -> {
+            patients.add(patientConverter.convertDtoToModel(p));
+        });
+
         Doctor d = new Doctor(
                 newDoctorDto.getFirstName(), newDoctorDto.getLastName(), newDoctorDto.getBDay(),
                 newDoctorDto.getAddress(), newDoctorDto.getResidence(), newDoctorDto.getCNP(),
-                /*doctorDto.getAccount()*/null, hospital
+               null, hospital, patients
         );
         d.setId(id);
 

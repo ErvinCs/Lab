@@ -12,11 +12,20 @@ import ro.blooddonation.core.Domain.Doctor;
 @AllArgsConstructor
 @Getter
 @Setter
-public class RequestDto extends BaseDto {
-
+public class RequestDto extends BaseDto
+{
     private BloodEnum blood;
     private Integer urgency;
     private DoctorDto doctor;
     private String status;
 
+    @Override
+    public String toString()
+    {
+        return "Request{blood=" + this.doctor.toString() +
+                ", urgency=" + this.urgency.toString() +
+                ", doctor=" + this.doctor.toString() +
+                ", status=" + this.status.toString() +
+                "}" + super.toString();
+    }
 }

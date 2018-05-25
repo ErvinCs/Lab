@@ -11,17 +11,15 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "hospitals")
 public class Hospital extends BaseEntity<Long>
 {
     @Column
     private String address;
 
-    @OneToMany( fetch = FetchType.LAZY,
-                mappedBy = "hospital",
+    @OneToMany( mappedBy = "hospital",
                 cascade = CascadeType.ALL,
-                orphanRemoval = true)
+                orphanRemoval = true )
     private List<Doctor> doctors;
 
     /**
@@ -29,8 +27,16 @@ public class Hospital extends BaseEntity<Long>
      */
     public Hospital(String address)
     {
+        super();
         this.address = address;
         this.doctors = new ArrayList<>();
+    }
+
+    public Hospital(String address, List<Doctor> doctors)
+    {
+        super();
+        this.address = address;
+        this.doctors = doctors;
     }
 
     public String getAddress() {

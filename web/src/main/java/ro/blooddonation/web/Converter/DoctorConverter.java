@@ -4,12 +4,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import ro.blooddonation.core.Domain.Doctor;
+import ro.blooddonation.core.Domain.Hospital;
 import ro.blooddonation.core.Domain.Patient;
 import ro.blooddonation.web.Dto.DoctorDto;
 import ro.blooddonation.web.Dto.PatientDto;
+import ro.blooddonation.web.Dto.PatientsDto;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class DoctorConverter extends BaseConverter<Doctor, DoctorDto>
@@ -20,8 +24,21 @@ public class DoctorConverter extends BaseConverter<Doctor, DoctorDto>
     public Doctor convertDtoToModel(DoctorDto dto)
     {
         HospitalConverter hospitalConverter = new HospitalConverter();
+        PatientConverter patientConverter = new PatientConverter();
+
+        Hospital hospital = hospitalConverter.convertDtoToModel(dto.getHospital());
+
+        List<Patient> patients = new ArrayList<>();
+        Set<PatientDto> patientDtos = dto.getPatients().getPatients();
+        //if (patientDtos.size() > 0 && patientDtos != null)
+            patientDtos.forEach(p -> {
+                patients.add(patientConverter.convertDtoToModel(p));
+            });
+
         Doctor doctor = new Doctor(dto.getFirstName(), dto.getLastName(), dto.getBDay(), dto.getAddress(), dto.getResidence(),
-                dto.getCNP(), null, hospitalConverter.convertDtoToModel(dto.getHospital()));
+                dto.getCNP(), null, hospital, patients);
+        doctor.setId(dto.getId());
+
         return doctor;
     }
 
@@ -30,15 +47,16 @@ public class DoctorConverter extends BaseConverter<Doctor, DoctorDto>
     {
         HospitalConverter hospitalConverter = new HospitalConverter();
         PatientConverter patientConverter = new PatientConverter();
-        RequestConverter requestConverter = new RequestConverter();
 
+        Set<PatientDto> patientDtos = new HashSet<>();
         List<Patient> patients = doctor.getPatients();
-        List<PatientDto> patientDtos = new ArrayList<>();
-        patients.forEach(patient -> {
-            patientDtos.add(patientConverter.convertModelToDto(patient));
-        });
+        //if (patients.size() > 0 && patients != null)
+            patients.forEach(patient -> {
+                patientDtos.add(patientConverter.convertModelToDto(patient));
+            });
 
-        DoctorDto doctorDto = new DoctorDto(hospitalConverter.convertModelToDto(doctor.getHospital()), patientDtos);
+        PatientsDto patientsDto = new PatientsDto(patientDtos);
+        DoctorDto doctorDto = new DoctorDto(hospitalConverter.convertModelToDto(doctor.getHospital()), patientsDto);
         doctorDto.setId(doctor.getId());
         doctorDto.setFirstName(doctor.getFirstName());
         doctorDto.setLastName(doctor.getLastName());
