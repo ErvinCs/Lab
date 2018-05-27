@@ -19,7 +19,7 @@ public class HospitalDto extends BaseDto {
     public String toString()
     {
         return "Hospital{address=" + this.address.toString() +
-                ", doctorNo=" + //this.doctors.getDoctors().size() +
+                ", doctorNo=" + this.doctors.getDoctors().toString() +
                 "}" + super.toString();
     }
 }

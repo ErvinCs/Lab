@@ -4,6 +4,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import ro.blooddonation.core.Domain.*;
+import ro.blooddonation.core.Service.HospitalService;
 import ro.blooddonation.web.Converter.HospitalConverter;
 import ro.blooddonation.web.Dto.*;
 
@@ -35,20 +36,24 @@ public class Console
 //                .forEach(p -> System.out.println(p.toString()));
 
         List<Doctor> doctorList = new ArrayList<>();
-        //doctorList.add(new Doctor());
+        doctorList.add(new Doctor());
         Hospital h = new Hospital("Address", doctorList);
         System.out.println("Hospital=" + h.toString());
-        HospitalConverter hospitalConverter = new HospitalConverter();
-        HospitalDto hDto = hospitalConverter.convertModelToDto(h);
-        System.out.println("HospitalDto=" + hDto.toString());
-        hDto = restTemplate.postForObject("http://localhost:8080/api/hospitals",
-                 hDto, HospitalDto.class);
-        System.out.println("PostHospital:\n" + hDto.toString());
 
-//        HospitalsDto hDtos = restTemplate.getForObject("http://localhost:8080/api/hospitals", HospitalsDto.class);
-//        System.out.println("GetHospitals:");
-//        hDtos.getHospitals()
-//                .forEach(h -> System.out.println(h.toString()));
+//        HospitalConverter hospitalConverter = new HospitalConverter();
+//        HospitalDto hDto = hospitalConverter.convertModelToDto(h);
+//        System.out.println("HospitalDto=" + hDto.toString());
+//        HospitalService hospitalService = (HospitalService)context.getBean("hospitalService");
+//        hospitalService.add(new Hospital("Address", doctorList));
+//        System.out.println(hospitalService.findAll().toString());
+        HospitalDto hDto = restTemplate.postForObject("http://localhost:8080/api/hospitals",
+                 new HospitalDto("Address", new DoctorsDto()), HospitalDto.class);
+//        System.out.println("PostHospital:\n" + hDto.toString());
+
+        HospitalsDto hDtos = restTemplate.getForObject("http://localhost:8080/api/hospitals", HospitalsDto.class);
+        System.out.println("GetHospitals:");
+        hDtos.getHospitals()
+                .forEach(h -> System.out.println(h.toString()));
 
 
 //        DoningCenterDto dcDto = restTemplate.postForObject("http://localhost:8080/api/doningCenters",

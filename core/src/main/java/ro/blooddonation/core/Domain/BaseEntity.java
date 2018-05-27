@@ -11,12 +11,12 @@ public abstract class BaseEntity<ID extends Serializable> implements Serializabl
     @Column(unique = true, nullable = false)
     private ID id;
 
-//    public BaseEntity() { }
-//
-//    public BaseEntity(ID id)
-//    {
-//        this.id = id;
-//    }
+    public BaseEntity() { }
+
+    public BaseEntity(ID id)
+    {
+        this.id = id;
+    }
 
     public ID getId() {
         return id;
