@@ -18,8 +18,14 @@ public class HospitalDto extends BaseDto {
     @Override
     public String toString()
     {
+        int docNo;
+        if (doctors.getDoctors() == null)
+            docNo = 0;
+        else
+            docNo = doctors.getDoctors().size();
+
         return "Hospital{address=" + this.address.toString() +
-                ", doctorNo=" + this.doctors.getDoctors().toString() +
+                ", doctorNo=" + docNo +
                 "}" + super.toString();
     }
 }

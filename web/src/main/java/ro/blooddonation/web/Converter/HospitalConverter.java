@@ -24,8 +24,7 @@ public class HospitalConverter extends BaseConverter<Hospital, HospitalDto>
     {
         DoctorsDto doctorDtos = dto.getDoctors();
         List<Doctor> doctors = new ArrayList<>();
-        //if (doctorDtos.getDoctors().size() > 0 && doctorDtos.getDoctors() != null)
-            doctorDtos.getDoctors().forEach(doc -> doctors.add(doctorConverter.convertDtoToModel(doc)));
+        doctorDtos.getDoctors().forEach(doc -> doctors.add(doctorConverter.convertDtoToModel(doc)));
 
         Hospital hospital = new Hospital(dto.getAddress(), doctors);
         hospital.setId(dto.getId());
@@ -37,8 +36,7 @@ public class HospitalConverter extends BaseConverter<Hospital, HospitalDto>
 
         List<Doctor> doctors = hospital.getDoctors();
         DoctorsDto doctorDtos = new DoctorsDto();
-        //if (doctors.size() > 0 && doctors != null)
-            doctors.forEach(doc -> doctorDtos.getDoctors().add(doctorConverter.convertModelToDto(doc)));
+        doctors.forEach(doc -> doctorDtos.getDoctors().add(doctorConverter.convertModelToDto(doc)));
 
         HospitalDto hospitalDto = new HospitalDto(hospital.getAddress(), doctorDtos);
         hospitalDto.setId(hospital.getId());

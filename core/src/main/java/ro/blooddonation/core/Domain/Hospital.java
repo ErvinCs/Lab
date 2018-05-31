@@ -27,14 +27,14 @@ public class Hospital extends BaseEntity<Long>
      */
     public Hospital(String address)
     {
-        super();
+        //super();
         this.address = address;
         this.doctors = new ArrayList<>();
     }
 
     public Hospital(String address, List<Doctor> doctors)
     {
-        super();
+        //super();
         this.address = address;
         this.doctors = doctors;
     }

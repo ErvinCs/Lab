@@ -36,9 +36,9 @@ public class Console
 //                .forEach(p -> System.out.println(p.toString()));
 
         List<Doctor> doctorList = new ArrayList<>();
-        doctorList.add(new Doctor());
-        Hospital h = new Hospital("Address", doctorList);
-        System.out.println("Hospital=" + h.toString());
+//        doctorList.add(new Doctor());
+//        Hospital h = new Hospital("Address", doctorList);
+//        System.out.println("Hospital=" + h.toString());
 
 //        HospitalConverter hospitalConverter = new HospitalConverter();
 //        HospitalDto hDto = hospitalConverter.convertModelToDto(h);
@@ -48,12 +48,12 @@ public class Console
 //        System.out.println(hospitalService.findAll().toString());
         HospitalDto hDto = restTemplate.postForObject("http://localhost:8080/api/hospitals",
                  new HospitalDto("Address", new DoctorsDto()), HospitalDto.class);
-//        System.out.println("PostHospital:\n" + hDto.toString());
+        System.out.println("PostHospital: " + hDto.toString());
 
         HospitalsDto hDtos = restTemplate.getForObject("http://localhost:8080/api/hospitals", HospitalsDto.class);
-        System.out.println("GetHospitals:");
-        hDtos.getHospitals()
-                .forEach(h -> System.out.println(h.toString()));
+        //System.out.println("GetHospitals:");
+        //hDtos.getHospitals()
+        //        .forEach(h -> System.out.println(h.toString()));
 
 
 //        DoningCenterDto dcDto = restTemplate.postForObject("http://localhost:8080/api/doningCenters",
