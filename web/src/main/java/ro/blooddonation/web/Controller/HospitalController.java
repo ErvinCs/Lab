@@ -46,9 +46,9 @@ public class HospitalController implements IController<HospitalDto, HospitalsDto
             doctors.add(doctorConverter.convertDtoToModel(doc));
         });
 
-        Hospital hospital = new Hospital(hospitalDto.getAddress(), doctors);
-        hospital.setId(hospitalDto.getId());
-        hospitalService.add(hospital);
+        Hospital h = new Hospital(hospitalDto.getAddress(), doctors);
+        h.setId(hospitalDto.getId());
+        Hospital hospital = hospitalService.add(h);
 
         HospitalDto result = hospitalConverter.convertModelToDto(hospital);
 

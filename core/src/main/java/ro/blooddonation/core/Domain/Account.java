@@ -33,6 +33,13 @@ public class Account extends BaseEntity<Long>
         this.password = password;
     }
 
+    public Account(String username, String password, Person owner)
+    {
+        this.username = username;
+        this.password = password;
+        this.owner = owner;
+    }
+
     public String getUsername() {
         return username;
     }
