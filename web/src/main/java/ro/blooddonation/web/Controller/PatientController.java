@@ -33,19 +33,26 @@ public class PatientController implements IController<PatientDto, PatientsDto>
     @Autowired
     private PatientConverter patientConverter;
 
+    @Autowired
+    private DoctorConverter doctorConverter;
+
 
     @RequestMapping(value = "/patients", method = RequestMethod.POST)
     public PatientDto add(@RequestBody final PatientDto patientDto)
     {
         log.trace("addPatient: patientDtoMap={}", patientDto);
-        DoctorConverter doc = new DoctorConverter();
-        Doctor doctor = doc.convertDtoToModel(patientDto.getDoctor());
+
+        Doctor doctor = doctorConverter.convertDtoToModel(patientDto.getDoctor());
 
         Patient patient = new Patient(
                 patientDto.getFirstName(), patientDto.getLastName(), patientDto.getBDay(),
                 patientDto.getAddress(), patientDto.getResidence(), patientDto.getCNP(),
                 null, doctor);
         patient.setId(patientDto.getId());
+        patient.setBlood(patientDto.getBlood());
+        patient.setRequestedBloodQuantity(patientDto.getRequestedBloodQuantity());
+        patient.setUrgency(patientDto.getUrgency());
+
         patientService.add(patient);
 
         PatientDto result = patientConverter.convertModelToDto(patient);
@@ -74,14 +81,16 @@ public class PatientController implements IController<PatientDto, PatientsDto>
                             @RequestBody final PatientDto newPatientDto) {
         log.trace("updatePatient: id={}, patientDtoMap={}", id, newPatientDto);
 
-        DoctorConverter doc = new DoctorConverter();
-        Doctor doctor = doc.convertDtoToModel(newPatientDto.getDoctor());
+        Doctor doctor = doctorConverter.convertDtoToModel(newPatientDto.getDoctor());
 
         Patient p = new Patient(
                 newPatientDto.getFirstName(), newPatientDto.getLastName(), newPatientDto.getBDay(),
                 newPatientDto.getAddress(), newPatientDto.getResidence(), newPatientDto.getCNP(),
                 null, doctor );
         p.setId(id);
+        p.setBlood(newPatientDto.getBlood());
+        p.setRequestedBloodQuantity(newPatientDto.getRequestedBloodQuantity());
+        p.setUrgency(newPatientDto.getUrgency());
 
         Optional<Patient> patient = patientService.update(id, p);
 

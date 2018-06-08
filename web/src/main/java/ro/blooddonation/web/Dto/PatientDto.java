@@ -19,4 +19,14 @@ public class PatientDto extends PersonDto {
     private Double requestedBloodQuantity;
     private Integer urgency;
 
+    @Override
+    public String toString()
+    {
+        return "Patient{doctor=" + this.doctor.toString() +
+                ", blood=" + this.blood.toString() +
+                ", requestedQuantity=" + this.requestedBloodQuantity.toString() +
+                ", urgency=" + this.urgency.toString() +
+                "}" + super.toString();
+    }
+
 }

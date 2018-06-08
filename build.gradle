@@ -41,6 +41,7 @@ allprojects {
         sqlConnector = '6.0.6'
         postgresqlVersion = '42.2.1'
         dbcpVersion = '2.2.0'
+        modelMapperVersion = '2.0.0'
 
         slf4jVersion = '1.7.25'
         log4jVersion = '2.10.0'
@@ -87,6 +88,9 @@ allprojects {
 
         //tomcat
         compile group: 'org.apache.tomcat', name: 'tomcat-catalina', version: "$tomcatversion", ext: 'pom'
+
+        //ModelMapper
+        //compile group: 'org.modelmapper', name: 'modelmapper', version: "$modelMapperVersion"
 
 //        compile group: 'org.springframework', name: 'spring-jdbc', version: "$springVersion"
 //        compile group: 'org.hibernate', name: 'hibernate-osgi', version: "$hibernateVersion"

@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class RequestServiceImpl implements RequestService
 {
-    private static final Logger log = LoggerFactory.getLogger(RequestService.class);
+    private static final Logger log = LoggerFactory.getLogger(RequestServiceImpl.class);
 
     @Autowired
     private RequestRepo requestRepo;
@@ -64,6 +64,8 @@ public class RequestServiceImpl implements RequestService
 
         requestOptional.ifPresent(r ->
                 {
+                    r.setUrgency(newItem.getUrgency());
+                    r.setStatus(newItem.getStatus());
                 }
         );
 

@@ -61,10 +61,27 @@ public class Donation extends BaseEntity<Long>
         this.bloodQuantity = bloodQuantity;
         this.blood = null;
         this.diseases = new EnumMap<DiseasesEnum, Boolean>(DiseasesEnum.class);
-        this.bloodQuantity = null;
+        this.initDiseases();
         this.plasmaQuantity = null;
         this.thrombocytesQuantity = null;
         this.redCellsQuantity = null;
+    }
+
+    private void initDiseases()
+    {
+        this.diseases.put(DiseasesEnum.Hepatitis, false);
+        this.diseases.put(DiseasesEnum.TB, false);
+        this.diseases.put(DiseasesEnum.Pox, false);
+        this.diseases.put(DiseasesEnum.Malaria, false);
+        this.diseases.put(DiseasesEnum.Epilepsy, false);
+        this.diseases.put(DiseasesEnum.MentalIlness, false);
+        this.diseases.put(DiseasesEnum.Brucellosis, false);
+        this.diseases.put(DiseasesEnum.Ulcer, false);
+        this.diseases.put(DiseasesEnum.Diabetes, false);
+        this.diseases.put(DiseasesEnum.HeartDisease, false);
+        this.diseases.put(DiseasesEnum.SkinDisease, false);
+        this.diseases.put(DiseasesEnum.Cancer, false);
+        this.diseases.put(DiseasesEnum.MyopiaOver6, false);
     }
 
     public BloodEnum getBlood() {
@@ -113,6 +130,11 @@ public class Donation extends BaseEntity<Long>
 
     public void setDiseases(Map<DiseasesEnum, Boolean> diseases) {
         this.diseases = diseases;
+    }
+
+    public void setDisease(DiseasesEnum diseaseKey, Boolean value)
+    {
+        this.diseases.put(diseaseKey, value);
     }
 
     public void setBloodQuantity(Double bloodQuantity) {

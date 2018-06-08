@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class PatientServiceImpl implements PatientService
 {
-    private static final Logger log = LoggerFactory.getLogger(PatientService.class);
+    private static final Logger log = LoggerFactory.getLogger(PatientServiceImpl.class);
 
     @Autowired
     private PatientRepo patientRepo;
@@ -64,6 +64,15 @@ public class PatientServiceImpl implements PatientService
 
         patientOptional.ifPresent(p ->
                 {
+                    p.setUrgency(newItem.getUrgency());
+                    p.setRequestedBloodQuantity(newItem.getRequestedBloodQuantity());
+                    p.setBlood(newItem.getBlood());
+                    p.setDoctor(newItem.getDoctor());
+
+                    p.setFirstName(newItem.getFirstName());
+                    p.setLastName(newItem.getLastName());
+                    p.setResidence(newItem.getResidence());
+                    p.setAddress(newItem.getAddress());
                 }
         );
 

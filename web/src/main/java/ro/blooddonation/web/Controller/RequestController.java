@@ -33,15 +33,21 @@ public class RequestController implements IController<RequestDto, RequestsDto>
     @Autowired
     private RequestConverter requestConverter;
 
+    @Autowired
+    private DoctorConverter doctorConverter;
+
 
     @RequestMapping(value = "/requests", method = RequestMethod.POST)
     public RequestDto add(@RequestBody final RequestDto requestDto)
     {
         log.trace("addRequest: requestDtoMap={}", requestDto);
-        DoctorConverter doc = new DoctorConverter();
-        Doctor doctor = doc.convertDtoToModel(requestDto.getDoctor());
+
+        Doctor doctor = doctorConverter.convertDtoToModel(requestDto.getDoctor());
+
         Request request = new Request(requestDto.getBlood(), requestDto.getUrgency(), doctor);
         request.setId(requestDto.getId());
+        request.setUrgency(request.getUrgency());
+
         requestService.add(request);
 
         RequestDto result = requestConverter.convertModelToDto(request);
@@ -70,9 +76,9 @@ public class RequestController implements IController<RequestDto, RequestsDto>
                             @RequestBody final RequestDto newRequestDto) {
         log.trace("updateRequest: id={}, requestDtoMap={}", id, newRequestDto);
 
-        DoctorConverter doc = new DoctorConverter();
-        Doctor doctor = doc.convertDtoToModel(newRequestDto.getDoctor());
+        Doctor doctor = doctorConverter.convertDtoToModel(newRequestDto.getDoctor());
         Request r = new Request(newRequestDto.getBlood(), newRequestDto.getUrgency(), doctor);
+        r.setUrgency(newRequestDto.getUrgency());
         r.setId(id);
 
         Optional<Request> request = requestService.update(id, r);
@@ -100,6 +106,4 @@ public class RequestController implements IController<RequestDto, RequestsDto>
 
         return new RequestsDto(requestConverter.convertModelsToDtos(requests));
     }
-
-
 }

@@ -1,9 +1,6 @@
 package ro.blooddonation.web.Dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,19 +12,15 @@ import java.util.List;
 public class DoctorDto extends PersonDto
 {
     private HospitalDto hospital;
+    private PatientsDto patients;
 
-    private List<PatientDto> patients;
 
-//    public void addPatient(PatientDto patient)
-//    {
-//        this.patients.add(patient);
-//        patient.setDoctorDto(this);
-//    }
-
-//    public void removePatient(PatientDto patient)
-//    {
-//        this.patients.remove(patient);
-//        patient.setDoctorDto(null);
-//    }
+    @Override
+    public String toString()
+    {
+        return "DoctorDto{hospital=" + this.hospital.toString() +
+                ", patientsNo=" + //this.patients.getPatients().size() +
+                "}" + super.toString();
+    }
 
 }

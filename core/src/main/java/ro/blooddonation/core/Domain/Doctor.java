@@ -20,8 +20,7 @@ public class Doctor extends Person
     @JoinColumn(name = "hospital_id")
     private Hospital hospital;
 
-    @OneToMany( fetch = FetchType.LAZY,
-                mappedBy = "doctor",
+    @OneToMany( mappedBy = "doctor",
                 cascade = CascadeType.ALL,
                 orphanRemoval = true )
     private List<Patient> patients;
@@ -37,12 +36,19 @@ public class Doctor extends Person
      * @param account
      * @param hospital
      */
+//    public Doctor(String firstName, String lastName, LocalDate bDay, String address, String residence,
+//                  Long CNP, Account account, Hospital hospital)
+//    {
+//        super(firstName, lastName, bDay, address, residence, CNP, account);
+//        this.hospital = hospital;
+//        this.patients = new ArrayList<Patient>();
+//    }
     public Doctor(String firstName, String lastName, LocalDate bDay, String address, String residence,
-                  Long CNP, Account account, Hospital hospital)
+                  Long CNP, Account account, Hospital hospital, List<Patient> patients)
     {
         super(firstName, lastName, bDay, address, residence, CNP, account);
         this.hospital = hospital;
-        this.patients = new ArrayList<Patient>();
+        this.patients = patients;
     }
 
     public Hospital getHospital() {
